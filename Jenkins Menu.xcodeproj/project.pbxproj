@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
+		4B0CE8C0158DC6D0001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */; };
+		4B0CE8C2158DC6D0001BA10E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C1158DC6D0001BA10E /* main.m */; };
+		4B0CE8C6158DC6D0001BA10E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C4158DC6D0001BA10E /* Credits.rtf */; };
+		4B0CE8C9158DC6D0001BA10E /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
+		4B0CE8CC158DC6D1001BA10E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8CA158DC6D1001BA10E /* MainMenu.xib */; };
+		4B0CE8D4158DC6D1001BA10E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */; };
+		4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
+		4B0CE8DD158DC6D1001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DB158DC6D1001BA10E /* InfoPlist.strings */; };
+		4B0CE8E0158DC6D1001BA10E /* Jenkins_MenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DF158DC6D1001BA10E /* Jenkins_MenuTests.m */; };
+		4B0CE8E8158DC6D1001BA112 /* error_16.png in Resources */ = {isa = PBXBuildFile; };
+		4B0CE8E8158DC6D1001BA121 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA120 /* error.png */; };
+		4B0CE8E8158DC6D1001BA122 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA120 /* error.png */; };
+		4B0CE8E8158DC6D1001BA124 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA123 /* exclamation.png */; };
+		4B0CE8E8158DC6D1001BA125 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA123 /* exclamation.png */; };
+		4B0CE8E8158DC6D1001BA127 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA126 /* fire.png */; };
+		4B0CE8E8158DC6D1001BA128 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA126 /* fire.png */; };
+		4B0CE8E8158DC6D1001BA12A /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA129 /* lightning.png */; };
+		4B0CE8E8158DC6D1001BA12B /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA129 /* lightning.png */; };
+		4B0CE8E8158DC6D1001BA12D /* thumb_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12C /* thumb_up.png */; };
+		4B0CE8E8158DC6D1001BA12E /* thumb_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12C /* thumb_up.png */; };
+		4B0CE8E8158DC6D1001BA130 /* weather_clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */; };
+		4B0CE8E8158DC6D1001BA131 /* weather_clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */; };
+		4B0CE8E8158DC6D1001BA133 /* weather_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA132 /* weather_sun.png */; };
+		4B0CE8E8158DC6D1001BA134 /* weather_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA132 /* weather_sun.png */; };
+		4B0CE8E8158DC6D1001BA136 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA135 /* error@2x.png */; };
+		4B0CE8E8158DC6D1001BA137 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA135 /* error@2x.png */; };
+		4B0CE8E8158DC6D1001BA139 /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */; };
+		4B0CE8E8158DC6D1001BA13A /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */; };
+		4B0CE8E8158DC6D1001BA13C /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13B /* fire@2x.png */; };
+		4B0CE8E8158DC6D1001BA13D /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13B /* fire@2x.png */; };
+		4B0CE8E8158DC6D1001BA13F /* lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */; };
+		4B0CE8E8158DC6D1001BA140 /* lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */; };
+		4B0CE8E8158DC6D1001BA142 /* thumb_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */; };
+		4B0CE8E8158DC6D1001BA143 /* thumb_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */; };
+		4B0CE8E8158DC6D1001BA145 /* weather_clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */; };
+		4B0CE8E8158DC6D1001BA146 /* weather_clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */; };
+		4B0CE8E8158DC6D1001BA148 /* weather_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */; };
+		4B0CE8E8158DC6D1001BA149 /* weather_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */; };
+		4B0CE8E8158DC6D1001BA14B /* disconnect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */; };
+		4B0CE8E8158DC6D1001BA14C /* disconnect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */; };
+		4B0CE8E8158DC6D1001BA14E /* disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14D /* disconnect.png */; };
+		4B0CE8E8158DC6D1001BA14F /* disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14D /* disconnect.png */; };
+		4B0CE8E8158DC6D1001BA152 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
+		4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
+		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
+		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4B0CE8D6158DC6D1001BA10E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B0CE8A8158DC6D0001BA10E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B0CE8B0158DC6D0001BA10E;
+			remoteInfo = "Jenkins Menu";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jenkins Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4B0CE8B8158DC6D0001BA10E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		4B0CE8B9158DC6D0001BA10E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4B0CE8BA158DC6D0001BA10E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins Menu-Info.plist"; sourceTree = "<group>"; };
+		4B0CE8BF158DC6D0001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B0CE8C1158DC6D0001BA10E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4B0CE8C3158DC6D0001BA10E /* Jenkins Menu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Jenkins Menu-Prefix.pch"; sourceTree = "<group>"; };
+		4B0CE8C5158DC6D0001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4B0CE8C7158DC6D0001BA10E /* JMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMAppDelegate.h; sourceTree = "<group>"; };
+		4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMAppDelegate.m; sourceTree = "<group>"; };
+		4B0CE8CB158DC6D1001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jenkins MenuTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4B0CE8DA158DC6D1001BA10E /* Jenkins MenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins MenuTests-Info.plist"; sourceTree = "<group>"; };
+		4B0CE8DC158DC6D1001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B0CE8DE158DC6D1001BA10E /* Jenkins_MenuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jenkins_MenuTests.h; sourceTree = "<group>"; };
+		4B0CE8DF158DC6D1001BA10E /* Jenkins_MenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Jenkins_MenuTests.m; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA120 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = error.png; path = Resources/error.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA123 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exclamation.png; path = Resources/exclamation.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA126 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = Resources/fire.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA129 /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightning.png; path = Resources/lightning.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA12C /* thumb_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumb_up.png; path = Resources/thumb_up.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_clouds.png; path = Resources/weather_clouds.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA132 /* weather_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_sun.png; path = Resources/weather_sun.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA135 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "error@2x.png"; path = "Resources/error@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exclamation@2x.png"; path = "Resources/exclamation@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA13B /* fire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fire@2x.png"; path = "Resources/fire@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lightning@2x.png"; path = "Resources/lightning@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thumb_up@2x.png"; path = "Resources/thumb_up@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_clouds@2x.png"; path = "Resources/weather_clouds@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_sun@2x.png"; path = "Resources/weather_sun@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disconnect@2x.png"; path = "Resources/disconnect@2x.png"; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA14D /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disconnect.png; path = Resources/disconnect.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA150 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
+		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B0CE8AE158DC6D0001BA10E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B0CE8CE158DC6D1001BA10E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8D4158DC6D1001BA10E /* SenTestingKit.framework in Frameworks */,
+				4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B0CE8A6158DC6D0001BA10E = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */,
+				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
+				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
+				4B0CE8B2158DC6D0001BA10E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B0CE8B2158DC6D0001BA10E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */,
+				4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B0CE8B4158DC6D0001BA10E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
+				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
+				4B0CE8B7158DC6D0001BA10E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B0CE8B7158DC6D0001BA10E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8B8158DC6D0001BA10E /* AppKit.framework */,
+				4B0CE8B9158DC6D0001BA10E /* CoreData.framework */,
+				4B0CE8BA158DC6D0001BA10E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8E8158DC6D1001BA150 /* Log.h */,
+				4B0CE8C7158DC6D0001BA10E /* JMAppDelegate.h */,
+				4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */,
+				4B0CE8CA158DC6D1001BA10E /* MainMenu.xib */,
+				4B0CE8BC158DC6D0001BA10E /* Supporting Files */,
+				4B0CE8E8158DC6D1001BA10F /* Resources */,
+			);
+			path = "Jenkins Menu";
+			sourceTree = "<group>";
+		};
+		4B0CE8BC158DC6D0001BA10E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */,
+				4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */,
+				4B0CE8C1158DC6D0001BA10E /* main.m */,
+				4B0CE8C3158DC6D0001BA10E /* Jenkins Menu-Prefix.pch */,
+				4B0CE8C4158DC6D0001BA10E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8DE158DC6D1001BA10E /* Jenkins_MenuTests.h */,
+				4B0CE8DF158DC6D1001BA10E /* Jenkins_MenuTests.m */,
+				4B0CE8D9158DC6D1001BA10E /* Supporting Files */,
+			);
+			path = "Jenkins MenuTests";
+			sourceTree = "<group>";
+		};
+		4B0CE8D9158DC6D1001BA10E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8DA158DC6D1001BA10E /* Jenkins MenuTests-Info.plist */,
+				4B0CE8DB158DC6D1001BA10E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B0CE8E8158DC6D1001BA10F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8E8158DC6D1001BA110 /* 16 */,
+				4B0CE8E8158DC6D1001BA11F /* 32 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4B0CE8E8158DC6D1001BA110 /* 16 */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */,
+				4B0CE8E8158DC6D1001BA14D /* disconnect.png */,
+				4B0CE8E8158DC6D1001BA132 /* weather_sun.png */,
+				4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */,
+				4B0CE8E8158DC6D1001BA12C /* thumb_up.png */,
+				4B0CE8E8158DC6D1001BA129 /* lightning.png */,
+				4B0CE8E8158DC6D1001BA126 /* fire.png */,
+				4B0CE8E8158DC6D1001BA123 /* exclamation.png */,
+				4B0CE8E8158DC6D1001BA120 /* error.png */,
+			);
+			name = 16;
+			sourceTree = "<group>";
+		};
+		4B0CE8E8158DC6D1001BA11F /* 32 */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */,
+				4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */,
+				4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */,
+				4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */,
+				4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */,
+				4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */,
+				4B0CE8E8158DC6D1001BA13B /* fire@2x.png */,
+				4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */,
+				4B0CE8E8158DC6D1001BA135 /* error@2x.png */,
+			);
+			name = 32;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B0CE8E3158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins Menu" */;
+			buildPhases = (
+				4B0CE8AD158DC6D0001BA10E /* Sources */,
+				4B0CE8AE158DC6D0001BA10E /* Frameworks */,
+				4B0CE8AF158DC6D0001BA10E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Jenkins Menu";
+			productName = "Jenkins Menu";
+			productReference = 4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4B0CE8D1158DC6D1001BA10E /* Jenkins MenuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B0CE8E6158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins MenuTests" */;
+			buildPhases = (
+				4B0CE8CD158DC6D1001BA10E /* Sources */,
+				4B0CE8CE158DC6D1001BA10E /* Frameworks */,
+				4B0CE8CF158DC6D1001BA10E /* Resources */,
+				4B0CE8D0158DC6D1001BA10E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B0CE8D7158DC6D1001BA10E /* PBXTargetDependency */,
+			);
+			name = "Jenkins MenuTests";
+			productName = "Jenkins MenuTests";
+			productReference = 4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B0CE8A8158DC6D0001BA10E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JM;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 4B0CE8AB158DC6D0001BA10E /* Build configuration list for PBXProject "Jenkins Menu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4B0CE8A6158DC6D0001BA10E;
+			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
+				4B0CE8D1158DC6D1001BA10E /* Jenkins MenuTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B0CE8AF158DC6D0001BA10E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8C0158DC6D0001BA10E /* InfoPlist.strings in Resources */,
+				4B0CE8C6158DC6D0001BA10E /* Credits.rtf in Resources */,
+				4B0CE8CC158DC6D1001BA10E /* MainMenu.xib in Resources */,
+				4B0CE8E8158DC6D1001BA112 /* error_16.png in Resources */,
+				4B0CE8E8158DC6D1001BA121 /* error.png in Resources */,
+				4B0CE8E8158DC6D1001BA124 /* exclamation.png in Resources */,
+				4B0CE8E8158DC6D1001BA127 /* fire.png in Resources */,
+				4B0CE8E8158DC6D1001BA12A /* lightning.png in Resources */,
+				4B0CE8E8158DC6D1001BA12D /* thumb_up.png in Resources */,
+				4B0CE8E8158DC6D1001BA130 /* weather_clouds.png in Resources */,
+				4B0CE8E8158DC6D1001BA133 /* weather_sun.png in Resources */,
+				4B0CE8E8158DC6D1001BA136 /* error@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA139 /* exclamation@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA13C /* fire@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA13F /* lightning@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA142 /* thumb_up@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA145 /* weather_clouds@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA148 /* weather_sun@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA14B /* disconnect@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA14E /* disconnect.png in Resources */,
+				4B0CE8E8158DC6D1001BA152 /* weather_lightning.png in Resources */,
+				4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B0CE8CF158DC6D1001BA10E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8DD158DC6D1001BA10E /* InfoPlist.strings in Resources */,
+				4B0CE8E8158DC6D1001BA122 /* error.png in Resources */,
+				4B0CE8E8158DC6D1001BA125 /* exclamation.png in Resources */,
+				4B0CE8E8158DC6D1001BA128 /* fire.png in Resources */,
+				4B0CE8E8158DC6D1001BA12B /* lightning.png in Resources */,
+				4B0CE8E8158DC6D1001BA12E /* thumb_up.png in Resources */,
+				4B0CE8E8158DC6D1001BA131 /* weather_clouds.png in Resources */,
+				4B0CE8E8158DC6D1001BA134 /* weather_sun.png in Resources */,
+				4B0CE8E8158DC6D1001BA137 /* error@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA13A /* exclamation@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA13D /* fire@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA140 /* lightning@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA143 /* thumb_up@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA146 /* weather_clouds@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA149 /* weather_sun@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA14C /* disconnect@2x.png in Resources */,
+				4B0CE8E8158DC6D1001BA14F /* disconnect.png in Resources */,
+				4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */,
+				4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B0CE8D0158DC6D1001BA10E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B0CE8AD158DC6D0001BA10E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8C2158DC6D0001BA10E /* main.m in Sources */,
+				4B0CE8C9158DC6D0001BA10E /* JMAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B0CE8CD158DC6D1001BA10E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0CE8E0158DC6D1001BA10E /* Jenkins_MenuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B0CE8D7158DC6D1001BA10E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */;
+			targetProxy = 4B0CE8D6158DC6D1001BA10E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0CE8BF158DC6D0001BA10E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4B0CE8C4158DC6D0001BA10E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0CE8C5158DC6D0001BA10E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		4B0CE8CA158DC6D1001BA10E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0CE8CB158DC6D1001BA10E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		4B0CE8DB158DC6D1001BA10E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0CE8DC158DC6D1001BA10E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4B0CE8E1158DC6D1001BA10E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4B0CE8E2158DC6D1001BA10E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4B0CE8E4158DC6D1001BA10E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
+				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4B0CE8E5158DC6D1001BA10E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
+				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4B0CE8E7158DC6D1001BA10E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Jenkins Menu.app/Contents/MacOS/Jenkins Menu";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
+				INFOPLIST_FILE = "Jenkins MenuTests/Jenkins MenuTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4B0CE8E8158DC6D1001BA10E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Jenkins Menu.app/Contents/MacOS/Jenkins Menu";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
+				INFOPLIST_FILE = "Jenkins MenuTests/Jenkins MenuTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B0CE8AB158DC6D0001BA10E /* Build configuration list for PBXProject "Jenkins Menu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B0CE8E1158DC6D1001BA10E /* Debug */,
+				4B0CE8E2158DC6D1001BA10E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B0CE8E3158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins Menu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B0CE8E4158DC6D1001BA10E /* Debug */,
+				4B0CE8E5158DC6D1001BA10E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B0CE8E6158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins MenuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B0CE8E7158DC6D1001BA10E /* Debug */,
+				4B0CE8E8158DC6D1001BA10E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B0CE8A8158DC6D0001BA10E /* Project object */;
+}
