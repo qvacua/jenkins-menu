@@ -1,13 +1,5 @@
-//
-//  JMAppDelegate.m
-//  Jenkins Menu
-//
-//  Created by Tae Won Ha on 6/17/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import "JMAppDelegate.h"
-#import "Log.h"
+#import <Qkit/Qkit.h>
 
 static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
@@ -17,26 +9,6 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
 @interface JMAppDelegate ()
 
 @property(readwrite, strong) NSStatusItem *statusItem;
-
-- (void)showInitialStatus;
-
-- (void)initStatusMenu;
-
-- (void)showConnectingStatus;
-
-- (void)makeRequest;
-
-- (void)setTitle:(NSString *)title image:(NSString *)imageName;
-
-- (void)showErrorStatus;
-
-- (void)setDefaultsIfNecessary;
-
-- (void)resetTimerWithTimeInterval:(NSTimeInterval)interval1;
-
-- (void)setStatusWithRed:(NSUInteger)redCount yellow:(NSUInteger)yellowCount;
-
-- (void)filterPrimaryViewUrlFromNode:(NSXMLNode *)childNode;
 
 @end
 
@@ -62,6 +34,155 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
 @synthesize jenkinsUrl = _jenkinsUrl;
 @synthesize statusMenuItem = _statusMenuItem;
 
+#pragma mark NSURLConnectionDelegate
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+    int responseStatusCode = [httpResponse statusCode];
+
+    if (responseStatusCode < 200 || responseStatusCode >= 400) {
+        log4Warn(@"connection was not successful. http status code was: %d", responseStatusCode);
+
+        _successful = NO;
+        [self showErrorStatus];
+    } else {
+        _successful = YES;
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    log4Warn(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
+    [self showErrorStatus];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (!_successful) {
+        return;
+    }
+
+    NSXMLDocument *xmlDocument = [[NSXMLDocument alloc] initWithData:data options:0 error:NULL];
+    NSArray *children = [[xmlDocument rootElement] children];
+
+    if ([children count] == 0) {
+        log4Warn(@"The XML is empty!");
+
+        [self showErrorStatus];
+        return;
+    }
+
+    __block NSUInteger redCount = 0;
+    __block NSUInteger yellowCount = 0;
+
+    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
+        if ([[childNode name] isEqualToString:@"primaryView"]) {
+            [self filterPrimaryViewUrlFromNode:childNode];
+            return;
+        }
+
+        if ([[childNode name] isEqualToString:@"job"]) {
+            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
+            return;
+        }
+    }];
+
+    [self setStatusWithRed:redCount yellow:yellowCount];
+    [self.statusMenuItem setTitle:@"Successfully Updated Jenkins Status"];
+}
+
+#pragma mark NSApplicationDelegate
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [self setDefaultsIfNecessary];
+    [self initStatusMenu];
+
+    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
+    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+
+    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
+
+    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
+    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+}
+
+#pragma mark NSKeyValueObserving
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+
+    if ([keyPath isEqualToString:@"jenkinsXmlUrl"]) {
+        if ([[change objectForKey:NSKeyValueChangeOldKey] isEqual:self.jenkinsXmlUrl]) {
+            return;
+        }
+
+        [[NSUserDefaults standardUserDefaults] setObject:[self.jenkinsXmlUrl absoluteString] forKey:DEFAULT_URL_KEY];
+        self.jenkinsUrl = nil;
+        [self makeRequest];
+    }
+
+    if ([keyPath isEqualToString:@"interval"]) {
+        if ([[change objectForKey:NSKeyValueChangeOldKey] doubleValue] == self.interval) {
+            return;
+        }
+
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:self.interval] forKey:DEFAULT_INTERVAL_KEY];
+        [self resetTimerWithTimeInterval:self.interval];
+    }
+
+}
+
+#pragma mark NSObject
+- (id)init {
+    self = [super init];
+
+    if (self) {
+        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    }
+
+    return self;
+}
+
+#pragma mark IBActions
+- (IBAction)updateNowAction:(id)sender {
+    [self makeRequest];
+}
+
+- (IBAction)openJenkinsUrlAction:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:self.jenkinsUrl];
+}
+
+- (IBAction)openPreferencesWindowAction:(id)sender {
+    NSApplication *const application = [NSApplication sharedApplication];
+    [application activateIgnoringOtherApps:YES];
+
+    [self.urlTextField setStringValue:[self.jenkinsXmlUrl absoluteString]];
+    [self.intervalTextField setIntegerValue:(NSInteger) (self.interval / 60)];
+
+    [self.window makeKeyAndOrderFront:self];
+    [self.window orderFront:self];
+}
+
+- (IBAction)setPreferencesAction:(id)sender {
+    NSURL *newUrl = [[NSURL alloc] initWithString:[self.urlTextField stringValue]];
+    self.jenkinsXmlUrl = newUrl;
+    self.interval = [self.intervalTextField doubleValue] * 60;
+
+    [self.window orderOut:self];
+}
+
+#pragma mark NSUserInterfaceValidations
+- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)item {
+    if ([item action] == @selector(openPreferencesWindowAction:)) {
+        return YES;
+    }
+
+    if ([item action] == @selector(updateNowAction:)) {
+        return YES;
+    }
+
+    if ([item action] == @selector(openJenkinsUrlAction:)) {
+        return (self.jenkinsUrl != nil);
+    }
+
+    return NO;
+}
+
+#pragma mark Private
 - (void)showInitialStatus {
     [self setTitle:@"" image:@"disconnect.png"];
 }
@@ -102,25 +223,6 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
     [self.statusMenuItem setTitle:@"Error Updating Jenkins Status"];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-    int responseStatusCode = [httpResponse statusCode];
-
-    if (responseStatusCode < 200 || responseStatusCode >= 400) {
-        log4Warn(@"connection was not successful. http status code was: %d", responseStatusCode);
-
-        _successful = NO;
-        [self showErrorStatus];
-    } else {
-        _successful = YES;
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    log4Warn(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
-    [self showErrorStatus];
-}
-
 - (void)setDefaultsIfNecessary {
     NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
 
@@ -140,52 +242,6 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
 
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
     [runLoop addTimer:_timer forMode:NSDefaultRunLoopMode];
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self setDefaultsIfNecessary];
-    [self initStatusMenu];
-
-    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
-    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
-
-    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
-
-    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
-    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-    if ([keyPath isEqualToString:@"jenkinsXmlUrl"]) {
-        if ([[change objectForKey:NSKeyValueChangeOldKey] isEqual:self.jenkinsXmlUrl]) {
-            return;
-        }
-
-        [[NSUserDefaults standardUserDefaults] setObject:[self.jenkinsXmlUrl absoluteString] forKey:DEFAULT_URL_KEY];
-        self.jenkinsUrl = nil;
-        [self makeRequest];
-    }
-
-    if ([keyPath isEqualToString:@"interval"]) {
-        if ([[change objectForKey:NSKeyValueChangeOldKey] doubleValue] == self.interval) {
-            return;
-        }
-
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:self.interval] forKey:DEFAULT_INTERVAL_KEY];
-        [self resetTimerWithTimeInterval:self.interval];
-    }
-
-}
-
-- (id)init {
-    self = [super init];
-
-    if (self) {
-        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    }
-
-    return self;
 }
 
 - (void)timerFireMethod:(NSTimer *)theTimer {
@@ -247,83 +303,6 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
         }
 
     }];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (!_successful) {
-        return;
-    }
-
-    NSXMLDocument *xmlDocument = [[NSXMLDocument alloc] initWithData:data options:0 error:NULL];
-    NSArray *children = [[xmlDocument rootElement] children];
-
-    if ([children count] == 0) {
-        log4Warn(@"The XML is empty!");
-
-        [self showErrorStatus];
-        return;
-    }
-
-    __block NSUInteger redCount = 0;
-    __block NSUInteger yellowCount = 0;
-
-    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
-        if ([[childNode name] isEqualToString:@"primaryView"]) {
-            [self filterPrimaryViewUrlFromNode:childNode];
-            return;
-        }
-
-        if ([[childNode name] isEqualToString:@"job"]) {
-            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
-            return;
-        }
-    }];
-
-    [self setStatusWithRed:redCount yellow:yellowCount];
-    [self.statusMenuItem setTitle:@"Successfully Updated Jenkins Status"];
-}
-
-- (IBAction)updateNowAction:(id)sender {
-    [self makeRequest];
-}
-
-- (IBAction)openJenkinsUrlAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:self.jenkinsUrl];
-}
-
-- (IBAction)openPreferencesWindowAction:(id)sender {
-    NSApplication *const application = [NSApplication sharedApplication];
-    [application activateIgnoringOtherApps:YES];
-
-    [self.urlTextField setStringValue:[self.jenkinsXmlUrl absoluteString]];
-    [self.intervalTextField setIntegerValue:(NSInteger) (self.interval / 60)];
-
-    [self.window makeKeyAndOrderFront:self];
-    [self.window orderFront:self];
-}
-
-- (IBAction)setPreferencesAction:(id)sender {
-    NSURL *newUrl = [[NSURL alloc] initWithString:[self.urlTextField stringValue]];
-    self.jenkinsXmlUrl = newUrl;
-    self.interval = [self.intervalTextField doubleValue] * 60;
-
-    [self.window orderOut:self];
-}
-
-- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)item {
-    if ([item action] == @selector(openPreferencesWindowAction:)) {
-        return YES;
-    }
-
-    if ([item action] == @selector(updateNowAction:)) {
-        return YES;
-    }
-
-    if ([item action] == @selector(openJenkinsUrlAction:)) {
-        return (self.jenkinsUrl != nil);
-    }
-
-    return NO;
 }
 
 @end

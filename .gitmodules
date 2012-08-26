@@ -1,0 +1,3 @@
+[submodule "qkit"]
+	path = qkit
+	url = git@github.com:qvacua/qkit.git

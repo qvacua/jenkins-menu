@@ -1,11 +1,3 @@
-//
-//  JMAppDelegate.h
-//  Jenkins Menu
-//
-//  Created by Tae Won Ha on 6/17/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 @interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations>
