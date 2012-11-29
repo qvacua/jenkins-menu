@@ -55,6 +55,7 @@
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
 		4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
+		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
 		4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Qkit.xcodeproj; path = qkit/Qkit.xcodeproj; sourceTree = "<group>"; };
+		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 		4B0CE8A6158DC6D0001BA10E = {
 			isa = PBXGroup;
 			children = (
+				BD6367031667FF74009278DB /* Jenkins Menu.iconset */,
 				4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */,
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
 				4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */,
@@ -430,6 +433,7 @@
 				4B0CE8E8158DC6D1001BA14E /* disconnect.png in Resources */,
 				4B0CE8E8158DC6D1001BA152 /* weather_lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */,
+				BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +606,7 @@
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -613,6 +618,7 @@
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
