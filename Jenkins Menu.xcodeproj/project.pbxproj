@@ -56,6 +56,7 @@
 		4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
 		4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
 		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
+		BD63670816681E68009278DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD63670616681E68009278DB /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
 		4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Qkit.xcodeproj; path = qkit/Qkit.xcodeproj; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
+		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 		4B0CE8BC158DC6D0001BA10E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD63670616681E68009278DB /* Localizable.strings */,
 				4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */,
 				4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */,
 				4B0CE8C1158DC6D0001BA10E /* main.m */,
@@ -434,6 +437,7 @@
 				4B0CE8E8158DC6D1001BA152 /* weather_lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */,
 				BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */,
+				BD63670816681E68009278DB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +549,14 @@
 				4B0CE8DC158DC6D1001BA10E /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BD63670616681E68009278DB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD63670716681E68009278DB /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

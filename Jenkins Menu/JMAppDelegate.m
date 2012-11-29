@@ -5,6 +5,7 @@ static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
+static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
 @interface JMAppDelegate ()
 
@@ -19,6 +20,7 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
     NSURL *_jenkinsUrl;
     NSTimeInterval _interval;
 
+    BOOL _trustHost;
     BOOL _successful;
     NSTimer *_timer;
     NSURLConnection *_connection;
@@ -49,27 +51,70 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
     }
 }
 
+- (BOOL)askWhetherToTrustHost:(NSString *)host {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"BtnTrust", @"Trust")];
+    [alert addButtonWithTitle:NSLocalizedString(@"BtnCancel", @"Cancel")];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"MsgTrustServer", @""), host]];
+    [alert setInformativeText:NSLocalizedString(@"MsgTrustInformation", @"")];
+    [alert setShowsSuppressionButton:YES];
+    [alert.suppressionButton setTitle:NSLocalizedString(@"MsgAlwaysTrust", @"")];
+    
+    NSInteger response = [alert runModal];
+    
+    if (response == NSAlertFirstButtonReturn && alert.suppressionButton.state == NSOnState)
+        [self trustHost:host];
+    return response == NSAlertFirstButtonReturn;
+}
+
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    NSURLAuthenticationChallenge *challenge = (__bridge NSURLAuthenticationChallenge *)(contextInfo);
+    if (returnCode == NSAlertFirstButtonReturn)
+        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
+        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
+    else
+        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (BOOL)shouldTrustHost:(NSString *)host {
+    if (_trustHost)
+        return YES;
+    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY];
+    return [trustedHosts containsObject:host];
+}
+
+- (void)trustHost:(NSString *)host {
+    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY]];
+    if (![trustedHosts containsObject:host]) {
+        [trustedHosts addObject:host];
+        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:DEFAULT_TRUSTED_HOSTS_KEY];
+    }
+}
+
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
     return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
-        if ([trustedHosts containsObject:challenge.protectionSpace.host])
-            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-    
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
-
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
-    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]
+        && [self shouldTrustHost:challenge.protectionSpace.host])
+        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
+        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
+    else
+        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     log4Warn(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
     [self showErrorStatus];
+    
+    if (error.code == -1202 && [self askWhetherToTrustHost:self.jenkinsXmlUrl.host]) {
+        _trustHost = YES;
+        [self makeRequest];
+    } else
+        [self showErrorStatus];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -130,6 +175,7 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
 
         [[NSUserDefaults standardUserDefaults] setObject:[self.jenkinsXmlUrl absoluteString] forKey:DEFAULT_URL_KEY];
         self.jenkinsUrl = nil;
+        _trustHost = NO;
         [self makeRequest];
     }
 
@@ -149,6 +195,7 @@ static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
     self = [super init];
 
     if (self) {
+        _trustHost = NO;
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     }
 

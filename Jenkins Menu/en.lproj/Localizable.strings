@@ -1,0 +1,7 @@
+/* Localized versions of Info.plist keys */
+
+"BtnTrust" = "Trust";
+"BtnCancel" = "Cancel";
+"MsgTrustServer" = "Trust %@?";
+"MsgTrustInformation" = "The server’s credentials can’t be verified.";
+"MsgAlwaysTrust" = "Always trust this server in the future.";
