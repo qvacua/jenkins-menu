@@ -1,5 +1,4 @@
 #import "JMAppDelegate.h"
-#import <Qkit/Qkit.h>
 
 static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
@@ -46,7 +45,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     NSInteger responseStatusCode = [httpResponse statusCode];
 
     if (responseStatusCode < 200 || responseStatusCode >= 400) {
-        log4Warn(@"connection was not successful. http status code was: %ld", responseStatusCode);
+        NSLog(@"connection was not successful. http status code was: %ld", responseStatusCode);
 
         _successful = NO;
         [self showErrorStatus:[NSString stringWithFormat:NSLocalizedString(@"ErrorHttpStatus", @""), responseStatusCode]];
@@ -74,7 +73,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    log4Warn(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
+    NSLog(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
     
     if (error.code == -1202 && [self askWhetherToTrustHost:self.jenkinsXmlUrl.host]) {
         _trustHost = YES;
@@ -92,7 +91,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     NSArray *children = [[xmlDocument rootElement] children];
 
     if ([children count] == 0) {
-        log4Warn(@"The XML is empty!");
+        NSLog(@"The XML is empty!");
 
         [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
         return;
@@ -247,11 +246,11 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
     if (_connection == nil) {
-        log4Warn(@"connection to %@ failed!", self.jenkinsXmlUrl);
+        NSLog(@"connection to %@ failed!", self.jenkinsXmlUrl);
         [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
     }
 
-    log4Info(@"connecting to %@ ...", self.jenkinsXmlUrl);
+    NSLog(@"connecting to %@ ...", self.jenkinsXmlUrl);
 }
 
 - (void)setTitle:(NSString *)title image:(NSString *)imageName {

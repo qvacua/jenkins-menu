@@ -53,8 +53,6 @@
 		4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
-		4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
-		4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
 		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
 		BD63670816681E68009278DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD63670616681E68009278DB /* Localizable.strings */; };
 		BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */; };
@@ -70,34 +68,6 @@
 			remoteGlobalIDString = 4B0CE8B0158DC6D0001BA10E;
 			remoteInfo = "Jenkins Menu";
 		};
-		4B42D57015EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB3DB15E0E57E00E05BD7;
-			remoteInfo = Qkit;
-		};
-		4B42D57215EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB4F815E1069400E05BD7;
-			remoteInfo = QTestKit;
-		};
-		4B42D57415EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB3F315E0E57E00E05BD7;
-			remoteInfo = QkitTests;
-		};
-		4B42D57715EAAA7500F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4B5CB3DA15E0E57E00E05BD7;
-			remoteInfo = Qkit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,7 +77,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */,
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
 			);
 			name = "Copy Files";
@@ -153,7 +122,6 @@
 		4B0CE8E8158DC6D1001BA14D /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disconnect.png; path = Resources/disconnect.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
-		4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Qkit.xcodeproj; path = qkit/Qkit.xcodeproj; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -166,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
-				4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */,
 				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +156,6 @@
 				BD6367031667FF74009278DB /* Jenkins Menu.iconset */,
 				4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */,
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
-				4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */,
 				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
 				4B0CE8B2158DC6D0001BA10E /* Products */,
 			);
@@ -311,16 +277,6 @@
 			name = 32;
 			sourceTree = "<group>";
 		};
-		4B42D56815EAAA4C00F10668 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4B42D57115EAAA4C00F10668 /* Qkit.framework */,
-				4B42D57315EAAA4C00F10668 /* QTestKit.framework */,
-				4B42D57515EAAA4C00F10668 /* QkitTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,7 +292,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4B42D57815EAAA7500F10668 /* PBXTargetDependency */,
 			);
 			name = "Jenkins Menu";
 			productName = "Jenkins Menu";
@@ -381,12 +336,6 @@
 			mainGroup = 4B0CE8A6158DC6D0001BA10E;
 			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4B42D56815EAAA4C00F10668 /* Products */;
-					ProjectRef = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
@@ -394,30 +343,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4B42D57115EAAA4C00F10668 /* Qkit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Qkit.framework;
-			remoteRef = 4B42D57015EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4B42D57315EAAA4C00F10668 /* QTestKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QTestKit.framework;
-			remoteRef = 4B42D57215EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4B42D57515EAAA4C00F10668 /* QkitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QkitTests.octest;
-			remoteRef = 4B42D57415EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4B0CE8AF158DC6D0001BA10E /* Resources */ = {
@@ -520,11 +445,6 @@
 			isa = PBXTargetDependency;
 			target = 4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */;
 			targetProxy = 4B0CE8D6158DC6D1001BA10E /* PBXContainerItemProxy */;
-		};
-		4B42D57815EAAA7500F10668 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Qkit;
-			targetProxy = 4B42D57715EAAA7500F10668 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
