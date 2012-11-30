@@ -57,6 +57,9 @@
 		4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
 		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
 		BD63670816681E68009278DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD63670616681E68009278DB /* Localizable.strings */; };
+		BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */; };
+		BD63670E166888E1009278DB /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
+		BD63670F1668899B009278DB /* Growl.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */,
+				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +156,8 @@
 		4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Qkit.xcodeproj; path = qkit/Qkit.xcodeproj; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		BD63670D166888E1009278DB /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
 				4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */,
 				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
 			);
@@ -200,6 +207,7 @@
 		4B0CE8B4158DC6D0001BA10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD63670D166888E1009278DB /* Growl.framework */,
 				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
 				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
 				4B0CE8B7158DC6D0001BA10E /* Other Frameworks */,
@@ -266,6 +274,7 @@
 			children = (
 				4B0CE8E8158DC6D1001BA110 /* 16 */,
 				4B0CE8E8158DC6D1001BA11F /* 32 */,
+				BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -438,6 +447,7 @@
 				4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */,
 				BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */,
 				BD63670816681E68009278DB /* Localizable.strings in Resources */,
+				BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +624,10 @@
 		4B0CE8E4158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
@@ -626,6 +640,10 @@
 		4B0CE8E5158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";

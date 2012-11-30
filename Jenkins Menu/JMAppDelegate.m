@@ -10,6 +10,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 @interface JMAppDelegate ()
 
 @property(readwrite, strong) NSStatusItem *statusItem;
+@property(readwrite, strong) NSMutableDictionary *statuses;
 
 @end
 
@@ -24,6 +25,8 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     BOOL _successful;
     NSTimer *_timer;
     NSURLConnection *_connection;
+    
+    NSMutableDictionary *_statuses;
 }
 
 @synthesize window = _window;
@@ -35,6 +38,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 @synthesize interval = _interval;
 @synthesize jenkinsUrl = _jenkinsUrl;
 @synthesize statusMenuItem = _statusMenuItem;
+@synthesize statuses = _statuses;
 
 #pragma mark NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -45,50 +49,9 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
         log4Warn(@"connection was not successful. http status code was: %ld", responseStatusCode);
 
         _successful = NO;
-        [self showErrorStatus];
+        [self showErrorStatus:[NSString stringWithFormat:NSLocalizedString(@"ErrorHttpStatus", @""), responseStatusCode]];
     } else {
         _successful = YES;
-    }
-}
-
-- (BOOL)askWhetherToTrustHost:(NSString *)host {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:NSLocalizedString(@"BtnTrust", @"Trust")];
-    [alert addButtonWithTitle:NSLocalizedString(@"BtnCancel", @"Cancel")];
-    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"MsgTrustServer", @""), host]];
-    [alert setInformativeText:NSLocalizedString(@"MsgTrustInformation", @"")];
-    [alert setShowsSuppressionButton:YES];
-    [alert.suppressionButton setTitle:NSLocalizedString(@"MsgAlwaysTrust", @"")];
-    
-    NSInteger response = [alert runModal];
-    
-    if (response == NSAlertFirstButtonReturn && alert.suppressionButton.state == NSOnState)
-        [self trustHost:host];
-    return response == NSAlertFirstButtonReturn;
-}
-
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    NSURLAuthenticationChallenge *challenge = (__bridge NSURLAuthenticationChallenge *)(contextInfo);
-    if (returnCode == NSAlertFirstButtonReturn)
-        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
-        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
-    else
-        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
-
-- (BOOL)shouldTrustHost:(NSString *)host {
-    if (_trustHost)
-        return YES;
-    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY];
-    return [trustedHosts containsObject:host];
-}
-
-- (void)trustHost:(NSString *)host {
-    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY]];
-    if (![trustedHosts containsObject:host]) {
-        [trustedHosts addObject:host];
-        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:DEFAULT_TRUSTED_HOSTS_KEY];
     }
 }
 
@@ -97,6 +60,10 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self connection:connection willSendRequestForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]
         && [self shouldTrustHost:challenge.protectionSpace.host])
         [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
@@ -108,13 +75,12 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     log4Warn(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
-    [self showErrorStatus];
     
     if (error.code == -1202 && [self askWhetherToTrustHost:self.jenkinsXmlUrl.host]) {
         _trustHost = YES;
         [self makeRequest];
     } else
-        [self showErrorStatus];
+        [self showErrorStatus:error.localizedDescription];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -128,7 +94,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     if ([children count] == 0) {
         log4Warn(@"The XML is empty!");
 
-        [self showErrorStatus];
+        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
         return;
     }
 
@@ -148,11 +114,13 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     }];
 
     [self setStatusWithRed:redCount yellow:yellowCount];
-    [self.statusMenuItem setTitle:@"Successfully Updated Jenkins Status"];
+    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
 
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [GrowlApplicationBridge setGrowlDelegate:self];
+    
     [self setDefaultsIfNecessary];
     [self initStatusMenu];
 
@@ -175,6 +143,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
         [[NSUserDefaults standardUserDefaults] setObject:[self.jenkinsXmlUrl absoluteString] forKey:DEFAULT_URL_KEY];
         self.jenkinsUrl = nil;
+        [self.statuses removeAllObjects];
         _trustHost = NO;
         [self makeRequest];
     }
@@ -196,6 +165,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
     if (self) {
         _trustHost = NO;
+        self.statuses = [[NSMutableDictionary alloc] init];
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     }
 
@@ -247,6 +217,12 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     return NO;
 }
 
+#pragma mark GrowlApplicationBridgeDelegate
+
+- (void) growlNotificationWasClicked:(id)clickContext {
+    [self openJenkinsUrlAction:nil];
+}
+
 #pragma mark Private
 - (void)showInitialStatus {
     [self setTitle:@"" image:@"disconnect.png"];
@@ -272,7 +248,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
     if (_connection == nil) {
         log4Warn(@"connection to %@ failed!", self.jenkinsXmlUrl);
-        [self showErrorStatus];
+        [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
     }
 
     log4Info(@"connecting to %@ ...", self.jenkinsXmlUrl);
@@ -283,9 +259,12 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     [self.statusItem setImage:[[NSBundle bundleForClass:[self class]] imageForResource:imageName]];
 }
 
-- (void)showErrorStatus {
+- (void)showErrorStatus:(NSString *)error {
     [self setTitle:@"" image:@"disconnect.png"];
-    [self.statusMenuItem setTitle:@"Error Updating Jenkins Status"];
+    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusError", @"")];
+    
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"NotifyMessageError", @""), self.jenkinsXmlUrl, error];
+    [GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"NotifyTitleError", @"") description:message notificationName:@"Error" iconData:nil priority:1 isSticky:NO clickContext:nil];
 }
 
 - (void)setDefaultsIfNecessary {
@@ -353,9 +332,12 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 }
 
 - (void)filterJobFromNode:(NSXMLNode *)node redCount:(NSUInteger *)redCount yellowCount:(NSUInteger *)yellowCount {
+    __block NSString *name = nil;
     [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
 
-        if ([[childNode name] isEqualToString:@"color"]) {
+        if ([[childNode name] isEqualToString:@"name"]) {
+            name = [childNode stringValue];
+        } else if ([[childNode name] isEqualToString:@"color"]) {
             NSString *const color = [childNode stringValue];
 
             if ([color hasPrefix:@"red"]) {
@@ -364,10 +346,82 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
                 (*yellowCount)++;
             }
 
+            NSString *previousColor = [self.statuses objectForKey:name];
+            if (previousColor && ![color isEqualToString:previousColor]) {
+                [self.statuses setObject:color forKey:name];
+
+                BOOL building = [color hasSuffix:@"_anime"];
+                BOOL isBroken = [color hasPrefix:@"red"];
+                BOOL isUnstable = [color hasPrefix:@"yellow"];
+                BOOL isGood = [color hasPrefix:@"blue"];
+                BOOL wasBroken = [previousColor hasPrefix:@"red"];
+                BOOL wasUnstable = [previousColor hasPrefix:@"yellow"];
+                BOOL wasGood = [previousColor hasPrefix:@"blue"];
+
+                if (building)
+                    [self showBuildNotificationOfType:@"Began" forBuild:name];
+                else if (isBroken) {
+                    if (wasBroken)
+                        [self showBuildNotificationOfType:@"StillBroken" forBuild:name];
+                    else
+                        [self showBuildNotificationOfType:@"Broken" forBuild:name];
+                } else if (isUnstable) {
+                    if (wasUnstable)
+                        [self showBuildNotificationOfType:@"StillUnstable" forBuild:name];
+                    else
+                        [self showBuildNotificationOfType:@"Unstable" forBuild:name];
+                } else if (isGood) {
+                    if (wasGood)
+                        [self showBuildNotificationOfType:@"Succeeded" forBuild:name];
+                    else
+                        [self showBuildNotificationOfType:@"Fixed" forBuild:name];
+                }
+            }
+
             *stop = YES;
         }
 
     }];
+}
+
+- (void)showBuildNotificationOfType:(NSString *)type forBuild:(NSString *)buildName {
+    NSString *title = [NSString stringWithFormat:@"NotifyTitle%@", type];
+    title = NSLocalizedString(title, @"");
+    NSString *message = [NSString stringWithFormat:@"NotifyMessage%@", type];
+    message = NSLocalizedString(message, @"");
+    message = [NSString stringWithFormat:message, buildName];
+    [GrowlApplicationBridge notifyWithTitle:title description:message notificationName:type iconData:nil priority:0 isSticky:NO clickContext:[self.jenkinsXmlUrl absoluteString]];
+}
+
+- (BOOL)askWhetherToTrustHost:(NSString *)host {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"ButtonTrust", @"Trust")];
+    [alert addButtonWithTitle:NSLocalizedString(@"ButtonCancel", @"Cancel")];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"MessageTrustServer", @""), host]];
+    [alert setInformativeText:NSLocalizedString(@"MessageTrustInformation", @"")];
+    [alert setShowsSuppressionButton:YES];
+    [alert.suppressionButton setTitle:NSLocalizedString(@"MessageAlwaysTrust", @"")];
+    
+    NSInteger response = [alert runModal];
+    
+    if (response == NSAlertFirstButtonReturn && alert.suppressionButton.state == NSOnState)
+        [self trustHost:host];
+    return response == NSAlertFirstButtonReturn;
+}
+
+- (BOOL)shouldTrustHost:(NSString *)host {
+    if (_trustHost)
+        return YES;
+    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY];
+    return [trustedHosts containsObject:host];
+}
+
+- (void)trustHost:(NSString *)host {
+    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY]];
+    if (![trustedHosts containsObject:host]) {
+        [trustedHosts addObject:host];
+        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:DEFAULT_TRUSTED_HOSTS_KEY];
+    }
 }
 
 @end
