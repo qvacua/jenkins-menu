@@ -347,7 +347,6 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
             NSString *previousColor = [self.statuses objectForKey:name];
             if (previousColor && ![color isEqualToString:previousColor]) {
-                [self.statuses setObject:color forKey:name];
 
                 BOOL building = [color hasSuffix:@"_anime"];
                 BOOL isBroken = [color hasPrefix:@"red"];
@@ -376,6 +375,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
                         [self showBuildNotificationOfType:@"Fixed" forBuild:name];
                 }
             }
+            [self.statuses setObject:color forKey:name];
 
             *stop = YES;
         }
