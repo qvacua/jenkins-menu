@@ -17,34 +17,14 @@
 		4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
 		4B0CE8DD158DC6D1001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DB158DC6D1001BA10E /* InfoPlist.strings */; };
 		4B0CE8E0158DC6D1001BA10E /* Jenkins_MenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DF158DC6D1001BA10E /* Jenkins_MenuTests.m */; };
-		4B0CE8E8158DC6D1001BA121 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA120 /* error.png */; };
-		4B0CE8E8158DC6D1001BA122 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA120 /* error.png */; };
-		4B0CE8E8158DC6D1001BA124 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA123 /* exclamation.png */; };
-		4B0CE8E8158DC6D1001BA125 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA123 /* exclamation.png */; };
 		4B0CE8E8158DC6D1001BA127 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA126 /* fire.png */; };
 		4B0CE8E8158DC6D1001BA128 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA126 /* fire.png */; };
-		4B0CE8E8158DC6D1001BA12A /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA129 /* lightning.png */; };
-		4B0CE8E8158DC6D1001BA12B /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA129 /* lightning.png */; };
 		4B0CE8E8158DC6D1001BA12D /* thumb_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12C /* thumb_up.png */; };
 		4B0CE8E8158DC6D1001BA12E /* thumb_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12C /* thumb_up.png */; };
-		4B0CE8E8158DC6D1001BA130 /* weather_clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */; };
-		4B0CE8E8158DC6D1001BA131 /* weather_clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */; };
-		4B0CE8E8158DC6D1001BA133 /* weather_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA132 /* weather_sun.png */; };
-		4B0CE8E8158DC6D1001BA134 /* weather_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA132 /* weather_sun.png */; };
-		4B0CE8E8158DC6D1001BA136 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA135 /* error@2x.png */; };
-		4B0CE8E8158DC6D1001BA137 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA135 /* error@2x.png */; };
-		4B0CE8E8158DC6D1001BA139 /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */; };
-		4B0CE8E8158DC6D1001BA13A /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */; };
 		4B0CE8E8158DC6D1001BA13C /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13B /* fire@2x.png */; };
 		4B0CE8E8158DC6D1001BA13D /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13B /* fire@2x.png */; };
-		4B0CE8E8158DC6D1001BA13F /* lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */; };
-		4B0CE8E8158DC6D1001BA140 /* lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA142 /* thumb_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */; };
 		4B0CE8E8158DC6D1001BA143 /* thumb_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */; };
-		4B0CE8E8158DC6D1001BA145 /* weather_clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */; };
-		4B0CE8E8158DC6D1001BA146 /* weather_clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */; };
-		4B0CE8E8158DC6D1001BA148 /* weather_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */; };
-		4B0CE8E8158DC6D1001BA149 /* weather_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */; };
 		4B0CE8E8158DC6D1001BA14B /* disconnect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */; };
 		4B0CE8E8158DC6D1001BA14C /* disconnect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */; };
 		4B0CE8E8158DC6D1001BA14E /* disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA14D /* disconnect.png */; };
@@ -53,8 +33,11 @@
 		4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
-		4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
-		4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B42D57115EAAA4C00F10668 /* Qkit.framework */; };
+		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
+		BD63670816681E68009278DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD63670616681E68009278DB /* Localizable.strings */; };
+		BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */; };
+		BD63670E166888E1009278DB /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
+		BD63670F1668899B009278DB /* Growl.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,34 +48,6 @@
 			remoteGlobalIDString = 4B0CE8B0158DC6D0001BA10E;
 			remoteInfo = "Jenkins Menu";
 		};
-		4B42D57015EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB3DB15E0E57E00E05BD7;
-			remoteInfo = Qkit;
-		};
-		4B42D57215EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB4F815E1069400E05BD7;
-			remoteInfo = QTestKit;
-		};
-		4B42D57415EAAA4C00F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4B5CB3F315E0E57E00E05BD7;
-			remoteInfo = QkitTests;
-		};
-		4B42D57715EAAA7500F10668 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4B5CB3DA15E0E57E00E05BD7;
-			remoteInfo = Qkit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,7 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B42D57B15EAAA8800F10668 /* Qkit.framework in Copy Files */,
+				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,25 +84,18 @@
 		4B0CE8DC158DC6D1001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B0CE8DE158DC6D1001BA10E /* Jenkins_MenuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jenkins_MenuTests.h; sourceTree = "<group>"; };
 		4B0CE8DF158DC6D1001BA10E /* Jenkins_MenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Jenkins_MenuTests.m; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA120 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = error.png; path = Resources/error.png; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA123 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exclamation.png; path = Resources/exclamation.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA126 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fire.png; path = Resources/fire.png; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA129 /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightning.png; path = Resources/lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA12C /* thumb_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumb_up.png; path = Resources/thumb_up.png; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_clouds.png; path = Resources/weather_clouds.png; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA132 /* weather_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_sun.png; path = Resources/weather_sun.png; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA135 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "error@2x.png"; path = "Resources/error@2x.png"; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exclamation@2x.png"; path = "Resources/exclamation@2x.png"; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA13B /* fire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fire@2x.png"; path = "Resources/fire@2x.png"; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lightning@2x.png"; path = "Resources/lightning@2x.png"; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thumb_up@2x.png"; path = "Resources/thumb_up@2x.png"; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_clouds@2x.png"; path = "Resources/weather_clouds@2x.png"; sourceTree = "<group>"; };
-		4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_sun@2x.png"; path = "Resources/weather_sun@2x.png"; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disconnect@2x.png"; path = "Resources/disconnect@2x.png"; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA14D /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disconnect.png; path = Resources/disconnect.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
-		4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Qkit.xcodeproj; path = qkit/Qkit.xcodeproj; sourceTree = "<group>"; };
+		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
+		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		BD63670D166888E1009278DB /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B42D57915EAAA7A00F10668 /* Qkit.framework in Frameworks */,
+				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
 				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,9 +123,9 @@
 		4B0CE8A6158DC6D0001BA10E = {
 			isa = PBXGroup;
 			children = (
+				BD6367031667FF74009278DB /* Jenkins Menu.iconset */,
 				4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */,
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
-				4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */,
 				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
 				4B0CE8B2158DC6D0001BA10E /* Products */,
 			);
@@ -195,6 +143,7 @@
 		4B0CE8B4158DC6D0001BA10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD63670D166888E1009278DB /* Growl.framework */,
 				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
 				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
 				4B0CE8B7158DC6D0001BA10E /* Other Frameworks */,
@@ -227,6 +176,7 @@
 		4B0CE8BC158DC6D0001BA10E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD63670616681E68009278DB /* Localizable.strings */,
 				4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */,
 				4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */,
 				4B0CE8C1158DC6D0001BA10E /* main.m */,
@@ -260,6 +210,7 @@
 			children = (
 				4B0CE8E8158DC6D1001BA110 /* 16 */,
 				4B0CE8E8158DC6D1001BA11F /* 32 */,
+				BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -269,13 +220,8 @@
 			children = (
 				4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */,
 				4B0CE8E8158DC6D1001BA14D /* disconnect.png */,
-				4B0CE8E8158DC6D1001BA132 /* weather_sun.png */,
-				4B0CE8E8158DC6D1001BA12F /* weather_clouds.png */,
 				4B0CE8E8158DC6D1001BA12C /* thumb_up.png */,
-				4B0CE8E8158DC6D1001BA129 /* lightning.png */,
 				4B0CE8E8158DC6D1001BA126 /* fire.png */,
-				4B0CE8E8158DC6D1001BA123 /* exclamation.png */,
-				4B0CE8E8158DC6D1001BA120 /* error.png */,
 			);
 			name = 16;
 			sourceTree = "<group>";
@@ -285,25 +231,10 @@
 			children = (
 				4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */,
 				4B0CE8E8158DC6D1001BA14A /* disconnect@2x.png */,
-				4B0CE8E8158DC6D1001BA147 /* weather_sun@2x.png */,
-				4B0CE8E8158DC6D1001BA144 /* weather_clouds@2x.png */,
 				4B0CE8E8158DC6D1001BA141 /* thumb_up@2x.png */,
-				4B0CE8E8158DC6D1001BA13E /* lightning@2x.png */,
 				4B0CE8E8158DC6D1001BA13B /* fire@2x.png */,
-				4B0CE8E8158DC6D1001BA138 /* exclamation@2x.png */,
-				4B0CE8E8158DC6D1001BA135 /* error@2x.png */,
 			);
 			name = 32;
-			sourceTree = "<group>";
-		};
-		4B42D56815EAAA4C00F10668 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4B42D57115EAAA4C00F10668 /* Qkit.framework */,
-				4B42D57315EAAA4C00F10668 /* QTestKit.framework */,
-				4B42D57515EAAA4C00F10668 /* QkitTests.octest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +252,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4B42D57815EAAA7500F10668 /* PBXTargetDependency */,
 			);
 			name = "Jenkins Menu";
 			productName = "Jenkins Menu";
@@ -366,12 +296,6 @@
 			mainGroup = 4B0CE8A6158DC6D0001BA10E;
 			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4B42D56815EAAA4C00F10668 /* Products */;
-					ProjectRef = 4B42D56715EAAA4C00F10668 /* Qkit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
@@ -379,30 +303,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4B42D57115EAAA4C00F10668 /* Qkit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Qkit.framework;
-			remoteRef = 4B42D57015EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4B42D57315EAAA4C00F10668 /* QTestKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QTestKit.framework;
-			remoteRef = 4B42D57215EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4B42D57515EAAA4C00F10668 /* QkitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QkitTests.octest;
-			remoteRef = 4B42D57415EAAA4C00F10668 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4B0CE8AF158DC6D0001BA10E /* Resources */ = {
@@ -412,24 +312,17 @@
 				4B0CE8C0158DC6D0001BA10E /* InfoPlist.strings in Resources */,
 				4B0CE8C6158DC6D0001BA10E /* Credits.rtf in Resources */,
 				4B0CE8CC158DC6D1001BA10E /* MainMenu.xib in Resources */,
-				4B0CE8E8158DC6D1001BA121 /* error.png in Resources */,
-				4B0CE8E8158DC6D1001BA124 /* exclamation.png in Resources */,
 				4B0CE8E8158DC6D1001BA127 /* fire.png in Resources */,
-				4B0CE8E8158DC6D1001BA12A /* lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA12D /* thumb_up.png in Resources */,
-				4B0CE8E8158DC6D1001BA130 /* weather_clouds.png in Resources */,
-				4B0CE8E8158DC6D1001BA133 /* weather_sun.png in Resources */,
-				4B0CE8E8158DC6D1001BA136 /* error@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA139 /* exclamation@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA13C /* fire@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA13F /* lightning@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA142 /* thumb_up@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA145 /* weather_clouds@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA148 /* weather_sun@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA14B /* disconnect@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA14E /* disconnect.png in Resources */,
 				4B0CE8E8158DC6D1001BA152 /* weather_lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */,
+				BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */,
+				BD63670816681E68009278DB /* Localizable.strings in Resources */,
+				BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,20 +331,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0CE8DD158DC6D1001BA10E /* InfoPlist.strings in Resources */,
-				4B0CE8E8158DC6D1001BA122 /* error.png in Resources */,
-				4B0CE8E8158DC6D1001BA125 /* exclamation.png in Resources */,
 				4B0CE8E8158DC6D1001BA128 /* fire.png in Resources */,
-				4B0CE8E8158DC6D1001BA12B /* lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA12E /* thumb_up.png in Resources */,
-				4B0CE8E8158DC6D1001BA131 /* weather_clouds.png in Resources */,
-				4B0CE8E8158DC6D1001BA134 /* weather_sun.png in Resources */,
-				4B0CE8E8158DC6D1001BA137 /* error@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA13A /* exclamation@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA13D /* fire@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA140 /* lightning@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA143 /* thumb_up@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA146 /* weather_clouds@2x.png in Resources */,
-				4B0CE8E8158DC6D1001BA149 /* weather_sun@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA14C /* disconnect@2x.png in Resources */,
 				4B0CE8E8158DC6D1001BA14F /* disconnect.png in Resources */,
 				4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */,
@@ -503,11 +386,6 @@
 			target = 4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */;
 			targetProxy = 4B0CE8D6158DC6D1001BA10E /* PBXContainerItemProxy */;
 		};
-		4B42D57815EAAA7500F10668 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Qkit;
-			targetProxy = 4B42D57715EAAA7500F10668 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -541,6 +419,14 @@
 				4B0CE8DC158DC6D1001BA10E /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BD63670616681E68009278DB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD63670716681E68009278DB /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -598,10 +484,15 @@
 		4B0CE8E4158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -609,10 +500,15 @@
 		4B0CE8E5158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

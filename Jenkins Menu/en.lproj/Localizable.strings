@@ -1,0 +1,32 @@
+/* Localized versions of Info.plist keys */
+
+"ButtonTrust" = "Trust";
+"ButtonCancel" = "Cancel";
+"MessageTrustServer" = "Trust %@?";
+"MessageTrustInformation" = "The server’s credentials can’t be verified.";
+"MessageAlwaysTrust" = "Always trust this server in the future.";
+
+"StatusSuccess" = "Successfully Updated Jenkins Status";
+"StatusError" = "Error Updating Jenkins Status";
+
+"NotifyTitleError" = "Couldn’t Connect";
+"NotifyTitleBegan" = "A Build Started";
+"NotifyTitleBroken" = "Build Broken";
+"NotifyTitleStillBroken" = "Build Still Broken";
+"NotifyTitleUnstable" = "Build Unstable";
+"NotifyTitleStillUnstable" = "Build Still Unstable";
+"NotifyTitleFixed" = "Build Fixed";
+"NotifyTitleSucceeded" = "Build Succeeded";
+
+"NotifyMessageError" = "Couldn’t reach %@: %@.";
+"NotifyMessageBegan" = "%@ began building.";
+"NotifyMessageBroken" = "%@ just broke! Please fix it.";
+"NotifyMessageStillBroken" = "%@ is still broken. Please fix it.";
+"NotifyMessageUnstable" = "%@ just became unstable!";
+"NotifyMessageStillUnstable" = "%@ is still unstable.";
+"NotifyMessageFixed" = "%@ was fixed!";
+"NotifyMessageSucceeded" = "%@ succeeded.";
+
+"ErrorHttpStatus" = "got HTTP error %ld";
+"ErrorEmptyXML" = "got an empty build status XML document";
+"ErrorCouldNotConnect" = "couldn’t connect";
