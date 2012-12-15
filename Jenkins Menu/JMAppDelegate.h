@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
+#import <Growl/Growl.h>
 
-@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations>
+@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSMenu *menu;
