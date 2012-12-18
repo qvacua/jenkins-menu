@@ -3,4 +3,5 @@ build
 .idea
 Externals/*
 *.swp
-UserInterfaceState.xcuserstate
+xcuserdata
+project.xcworkspace

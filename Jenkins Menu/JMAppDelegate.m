@@ -1,3 +1,11 @@
+/**
+ * Jenkins Menu
+ * https://github.com/qvacua/jenkins-menu
+ * http://qvacua.com
+ *
+ * See LICENSE
+ */
+
 #import "JMAppDelegate.h"
 
 static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";

@@ -1,3 +1,11 @@
+/**
+ * Jenkins Menu
+ * https://github.com/qvacua/jenkins-menu
+ * http://qvacua.com
+ *
+ * See LICENSE
+ */
+
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
 
