@@ -1,7 +1,7 @@
 Jenkins Menu
 =============
 
-A simple menu item for Mac OSX which shows the status of a Jenkins CI server.
+A simple menu item for Mac OS X which shows the status of a Jenkins CI server.
 
 Includes Growl support.  You can choose which notifications are reported via Growl's preferences.
 
