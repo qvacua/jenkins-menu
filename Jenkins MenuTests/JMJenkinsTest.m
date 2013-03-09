@@ -10,6 +10,7 @@
 #import "JMJenkins.h"
 #import "JMJenkinsJob.h"
 #import "JMTrustedHostManager.h"
+#import "JMJenkinsDelegate.h"
 
 @interface JMJenkinsTest : JMBaseTestCase
 @end
@@ -22,15 +23,18 @@
     NSURLAuthenticationChallenge *challenge;
     NSURLProtectionSpace *protectionSpace;
     id <NSURLAuthenticationChallengeSender> sender;
+    id <JMJenkinsDelegate> delegate;
 }
 
 - (void)setUp {
     [super setUp];
 
     trustedHostManager = mock([JMTrustedHostManager class]);
+    delegate = mockProtocol(@protocol(JMJenkinsDelegate));
 
     jenkins = [[JMJenkins alloc] init];
     jenkins.trustedHostManager = trustedHostManager;
+    jenkins.delegate = delegate;
 
     NSURL *xmlUrl = [[NSBundle bundleForClass:[self class]] URLForResource:@"example-xml" withExtension:@"xml"];
     xmlData = [NSData dataWithContentsOfURL:xmlUrl];
@@ -137,11 +141,18 @@
 }
 
 - (void)testConnectionDidFail {
+    [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodServerTrust];
+    [given([trustedHostManager shouldTrustHost:@"http://some.host"]) willReturnBool:NO];
+
     NSError *error = mock([NSError class]);
     [given([error code]) willReturnUnsignedInteger:NSURLErrorServerCertificateUntrusted];
 
+    // this will set the _potentialHostToTrust
+    [jenkins connection:nil willSendRequestForAuthenticationChallenge:challenge];
+
     [jenkins connection:nil didFailWithError:error];
     assertThat(@(jenkins.state), is(@(JMJenkinsStateServerTrustFailure)));
+    [verify(delegate) jenkins:jenkins serverTrustFailedwithHost:@"http://some.host"];
 }
 
 #pragma mark Private

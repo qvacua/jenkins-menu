@@ -14,10 +14,11 @@
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 @interface JMJenkins ()
-@property(readwrite) NSInteger lastHttpStatusCode;
-@property(readwrite) NSInteger state;
-@property(readwrite) NSURL *viewUrl;
-@property(readonly) NSMutableArray *mutableJobs;
+@property (readwrite) NSInteger lastHttpStatusCode;
+@property (readwrite) NSInteger state;
+@property (readwrite) NSURL *viewUrl;
+@property (readonly) NSMutableArray *mutableJobs;
+@property (readwrite) NSString *potentialHostToTrust;
 @end
 
 @implementation JMJenkins {
@@ -128,13 +129,13 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
             NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
 
-            _potentialHostToTrust = nil;
+            self.potentialHostToTrust = nil;
 
             return;
         }
     }
 
-    _potentialHostToTrust = challenge.protectionSpace.host;
+    self.potentialHostToTrust = challenge.protectionSpace.host;
 
     if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)]) {
         [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
