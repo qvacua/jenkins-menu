@@ -11,7 +11,7 @@
 static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
-static NSTimeInterval const DEFAULT_INTERVAL_VALUE = 5 * 60;
+static NSTimeInterval const qDefaultInterval = 5 * 60;
 static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
 @interface JMAppDelegate ()
@@ -282,7 +282,7 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     }
 
     if ([userDefaults objectForKey:DEFAULT_INTERVAL_KEY] == nil) {
-        [userDefaults setObject:[NSNumber numberWithDouble:DEFAULT_INTERVAL_VALUE] forKey:DEFAULT_INTERVAL_KEY];
+        [userDefaults setObject:[NSNumber numberWithDouble:qDefaultInterval] forKey:DEFAULT_INTERVAL_KEY];
     }
 }
 

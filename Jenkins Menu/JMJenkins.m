@@ -8,6 +8,8 @@
 
 #import "JMJenkins.h"
 
+static NSTimeInterval const qDefaultInterval = 5 * 60;
+
 @implementation JMJenkins {
 }
 
@@ -18,6 +20,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        _interval = qDefaultInterval;
         [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
     }
 

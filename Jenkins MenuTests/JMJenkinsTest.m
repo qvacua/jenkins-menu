@@ -21,6 +21,10 @@
     jenkins = [[JMJenkins alloc] init];
 }
 
+- (void)testDefaultInterval {
+    assertThat(@(jenkins.interval), is(@300));
+}
+
 - (void)testKvoJenkinsUrl {
     jenkins.url = [NSURL URLWithString:@"http://some/url/to/jenkins"];
 
