@@ -79,7 +79,7 @@
 
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(jenkins.jobs, hasSize(8));
-    assertThat(jenkins.viewUrl, is([NSURL URLWithString:@"http://ci.jruby.org"]));
+    assertThat(jenkins.viewUrl, is([NSURL URLWithString:@"http://ci.jruby.org/"]));
 
     [self assertJob:jenkins.jobs[0] name:@"activerecord-jdbc-master" urlString:@"http://ci.jruby.org/job/activerecord-jdbc-master/" state:JMJenkinsJobStateBlue running:NO];
     [self assertJob:jenkins.jobs[1] name:@"jruby-test-all-master" urlString:@"http://ci.jruby.org/job/jruby-test-all-master/" state:JMJenkinsJobStateBlue running:YES];

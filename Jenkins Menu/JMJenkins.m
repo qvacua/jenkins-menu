@@ -7,6 +7,7 @@
  */
 
 #import "JMJenkins.h"
+#import "JMJenkinsJob.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
@@ -14,11 +15,14 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @property (readwrite) NSInteger lastHttpStatusCode;
 @property (readwrite) NSInteger state;
 @property (readwrite) NSURL *viewUrl;
+@property (readonly) NSMutableArray *mutableJobs;
 @end
 
 @implementation JMJenkins {
-    NSMutableArray *_jobs;
+    NSMutableArray *_mutableJobs;
 }
+
+@dynamic jobs;
 
 @synthesize url = _url;
 @synthesize xmlUrl = _xmlUrl;
@@ -26,7 +30,12 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize state = _state;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
 @synthesize viewUrl = _viewUrl;
-@synthesize jobs = _jobs;
+@synthesize mutableJobs = _mutableJobs;
+
+#pragma mark Public
+- (NSArray *)jobs {
+    return self.mutableJobs;
+}
 
 #pragma mark NSObject
 - (id)init {
@@ -35,7 +44,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         _interval = qDefaultInterval;
         _state = JMJenkinsStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
-        _jobs = [[NSMutableArray alloc] init];
+        _mutableJobs = [[NSMutableArray alloc] init];
         [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
     }
 
@@ -92,28 +101,40 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         }
 
         if ([[childNode name] isEqualToString:@"job"]) {
-//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
+            [self.mutableJobs addObject:[self jobsFromXmlNode:childNode]];
+            return;
+        }
+    }];
+}
+
+#pragma mark Private
+- (JMJenkinsJob *)jobsFromXmlNode:(NSXMLNode *)node {
+    JMJenkinsJob *job = [[JMJenkinsJob alloc] init];
+
+    [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
+        NSString *nodeName = [childNode name];
+        NSString *nodeStringValue = [childNode stringValue];
+
+        if ([nodeName isEqualToString:@"name"]) {
+            job.name = nodeStringValue;
+            return;
+        }
+
+        if ([nodeName isEqualToString:@"url"]) {
+            job.url = [NSURL URLWithString:nodeStringValue];
+            return;
+        }
+        
+        if ([nodeName isEqualToString:@"color"]) {
+            job.state = [self jobStateFromColor:nodeStringValue];
+            job.running = [self runningStateFromColor:nodeStringValue];
             return;
         }
     }];
 
-
-//    __block NSUInteger redCount = 0;
-//    __block NSUInteger yellowCount = 0;
-//
-//    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
-//
-//        if ([[childNode name] isEqualToString:@"job"]) {
-//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
-//            return;
-//        }
-//    }];
-//
-//    [self setStatusWithRed:redCount yellow:yellowCount];
-//    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
+    return job;
 }
 
-#pragma mark Private
 - (NSXMLDocument *)xmlDocumentFromData:(NSData *)xmlData {
     NSError *xmlError = nil;
     NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithData:xmlData options:0 error:&xmlError];
@@ -136,6 +157,38 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     }];
 
     return viewUrl;
+}
+
+- (JMJenkinsJobState)jobStateFromColor:(NSString *)color {
+    if ([color hasPrefix:@"blue"]) {
+        return JMJenkinsJobStateBlue;
+    }
+
+    if ([color hasPrefix:@"yellow"]) {
+        return JMJenkinsJobStateYellow;
+    }
+
+    if ([color hasPrefix:@"red"]) {
+        return JMJenkinsJobStateRed;
+    }
+
+    if ([color hasPrefix:@"aborted"]) {
+        return JMJenkinsJobStateAborted;
+    }
+
+    if ([color hasPrefix:@"disabled"]) {
+        return JMJenkinsJobStateDisabled;
+    }
+
+    return JMJenkinsJobStateUnknown;
+}
+
+- (BOOL)runningStateFromColor:(NSString *)color {
+    if ([color hasSuffix:@"_anime"]) {
+        return YES;
+    }
+
+    return NO;
 }
 
 @end

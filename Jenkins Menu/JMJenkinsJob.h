@@ -22,6 +22,7 @@ typedef enum {
 @property NSString *name;
 @property NSURL *url;
 @property JMJenkinsJobState state;
+@property JMJenkinsJobState lastState;
 @property (getter=isRunning) BOOL running;
 
 @end
