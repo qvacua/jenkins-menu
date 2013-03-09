@@ -8,6 +8,8 @@
 
 #import "JMJenkins.h"
 #import "JMJenkinsJob.h"
+#import "JMJenkinsDelegate.h"
+#import "JMTrustedHostManager.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
@@ -20,6 +22,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 @implementation JMJenkins {
     NSMutableArray *_mutableJobs;
+    NSString *_potentialHostToTrust;
 }
 
 @dynamic jobs;
@@ -31,6 +34,9 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
 @synthesize viewUrl = _viewUrl;
 @synthesize mutableJobs = _mutableJobs;
+@synthesize delegate = _delegate;
+@synthesize trustedHostManager = _trustedHostManager;
+@synthesize potentialHostToTrust = _potentialHostToTrust;
 
 #pragma mark Public
 - (NSArray *)jobs {
@@ -62,6 +68,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 #pragma mark NSURLConnectionDataDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"response");
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
 
     NSInteger responseStatusCode = [httpResponse statusCode];
@@ -76,6 +83,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"data");
     if (self.state != JMJenkinsStateSuccessful) {
         return;
     }
@@ -114,14 +122,34 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     * - connecion:didReceiveData:
     */
 
-    [[challenge sender] cancelAuthenticationChallenge:challenge];
+    NSLog(@"challenge");
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        if ([self.trustedHostManager shouldTrustHost:challenge.protectionSpace.host]) {
+            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
 
-//    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] && [self shouldTrustHost:challenge.protectionSpace.host])
-//        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-//    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
-//        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
-//    else
-//        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+            _potentialHostToTrust = nil;
+
+            return;
+        }
+    }
+
+    _potentialHostToTrust = challenge.protectionSpace.host;
+
+    if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)]) {
+        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
+        return;
+    }
+
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    if ([error code] == NSURLErrorServerCertificateUntrusted) {
+        NSLog(@"fail");
+        self.state = JMJenkinsStateServerTrustFailure;
+        [self.delegate jenkins:self serverTrustFailedwithHost:_potentialHostToTrust];
+    }
 }
 
 #pragma mark Private

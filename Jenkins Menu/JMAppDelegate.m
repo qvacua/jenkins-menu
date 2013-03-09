@@ -13,7 +13,7 @@ static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
-static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
+static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 @interface JMAppDelegate ()
 
@@ -433,15 +433,15 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 - (BOOL)shouldTrustHost:(NSString *)host {
     if (_trustHost)
         return YES;
-    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY];
+    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey];
     return [trustedHosts containsObject:host];
 }
 
 - (void)trustHost:(NSString *)host {
-    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:DEFAULT_TRUSTED_HOSTS_KEY]];
+    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey]];
     if (![trustedHosts containsObject:host]) {
         [trustedHosts addObject:host];
-        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:DEFAULT_TRUSTED_HOSTS_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
     }
 }
 

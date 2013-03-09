@@ -9,6 +9,7 @@
 #import "JMBaseTestCase.h"
 #import "JMJenkins.h"
 #import "JMJenkinsJob.h"
+#import "JMTrustedHostManager.h"
 
 @interface JMJenkinsTest : JMBaseTestCase
 @end
@@ -17,16 +18,31 @@
     JMJenkins *jenkins;
     NSHTTPURLResponse *response;
     NSData *xmlData;
+    JMTrustedHostManager *trustedHostManager;
+    NSURLAuthenticationChallenge *challenge;
+    NSURLProtectionSpace *protectionSpace;
+    id <NSURLAuthenticationChallengeSender> sender;
 }
 
 - (void)setUp {
     [super setUp];
 
+    trustedHostManager = mock([JMTrustedHostManager class]);
+
     jenkins = [[JMJenkins alloc] init];
-    response = mock([NSHTTPURLResponse class]);
+    jenkins.trustedHostManager = trustedHostManager;
 
     NSURL *xmlUrl = [[NSBundle bundleForClass:[self class]] URLForResource:@"example-xml" withExtension:@"xml"];
     xmlData = [NSData dataWithContentsOfURL:xmlUrl];
+
+    response = mock([NSHTTPURLResponse class]);
+    challenge = mock([NSURLAuthenticationChallenge class]);
+    protectionSpace = mock([NSURLProtectionSpace class]);
+    sender = mockProtocol(@protocol(NSURLAuthenticationChallengeSender));
+
+    [given([challenge protectionSpace]) willReturn:protectionSpace];
+    [given([challenge sender]) willReturn:sender];
+    [given([protectionSpace host]) willReturn:@"http://some.host"];
 }
 
 - (void)testDefaultProperties {
@@ -89,6 +105,43 @@
     [self assertJob:jenkins.jobs[5] name:@"jruby-ossl" urlString:@"http://ci.jruby.org/job/jruby-ossl/" state:JMJenkinsJobStateRed running:YES];
     [self assertJob:jenkins.jobs[6] name:@"jruby-test-master" urlString:@"http://ci.jruby.org/job/jruby-test-master/" state:JMJenkinsJobStateAborted running:NO];
     [self assertJob:jenkins.jobs[7] name:@"jruby-dist-release" urlString:@"http://ci.jruby.org/job/jruby-dist-release/" state:JMJenkinsJobStateDisabled running:NO];
+}
+
+- (void)testConnectionAuthenticationFirstContact {
+    [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodServerTrust];
+    [given([trustedHostManager shouldTrustHost:@"http://some.host"]) willReturnBool:NO];
+
+    [jenkins connection:nil willSendRequestForAuthenticationChallenge:challenge];
+
+    assertThat(jenkins.potentialHostToTrust, is(@"http://some.host"));
+    [verify(sender) performDefaultHandlingForAuthenticationChallenge:challenge];
+}
+
+- (void)testConnectionAuthenticationWillTrust {
+    [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodServerTrust];
+    [given([trustedHostManager shouldTrustHost:@"http://some.host"]) willReturnBool:YES];
+
+    [jenkins connection:nil willSendRequestForAuthenticationChallenge:challenge];
+
+    assertThat(jenkins.potentialHostToTrust, is(nilValue()));
+    [verify(sender) useCredential:instanceOf([NSURLCredential class]) forAuthenticationChallenge:challenge];
+}
+
+- (void)testConnectionAuthenticationSomeOtherAuthMethod {
+    [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodNTLM];
+
+    [jenkins connection:nil willSendRequestForAuthenticationChallenge:challenge];
+
+    assertThat(jenkins.potentialHostToTrust, is(@"http://some.host"));
+    [verify(sender) performDefaultHandlingForAuthenticationChallenge:challenge];
+}
+
+- (void)testConnectionDidFail {
+    NSError *error = mock([NSError class]);
+    [given([error code]) willReturnUnsignedInteger:NSURLErrorServerCertificateUntrusted];
+
+    [jenkins connection:nil didFailWithError:error];
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateServerTrustFailure)));
 }
 
 #pragma mark Private
