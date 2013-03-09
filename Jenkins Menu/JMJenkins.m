@@ -107,6 +107,23 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     }];
 }
 
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    /**
+    * When we get an authentication challenge from the server, this delegate method is called before
+    * - connecion:didReceiveResponse:
+    * - connecion:didReceiveData:
+    */
+
+    [[challenge sender] cancelAuthenticationChallenge:challenge];
+
+//    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] && [self shouldTrustHost:challenge.protectionSpace.host])
+//        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+//    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
+//        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
+//    else
+//        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
 #pragma mark Private
 - (JMJenkinsJob *)jobsFromXmlNode:(NSXMLNode *)node {
     JMJenkinsJob *job = [[JMJenkinsJob alloc] init];

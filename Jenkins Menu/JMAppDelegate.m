@@ -7,6 +7,7 @@
  */
 
 #import "JMAppDelegate.h"
+#import "JMJenkins.h"
 
 static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
 static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
@@ -34,6 +35,8 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
     NSURLConnection *_connection;
     
     NSMutableDictionary *_statuses;
+
+    JMJenkins *jenkins;
 }
 
 @synthesize window = _window;
@@ -126,18 +129,29 @@ static NSString *const DEFAULT_TRUSTED_HOSTS_KEY = @"trustedURLs";
 
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [GrowlApplicationBridge setGrowlDelegate:self];
-    
-    [self setDefaultsIfNecessary];
-    [self initStatusMenu];
+    jenkins = [[JMJenkins alloc] init];
+    jenkins.url = [NSURL URLWithString:@"https://jenkins.int.tngtech.com"];
 
-    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
-    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:jenkins.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:jenkins];
 
-    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
+    if (connection == nil) {
+        NSLog(@"connection to %@ failed!", self.jenkinsXmlUrl);
+        [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
+    }
 
-    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
-    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+//    [GrowlApplicationBridge setGrowlDelegate:self];
+//
+//    [self setDefaultsIfNecessary];
+//    [self initStatusMenu];
+//
+//    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
+//    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+//
+//    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
+//
+//    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
+//    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
 }
 
 #pragma mark NSKeyValueObserving
