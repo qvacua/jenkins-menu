@@ -25,6 +25,7 @@
     assertThat(@(jenkins.state), is(@(JMJenkinsStateUnknown)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusUnknown)));
     assertThat(@(jenkins.interval), is(@300));
+    assertThat(jenkins.jobs, isNot(nilValue()));
 }
 
 - (void)testKvoJenkinsUrl {
@@ -38,13 +39,24 @@
 
     [given([response statusCode]) willReturnInteger:404];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateFailure)));
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@404));
 
     [given([response statusCode]) willReturnInteger:199];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateFailure)));
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@199));
+}
+
+- (void)testConnectionDidReceiveDataXmlError {
+    NSHTTPURLResponse *response = mock([NSHTTPURLResponse class]);
+    [given([response statusCode]) willReturnInteger:qHttpStatusOk];
+    [jenkins connection:nil didReceiveResponse:response];
+
+    [jenkins connection:nil didReceiveData:[@"<no xml<<<" dataUsingEncoding:NSUTF8StringEncoding]];
+    assertThat(jenkins.jobs, is(empty()));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateXmlFailure)));
 }
 
 @end

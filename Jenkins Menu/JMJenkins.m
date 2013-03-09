@@ -10,7 +10,13 @@
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
+@interface JMJenkins ()
+@property (readwrite) NSInteger lastHttpStatusCode;
+@property (readwrite) NSInteger state;
+@end
+
 @implementation JMJenkins {
+    NSMutableArray *_jobs;
 }
 
 @synthesize url = _url;
@@ -18,15 +24,16 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize interval = _interval;
 @synthesize state = _state;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
+@synthesize jobs = _jobs;
 
 #pragma mark NSObject
-
 - (id)init {
     self = [super init];
     if (self) {
         _interval = qDefaultInterval;
         _state = JMJenkinsStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
+        _jobs = [[NSMutableArray alloc] init];
         [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
     }
 
@@ -51,14 +58,53 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
     if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
         NSLog(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
-        self.state = JMJenkinsStateFailure;
+        self.state = JMJenkinsStateHttpFailure;
     } else {
         self.state = JMJenkinsStateSuccessful;
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (self.state != JMJenkinsStateSuccessful) {
+        return;
+    }
 
+    NSError *xmlError = nil;
+    NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithData:data options:0 error:&xmlError];
+
+    if (xmlError) {
+        NSLog(@"XML parsing of %@ failed: %@", self.xmlUrl, xmlError);
+        self.state = JMJenkinsStateXmlFailure;
+
+        return;
+    }
+
+//    NSArray *children = [[xmlDoc rootElement] children];
+//
+//    if ([children count] == 0) {
+//        NSLog(@"The XML is empty!");
+//
+//        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
+//        return;
+//    }
+//
+//    __block NSUInteger redCount = 0;
+//    __block NSUInteger yellowCount = 0;
+//
+//    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
+//        if ([[childNode name] isEqualToString:@"primaryView"]) {
+//            [self filterPrimaryViewUrlFromNode:childNode];
+//            return;
+//        }
+//
+//        if ([[childNode name] isEqualToString:@"job"]) {
+//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
+//            return;
+//        }
+//    }];
+//
+//    [self setStatusWithRed:redCount yellow:yellowCount];
+//    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
 
 @end

@@ -11,7 +11,8 @@
 typedef enum {
     JMJenkinsStateUnknown = 0,
     JMJenkinsStateSuccessful,
-    JMJenkinsStateFailure
+    JMJenkinsStateHttpFailure,
+    JMJenkinsStateXmlFailure,
 } JMJenkinsState;
 
 static int const qHttpStatusUnknown = -1;
@@ -23,7 +24,8 @@ static int const qHttpStatusBadRequest = 400;
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
 @property NSTimeInterval interval;
-@property NSInteger state;
-@property NSInteger lastHttpStatusCode;
+@property (readonly) NSInteger state;
+@property (readonly) NSInteger lastHttpStatusCode;
+@property (readonly) NSArray *jobs;
 
 @end

@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1929B27F2733BFBC5387E38C /* JMJenkinsJob.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */; };
 		1929B380DA8ED015900843F8 /* JMJenkins.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B938F8E11602CE409F2C /* JMJenkins.h */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
+		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
+		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */; };
+		1929BDC7195185145A1D14A8 /* JMJenkinsJob.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */; };
 		4B094FF4168110D900D1C02B /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF2168110D900D1C02B /* OCHamcrest.framework */; };
 		4B094FF5168110D900D1C02B /* OCMockito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF3168110D900D1C02B /* OCMockito.framework */; };
 		4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B094FF2168110D900D1C02B /* OCHamcrest.framework */; };
@@ -67,6 +71,7 @@
 			files = (
 				4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */,
 				4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */,
+				1929B27F2733BFBC5387E38C /* JMJenkinsJob.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			files = (
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
 				1929B380DA8ED015900843F8 /* JMJenkins.h in Copy Files */,
+				1929BDC7195185145A1D14A8 /* JMJenkinsJob.h in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +91,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
+		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
 		1929B938F8E11602CE409F2C /* JMJenkins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkins.h; sourceTree = "<group>"; };
 		1929BBC49202F6CF5B2519F6 /* JMJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkins.m; sourceTree = "<group>"; };
 		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
@@ -200,6 +208,8 @@
 				4B0CE8E8158DC6D1001BA10F /* Resources */,
 				1929BBC49202F6CF5B2519F6 /* JMJenkins.m */,
 				1929B938F8E11602CE409F2C /* JMJenkins.h */,
+				1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */,
+				1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */,
 			);
 			path = "Jenkins Menu";
 			sourceTree = "<group>";
@@ -401,6 +411,7 @@
 				4B0CE8C2158DC6D0001BA10E /* main.m in Sources */,
 				4B0CE8C9158DC6D0001BA10E /* JMAppDelegate.m in Sources */,
 				1929B72850A4122611A12E1F /* JMJenkins.m in Sources */,
+				1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +422,7 @@
 				4B0CE8E0158DC6D1001BA10E /* JMBaseTestCase.m in Sources */,
 				1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */,
 				1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */,
+				1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
