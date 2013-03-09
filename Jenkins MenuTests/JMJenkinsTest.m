@@ -49,6 +49,11 @@
     [given([protectionSpace host]) willReturn:@"http://some.host"];
 }
 
+- (void)testUpdate {
+    jenkins.url = [NSURL URLWithString:@"pro://some/crazy/"];
+    [jenkins update];
+}
+
 - (void)testDefaultProperties {
     assertThat(@(jenkins.state), is(@(JMJenkinsStateUnknown)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusUnknown)));
@@ -72,6 +77,13 @@
     [jenkins connection:nil didReceiveResponse:response];
     assertThat(@(jenkins.state), is(@(JMJenkinsStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@199));
+}
+
+- (void)testConnectionDidReceiveResponse {
+    [given([response statusCode]) willReturnInteger:qHttpStatusOk];
+    [jenkins connection:nil didReceiveResponse:response];
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateSuccessful)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
 }
 
 - (void)testConnectionDidReceiveDataXmlError {
@@ -109,6 +121,8 @@
     [self assertJob:jenkins.jobs[5] name:@"jruby-ossl" urlString:@"http://ci.jruby.org/job/jruby-ossl/" state:JMJenkinsJobStateRed running:YES];
     [self assertJob:jenkins.jobs[6] name:@"jruby-test-master" urlString:@"http://ci.jruby.org/job/jruby-test-master/" state:JMJenkinsJobStateAborted running:NO];
     [self assertJob:jenkins.jobs[7] name:@"jruby-dist-release" urlString:@"http://ci.jruby.org/job/jruby-dist-release/" state:JMJenkinsJobStateDisabled running:NO];
+
+    [verify(delegate) jenkins:jenkins updateFinished:nil];
 }
 
 - (void)testConnectionAuthenticationFirstContact {

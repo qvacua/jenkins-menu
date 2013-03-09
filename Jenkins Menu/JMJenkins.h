@@ -14,6 +14,7 @@
 typedef enum {
     JMJenkinsStateUnknown = 0,
     JMJenkinsStateSuccessful,
+    JMJenkinsStateConnectionFailure,
     JMJenkinsStateHttpFailure,
     JMJenkinsStateXmlFailure,
     JMJenkinsStateServerTrustFailure,
@@ -36,5 +37,7 @@ static int const qHttpStatusBadRequest = 400;
 
 @property id <JMJenkinsDelegate> delegate;
 @property JMTrustedHostManager *trustedHostManager;
+
+- (void)update;
 
 @end

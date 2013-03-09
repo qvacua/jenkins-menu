@@ -12,6 +12,7 @@
 #import "JMTrustedHostManager.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
+static const NSTimeInterval qTimeoutInterval = 10;
 
 @interface JMJenkins ()
 @property (readwrite) NSInteger lastHttpStatusCode;
@@ -24,6 +25,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @implementation JMJenkins {
     NSMutableArray *_mutableJobs;
     NSString *_potentialHostToTrust;
+    NSURLConnection *_connection;
 }
 
 @dynamic jobs;
@@ -42,6 +44,23 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 #pragma mark Public
 - (NSArray *)jobs {
     return self.mutableJobs;
+}
+
+- (void)update {
+    [_connection cancel];
+
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
+    _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"Connecting to %@", self.xmlUrl);
+
+    [self.delegate jenkins:self updateStarted:nil];
+
+    if (_connection == nil) {
+        NSLog(@"Connection to %@ failed!", self.xmlUrl);
+        self.state = JMJenkinsStateConnectionFailure;
+
+        [self.delegate jenkins:self updateFinished:nil];
+    }
 }
 
 #pragma mark NSObject
@@ -114,6 +133,8 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
             return;
         }
     }];
+
+    [self.delegate jenkins:self updateFinished:nil];
 }
 
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {

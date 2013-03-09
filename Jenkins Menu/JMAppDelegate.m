@@ -132,13 +132,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     jenkins = [[JMJenkins alloc] init];
     jenkins.url = [NSURL URLWithString:@"https://jenkins.int.tngtech.com"];
 
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:jenkins.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:jenkins];
-
-    if (connection == nil) {
-        NSLog(@"connection to %@ failed!", self.jenkinsXmlUrl);
-        [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
-    }
+    [jenkins update];
 
 //    [GrowlApplicationBridge setGrowlDelegate:self];
 //
