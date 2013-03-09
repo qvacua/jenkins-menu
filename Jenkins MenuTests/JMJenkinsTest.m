@@ -21,16 +21,10 @@
     jenkins = [[JMJenkins alloc] init];
 }
 
-- (void)testConnectionDidReceiveResponse {
-    NSHTTPURLResponse *response = mock([NSHTTPURLResponse class]);
+- (void)testKvoJenkinsUrl {
+    jenkins.url = [NSURL URLWithString:@"http://some/url/to/jenkins"];
 
-    [given([response statusCode]) willReturnInteger:404];
-    [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.lastConnectionSuccessful), isNo);
-
-    [given([response statusCode]) willReturnInteger:101];
-    [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.lastConnectionSuccessful), isNo);
+    assertThat(jenkins.xmlUrl, is([NSURL URLWithString:@"http://some/url/to/jenkins/api/xml"]));
 }
 
 @end

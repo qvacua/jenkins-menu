@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-static int const HTTP_STATUS_OK = 200;
-static int const HTTPS_STATUS_BAD_REQUEST = 400;
+static int const qHttpStatusOk = 200;
+static int const qHttpsStatusBadRequest = 400;
 
 @interface JMJenkins : NSObject <NSURLConnectionDelegate>
 
-@property NSURL *jenkinsXmlUrl;
-@property NSURL *jenkinsUrl;
+@property NSURL *url;
+@property (readonly) NSURL *xmlUrl;
 @property NSTimeInterval interval;
 
-@property BOOL lastConnectionSuccessful;
 @end
