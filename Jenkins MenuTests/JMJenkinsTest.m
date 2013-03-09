@@ -55,7 +55,7 @@
 }
 
 - (void)testDefaultProperties {
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateUnknown)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateUnknown)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusUnknown)));
     assertThat(@(jenkins.interval), is(@300));
     assertThat(jenkins.jobs, isNot(nilValue()));
@@ -70,19 +70,19 @@
 - (void)testConnectionDidReceiveResponseFailure {
     [given([response statusCode]) willReturnInteger:404];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateHttpFailure)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@404));
 
     [given([response statusCode]) willReturnInteger:199];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateHttpFailure)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@199));
 }
 
 - (void)testConnectionDidReceiveResponse {
     [given([response statusCode]) willReturnInteger:qHttpStatusOk];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateSuccessful)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateSuccessful)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
 }
 
@@ -93,7 +93,7 @@
     [jenkins connection:nil didReceiveData:malformedXmlData];
     assertThat(jenkins.jobs, is(empty()));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateXmlFailure)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateXmlFailure)));
 }
 
 - (void)testConnectionDidReceiveDataEmptyXml {
@@ -103,7 +103,7 @@
     [jenkins connection:nil didReceiveData:emptyXmlData];
     assertThat(jenkins.jobs, is(empty()));
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateXmlFailure)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateXmlFailure)));
 }
 
 - (void)testConnectionDidReceiveData {
@@ -165,7 +165,7 @@
     [jenkins connection:nil willSendRequestForAuthenticationChallenge:challenge];
 
     [jenkins connection:nil didFailWithError:error];
-    assertThat(@(jenkins.state), is(@(JMJenkinsStateServerTrustFailure)));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsStateServerTrustFailure)));
     [verify(delegate) jenkins:jenkins serverTrustFailedwithHost:@"http://some.host"];
 }
 

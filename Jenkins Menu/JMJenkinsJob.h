@@ -25,4 +25,6 @@ typedef enum {
 @property JMJenkinsJobState lastState;
 @property (getter=isRunning) BOOL running;
 
+- (NSString *)description;
+
 @end

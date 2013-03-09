@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
+#import "JMJenkinsDelegate.h"
 
-@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate>
+@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSMenu *menu;

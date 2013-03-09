@@ -16,7 +16,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
 @interface JMJenkins ()
 @property (readwrite) NSInteger lastHttpStatusCode;
-@property (readwrite) NSInteger state;
+@property (readwrite) NSInteger connectionState;
 @property (readwrite) NSURL *viewUrl;
 @property (readonly) NSMutableArray *mutableJobs;
 @property (readwrite) NSString *potentialHostToTrust;
@@ -33,7 +33,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
 @synthesize url = _url;
 @synthesize xmlUrl = _xmlUrl;
 @synthesize interval = _interval;
-@synthesize state = _state;
+@synthesize connectionState = _connectionState;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
 @synthesize viewUrl = _viewUrl;
 @synthesize mutableJobs = _mutableJobs;
@@ -57,7 +57,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
     if (_connection == nil) {
         NSLog(@"Connection to %@ failed!", self.xmlUrl);
-        self.state = JMJenkinsStateConnectionFailure;
+        self.connectionState = JMJenkinsStateConnectionFailure;
 
         [self.delegate jenkins:self updateFinished:nil];
     }
@@ -68,7 +68,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
     self = [super init];
     if (self) {
         _interval = qDefaultInterval;
-        _state = JMJenkinsStateUnknown;
+        _connectionState = JMJenkinsStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
         _mutableJobs = [[NSMutableArray alloc] init];
         [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
@@ -96,21 +96,21 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
     if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
         NSLog(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
-        self.state = JMJenkinsStateHttpFailure;
+        self.connectionState = JMJenkinsStateHttpFailure;
     } else {
-        self.state = JMJenkinsStateSuccessful;
+        self.connectionState = JMJenkinsStateSuccessful;
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSLog(@"data");
-    if (self.state != JMJenkinsStateSuccessful) {
+    if (self.connectionState != JMJenkinsStateSuccessful) {
         return;
     }
 
     NSXMLDocument *xmlDoc = [self xmlDocumentFromData:data];
     if (xmlDoc == nil) {
-        self.state = JMJenkinsStateXmlFailure;
+        self.connectionState = JMJenkinsStateXmlFailure;
         return;
     }
 
@@ -118,7 +118,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
     if ([children count] == 0) {
         NSLog(@"XML of %@ is empty.", self.xmlUrl);
 
-        self.state = JMJenkinsStateXmlFailure;
+        self.connectionState = JMJenkinsStateXmlFailure;
         return;
     }
 
@@ -169,7 +169,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if ([error code] == NSURLErrorServerCertificateUntrusted) {
         NSLog(@"fail");
-        self.state = JMJenkinsStateServerTrustFailure;
+        self.connectionState = JMJenkinsStateServerTrustFailure;
         [self.delegate jenkins:self serverTrustFailedwithHost:_potentialHostToTrust];
     }
 }

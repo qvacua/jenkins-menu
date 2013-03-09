@@ -28,4 +28,16 @@
     _state = newState;
 }
 
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"self.state=%d", self.state];
+    [description appendFormat:@", self.name=%@", self.name];
+    [description appendFormat:@", self.url=%@", self.url];
+    [description appendFormat:@", self.lastState=%d", self.lastState];
+    [description appendFormat:@", self.running=%d", self.running];
+    [description appendString:@">"];
+    return description;
+}
+
+
 @end

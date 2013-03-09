@@ -129,23 +129,44 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [self setDefaultsIfNecessary];
+
+//    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
+//    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+
+    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
+    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
+    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+
     jenkins = [[JMJenkins alloc] init];
-    jenkins.url = [NSURL URLWithString:@"https://jenkins.int.tngtech.com"];
+    jenkins.url = [NSURL URLWithString:@"http://ci.jruby.org/"];
+    jenkins.interval = self.interval;
+    jenkins.delegate = self;
 
     [jenkins update];
 
 //    [GrowlApplicationBridge setGrowlDelegate:self];
-//
-//    [self setDefaultsIfNecessary];
 //    [self initStatusMenu];
 //
-//    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
-//    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+
 //
 //    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
 //
 //    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
 //    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+}
+
+#pragma mark JMJenkinsDelegate
+- (void)jenkins:(JMJenkins *)jenkins1 serverTrustFailedwithHost:(NSString *)host {
+
+}
+
+- (void)jenkins:(JMJenkins *)jenkins1 updateStarted:(NSDictionary *)userInfo {
+
+}
+
+- (void)jenkins:(JMJenkins *)jenkins1 updateFinished:(NSDictionary *)userInfo {
+    NSLog(@"%@", jenkins1.jobs);
 }
 
 #pragma mark NSKeyValueObserving

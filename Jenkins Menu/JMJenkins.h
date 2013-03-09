@@ -29,7 +29,7 @@ static int const qHttpStatusBadRequest = 400;
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
 @property NSTimeInterval interval;
-@property (readonly) NSInteger state;
+@property (readonly) NSInteger connectionState;
 @property (readonly) NSInteger lastHttpStatusCode;
 @property (readonly) NSURL *viewUrl;
 @property (readonly) NSArray *jobs;
