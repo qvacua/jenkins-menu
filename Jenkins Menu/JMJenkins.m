@@ -16,11 +16,17 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize url = _url;
 @synthesize xmlUrl = _xmlUrl;
 @synthesize interval = _interval;
+@synthesize state = _state;
+@synthesize lastHttpStatusCode = _lastHttpStatusCode;
+
+#pragma mark NSObject
 
 - (id)init {
     self = [super init];
     if (self) {
         _interval = qDefaultInterval;
+        _state = JMJenkinsStateUnknown;
+        _lastHttpStatusCode = qHttpStatusUnknown;
         [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
     }
 
@@ -34,6 +40,25 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
     NSURL *newUrl = change[NSKeyValueChangeNewKey];
     _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
+}
+
+#pragma mark NSURLConnectionDataDelegate
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+
+    NSInteger responseStatusCode = [httpResponse statusCode];
+    self.lastHttpStatusCode = responseStatusCode;
+
+    if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
+        NSLog(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
+        self.state = JMJenkinsStateFailure;
+    } else {
+        self.state = JMJenkinsStateSuccessful;
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+
 }
 
 @end

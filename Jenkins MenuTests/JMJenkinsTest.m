@@ -21,7 +21,9 @@
     jenkins = [[JMJenkins alloc] init];
 }
 
-- (void)testDefaultInterval {
+- (void)testDefaultProperties {
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateUnknown)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusUnknown)));
     assertThat(@(jenkins.interval), is(@300));
 }
 
@@ -29,6 +31,20 @@
     jenkins.url = [NSURL URLWithString:@"http://some/url/to/jenkins"];
 
     assertThat(jenkins.xmlUrl, is([NSURL URLWithString:@"http://some/url/to/jenkins/api/xml"]));
+}
+
+- (void)testConnectionDidReceiveResponseFailure {
+    NSHTTPURLResponse *response = mock([NSHTTPURLResponse class]);
+
+    [given([response statusCode]) willReturnInteger:404];
+    [jenkins connection:nil didReceiveResponse:response];
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateFailure)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@404));
+
+    [given([response statusCode]) willReturnInteger:199];
+    [jenkins connection:nil didReceiveResponse:response];
+    assertThat(@(jenkins.state), is(@(JMJenkinsStateFailure)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@199));
 }
 
 @end

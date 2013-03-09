@@ -8,13 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-static int const qHttpStatusOk = 200;
-static int const qHttpsStatusBadRequest = 400;
+typedef enum {
+    JMJenkinsStateUnknown = 0,
+    JMJenkinsStateSuccessful,
+    JMJenkinsStateFailure
+} JMJenkinsState;
 
-@interface JMJenkins : NSObject <NSURLConnectionDelegate>
+static int const qHttpStatusUnknown = -1;
+static int const qHttpStatusOk = 200;
+static int const qHttpStatusBadRequest = 400;
+
+@interface JMJenkins : NSObject <NSURLConnectionDataDelegate>
 
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
 @property NSTimeInterval interval;
+@property NSInteger state;
+@property NSInteger lastHttpStatusCode;
 
 @end
