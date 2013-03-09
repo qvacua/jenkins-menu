@@ -12,10 +12,10 @@
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 @interface JMJenkins ()
-@property (readwrite) NSInteger lastHttpStatusCode;
-@property (readwrite) NSInteger state;
-@property (readwrite) NSURL *viewUrl;
-@property (readonly) NSMutableArray *mutableJobs;
+@property(readwrite) NSInteger lastHttpStatusCode;
+@property(readwrite) NSInteger state;
+@property(readwrite) NSURL *viewUrl;
+@property(readonly) NSMutableArray *mutableJobs;
 @end
 
 @implementation JMJenkins {
@@ -124,7 +124,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
             job.url = [NSURL URLWithString:nodeStringValue];
             return;
         }
-        
+
         if ([nodeName isEqualToString:@"color"]) {
             job.state = [self jobStateFromColor:nodeStringValue];
             job.running = [self runningStateFromColor:nodeStringValue];
@@ -150,10 +150,12 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 - (NSURL *)viewUrlFromXmlNode:(NSXMLNode *)node {
     __block NSURL *viewUrl;
     [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
-        if ([[childNode name] isEqualToString:@"url"]) {
-            viewUrl = [NSURL URLWithString:[childNode stringValue]];
-            *stop = YES;
+        if (![[childNode name] isEqualToString:@"url"]) {
+            return;
         }
+
+        viewUrl = [NSURL URLWithString:[childNode stringValue]];
+        *stop = YES;
     }];
 
     return viewUrl;
