@@ -13,6 +13,8 @@ typedef enum {
     JMJenkinsJobStateBlue,
     JMJenkinsJobStateYellow,
     JMJenkinsJobStateRed,
+    JMJenkinsJobStateAborted,
+    JMJenkinsJobStateDisabled,
 } JMJenkinsJobState;
 
 @interface JMJenkinsJob : NSObject

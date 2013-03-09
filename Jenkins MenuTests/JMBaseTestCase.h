@@ -14,6 +14,7 @@
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
 
+#define hasSize(number) hasCount(equalToInt(number))
 #define isYes is(@(YES))
 #define isNo is(@(NO))
 

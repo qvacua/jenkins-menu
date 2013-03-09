@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
 		1929B27F2733BFBC5387E38C /* JMJenkinsJob.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */; };
 		1929B380DA8ED015900843F8 /* JMJenkins.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B938F8E11602CE409F2C /* JMJenkins.h */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
@@ -94,6 +95,7 @@
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
 		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
+		1929B769BB583F78EBA405EE /* example-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-xml.xml"; sourceTree = "<group>"; };
 		1929B938F8E11602CE409F2C /* JMJenkins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkins.h; sourceTree = "<group>"; };
 		1929BBC49202F6CF5B2519F6 /* JMJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkins.m; sourceTree = "<group>"; };
 		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
@@ -155,6 +157,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1929B02AADFA7B46ACC3C847 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1929B769BB583F78EBA405EE /* example-xml.xml */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4B0CE8A6158DC6D0001BA10E = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +244,7 @@
 				4B0CE8DF158DC6D1001BA10E /* JMBaseTestCase.m */,
 				4B0CE8D9158DC6D1001BA10E /* Supporting Files */,
 				1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */,
+				1929B02AADFA7B46ACC3C847 /* Resources */,
 			);
 			path = "Jenkins MenuTests";
 			sourceTree = "<group>";
@@ -382,6 +393,7 @@
 				4B0CE8E8158DC6D1001BA14F /* disconnect.png in Resources */,
 				4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */,
 				4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */,
+				1929B162C346B1EC8D11486E /* example-xml.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

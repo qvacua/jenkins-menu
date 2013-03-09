@@ -13,6 +13,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @interface JMJenkins ()
 @property (readwrite) NSInteger lastHttpStatusCode;
 @property (readwrite) NSInteger state;
+@property (readwrite) NSURL *viewUrl;
 @end
 
 @implementation JMJenkins {
@@ -24,6 +25,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize interval = _interval;
 @synthesize state = _state;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
+@synthesize viewUrl = _viewUrl;
 @synthesize jobs = _jobs;
 
 #pragma mark NSObject
@@ -69,33 +71,37 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         return;
     }
 
-    NSError *xmlError = nil;
-    NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithData:data options:0 error:&xmlError];
-
-    if (xmlError) {
-        NSLog(@"XML parsing of %@ failed: %@", self.xmlUrl, xmlError);
+    NSXMLDocument *xmlDoc = [self xmlDocumentFromData:data];
+    if (xmlDoc == nil) {
         self.state = JMJenkinsStateXmlFailure;
-
         return;
     }
 
-//    NSArray *children = [[xmlDoc rootElement] children];
-//
-//    if ([children count] == 0) {
-//        NSLog(@"The XML is empty!");
-//
-//        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
-//        return;
-//    }
-//
+    NSArray *children = [[xmlDoc rootElement] children];
+    if ([children count] == 0) {
+        NSLog(@"XML of %@ is empty.", self.xmlUrl);
+
+        self.state = JMJenkinsStateXmlFailure;
+        return;
+    }
+
+    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
+        if ([[childNode name] isEqualToString:@"primaryView"]) {
+            self.viewUrl = [self viewUrlFromXmlNode:childNode];
+            return;
+        }
+
+        if ([[childNode name] isEqualToString:@"job"]) {
+//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
+            return;
+        }
+    }];
+
+
 //    __block NSUInteger redCount = 0;
 //    __block NSUInteger yellowCount = 0;
 //
 //    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
-//        if ([[childNode name] isEqualToString:@"primaryView"]) {
-//            [self filterPrimaryViewUrlFromNode:childNode];
-//            return;
-//        }
 //
 //        if ([[childNode name] isEqualToString:@"job"]) {
 //            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
@@ -105,6 +111,31 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 //
 //    [self setStatusWithRed:redCount yellow:yellowCount];
 //    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
+}
+
+#pragma mark Private
+- (NSXMLDocument *)xmlDocumentFromData:(NSData *)xmlData {
+    NSError *xmlError = nil;
+    NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithData:xmlData options:0 error:&xmlError];
+
+    if (xmlError) {
+        NSLog(@"XML parsing of %@ failed: %@", self.xmlUrl, xmlError);
+        return nil;
+    }
+
+    return xmlDoc;
+}
+
+- (NSURL *)viewUrlFromXmlNode:(NSXMLNode *)node {
+    __block NSURL *viewUrl;
+    [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
+        if ([[childNode name] isEqualToString:@"url"]) {
+            viewUrl = [NSURL URLWithString:[childNode stringValue]];
+            *stop = YES;
+        }
+    }];
+
+    return viewUrl;
 }
 
 @end
