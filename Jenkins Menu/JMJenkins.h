@@ -35,7 +35,7 @@ static int const qHttpStatusBadRequest = 400;
 static NSString *const qJenkinsConnectionErrorKey = @"ConnectionFailedErrorKey";
 static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorKey";
 
-@interface JMJenkins : NSObject <NSURLConnectionDataDelegate>
+@interface JMJenkins : NSObject <NSURLConnectionDelegate>
 
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
