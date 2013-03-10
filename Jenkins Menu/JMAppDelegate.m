@@ -235,12 +235,12 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)resetTimerWithTimeInterval:(NSTimeInterval)anInterval {
-    [_timer invalidate];
-    _timer = nil;
-    _timer = [NSTimer timerWithTimeInterval:anInterval target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer = [NSTimer timerWithTimeInterval:anInterval target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
 
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    [runLoop addTimer:_timer forMode:NSDefaultRunLoopMode];
+    [runLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)timerFireMethod:(NSTimer *)theTimer {

@@ -170,6 +170,8 @@ static const NSTimeInterval qTimeoutInterval = 10;
         return;
     }
 
+    [self.mutableJobs removeAllObjects];
+
     [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
         if ([[childNode name] isEqualToString:@"primaryView"]) {
             self.viewUrl = [self viewUrlFromXmlNode:childNode];

@@ -175,6 +175,20 @@
     [verify(delegate) jenkins:jenkins updateFinished:nil];
 }
 
+/**
+* @bug
+*/
+- (void)testConnectionDidReceiveDataMultipleTimes {
+    [self makeResponseReturnHttpOk];
+    NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
+
+    [jenkins connection:nil didReceiveData:xmlData];
+    assertThat(jenkins.jobs, hasSize(8));
+
+    [jenkins connection:nil didReceiveData:xmlData];
+    assertThat(jenkins.jobs, hasSize(8));
+}
+
 - (void)testConnectionAuthenticationFirstContact {
     [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodServerTrust];
     [given([trustedHostManager shouldTrustHost:@"http://some.host"]) willReturnBool:NO];
