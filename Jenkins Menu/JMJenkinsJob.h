@@ -10,7 +10,7 @@
 
 typedef enum {
     JMJenkinsJobStateUnknown = 0,
-    JMJenkinsJobStateBlue,
+    JMJenkinsJobStateGreen,
     JMJenkinsJobStateYellow,
     JMJenkinsJobStateRed,
     JMJenkinsJobStateAborted,

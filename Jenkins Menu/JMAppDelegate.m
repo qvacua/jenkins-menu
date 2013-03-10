@@ -9,187 +9,122 @@
 #import "JMAppDelegate.h"
 #import "JMJenkins.h"
 
-static NSString *const DEFAULT_URL_KEY = @"jenkinsUrl";
-static NSString *const DEFAULT_INTERVAL_KEY = @"interval";
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
-@interface JMAppDelegate ()
-
-@property(readwrite, strong) NSStatusItem *statusItem;
-@property(readwrite, strong) NSMutableDictionary *statuses;
-
-@end
-
 @implementation JMAppDelegate {
-    NSStatusItem *_statusItem;
-
-    NSURL *_jenkinsXmlUrl;
-    NSURL *_jenkinsUrl;
-    NSTimeInterval _interval;
-
-    BOOL _trustHost;
-    BOOL _successful;
-    NSTimer *_timer;
-    NSURLConnection *_connection;
-    
-    NSMutableDictionary *_statuses;
-
-    JMJenkins *jenkins;
 }
 
 @synthesize window = _window;
 @synthesize menu = _menu;
 @synthesize statusItem = _statusItem;
-@synthesize jenkinsXmlUrl = _jenkinsXmlUrl;
 @synthesize urlTextField = _urlTextField;
 @synthesize intervalTextField = _intervalTextField;
-@synthesize interval = _interval;
-@synthesize jenkinsUrl = _jenkinsUrl;
 @synthesize statusMenuItem = _statusMenuItem;
-@synthesize statuses = _statuses;
 
-#pragma mark NSURLConnectionDelegate
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-    NSInteger responseStatusCode = [httpResponse statusCode];
+@synthesize userDefaults = _userDefaults;
 
-    if (responseStatusCode < 200 || responseStatusCode >= 400) {
-        NSLog(@"connection was not successful. http status code was: %ld", responseStatusCode);
+@synthesize jenkins = _jenkins;
+@synthesize jenkinsUrl = _jenkinsUrl;
+@synthesize jenkinsXmlUrl = _jenkinsXmlUrl;
+@synthesize interval = _interval;
+@synthesize timer = _timer;
 
-        _successful = NO;
-        [self showErrorStatus:[NSString stringWithFormat:NSLocalizedString(@"ErrorHttpStatus", @""), responseStatusCode]];
-    } else {
-        _successful = YES;
-    }
-}
-
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [self connection:connection willSendRequestForAuthenticationChallenge:challenge];
-}
-
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]
-        && [self shouldTrustHost:challenge.protectionSpace.host])
-        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-    else if ([challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
-        [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
-    else
-        [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"connection to %@ failed: %@", self.jenkinsXmlUrl, error);
-    
-    if (error.code == -1202 && [self askWhetherToTrustHost:self.jenkinsXmlUrl.host]) {
-        _trustHost = YES;
-        [self makeRequest];
-    } else
-        [self showErrorStatus:error.localizedDescription];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (!_successful) {
-        return;
-    }
-
-    NSXMLDocument *xmlDocument = [[NSXMLDocument alloc] initWithData:data options:0 error:NULL];
-    NSArray *children = [[xmlDocument rootElement] children];
-
-    if ([children count] == 0) {
-        NSLog(@"The XML is empty!");
-
-        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
-        return;
-    }
-
-    __block NSUInteger redCount = 0;
-    __block NSUInteger yellowCount = 0;
-
-    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
-        if ([[childNode name] isEqualToString:@"primaryView"]) {
-            [self filterPrimaryViewUrlFromNode:childNode];
-            return;
-        }
-
-        if ([[childNode name] isEqualToString:@"job"]) {
-            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
-            return;
-        }
-    }];
-
-    [self setStatusWithRed:redCount yellow:yellowCount];
-    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
-}
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    if (!_successful) {
+//        return;
+//    }
+//
+//    NSXMLDocument *xmlDocument = [[NSXMLDocument alloc] initWithData:data options:0 error:NULL];
+//    NSArray *children = [[xmlDocument rootElement] children];
+//
+//    if ([children count] == 0) {
+//        NSLog(@"The XML is empty!");
+//
+//        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
+//        return;
+//    }
+//
+//    __block NSUInteger redCount = 0;
+//    __block NSUInteger yellowCount = 0;
+//
+//    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
+//        if ([[childNode name] isEqualToString:@"primaryView"]) {
+//            [self filterPrimaryViewUrlFromNode:childNode];
+//            return;
+//        }
+//
+//        if ([[childNode name] isEqualToString:@"job"]) {
+//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
+//            return;
+//        }
+//    }];
+//
+//    [self setStatusWithRed:redCount yellow:yellowCount];
+//    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
+//}
 
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [GrowlApplicationBridge setGrowlDelegate:self];
+    [self initStatusMenu];
+
     [self setDefaultsIfNecessary];
 
-//    [self addObserver:self forKeyPath:@"jenkinsXmlUrl" options:NSKeyValueObservingOptionOld context:NULL];
-//    [self addObserver:self forKeyPath:@"interval" options:NSKeyValueObservingOptionOld context:NULL];
+    NSKeyValueObservingOptions observingOptions = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+    [self addObserver:self forKeyPath:@"jenkinsUrl" options:observingOptions context:NULL];
+    [self addObserver:self forKeyPath:@"interval" options:observingOptions context:NULL];
 
-    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
-    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
-    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+    NSURL *url = [self cleanUrlIfNecessary];
 
-    jenkins = [[JMJenkins alloc] init];
-    jenkins.url = [NSURL URLWithString:@"http://ci.jruby.org/"];
-    jenkins.interval = self.interval;
-    jenkins.delegate = self;
+    self.jenkinsUrl = url;
+    self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
 
-    [jenkins update];
+    self.jenkins.delegate = self;
+    self.jenkins.interval = self.interval;
+    self.jenkins.url = url;
 
-//    [GrowlApplicationBridge setGrowlDelegate:self];
-//    [self initStatusMenu];
-//
-
-//
-//    NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
-//
-//    self.jenkinsXmlUrl = [[NSURL alloc] initWithString:[userDefaults objectForKey:DEFAULT_URL_KEY]];
-//    self.interval = [[userDefaults objectForKey:DEFAULT_INTERVAL_KEY] doubleValue];
+    [self makeRequest];
 }
 
 #pragma mark JMJenkinsDelegate
-- (void)jenkins:(JMJenkins *)jenkins1 serverTrustFailedwithHost:(NSString *)host {
+- (void)jenkins:(JMJenkins *)jenkins serverTrustFailedwithHost:(NSString *)host {
 
 }
 
-- (void)jenkins:(JMJenkins *)jenkins1 updateStarted:(NSDictionary *)userInfo {
+- (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo {
 
 }
 
-- (void)jenkins:(JMJenkins *)jenkins1 updateFinished:(NSDictionary *)userInfo {
-    NSLog(@"%@", jenkins1.jobs);
+- (void)jenkins:(JMJenkins *)jenkins updateFinished:(NSDictionary *)userInfo {
+    NSLog(@"%@", jenkins.jobs);
 }
 
 #pragma mark NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+    id newValue = [change objectForKey:NSKeyValueChangeNewKey];
 
-    if ([keyPath isEqualToString:@"jenkinsXmlUrl"]) {
-        if ([[change objectForKey:NSKeyValueChangeOldKey] isEqual:self.jenkinsXmlUrl]) {
+    if ([keyPath isEqualToString:@"jenkinsUrl"]) {
+        if ([oldValue isEqual:newValue]) {
             return;
         }
 
-        [[NSUserDefaults standardUserDefaults] setObject:[self.jenkinsXmlUrl absoluteString] forKey:DEFAULT_URL_KEY];
-        self.jenkinsUrl = nil;
-        [self.statuses removeAllObjects];
-        _trustHost = NO;
-        [self makeRequest];
+        self.jenkinsXmlUrl = [newValue URLByAppendingPathComponent:@"api/xml"];
+        self.jenkins.url = newValue;
+
+        [self.userDefaults setObject:[self.jenkinsUrl absoluteString] forKey:qUserDefaultsUrlKey];
     }
 
     if ([keyPath isEqualToString:@"interval"]) {
-        if ([[change objectForKey:NSKeyValueChangeOldKey] doubleValue] == self.interval) {
+        if ([oldValue doubleValue] == self.interval) {
             return;
         }
 
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:self.interval] forKey:DEFAULT_INTERVAL_KEY];
+        self.jenkins.interval = [newValue doubleValue];
+
+        [self.userDefaults setObject:[NSNumber numberWithDouble:self.interval] forKey:qUserDefaultsIntervalKey];
         [self resetTimerWithTimeInterval:self.interval];
     }
 
@@ -198,11 +133,10 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 #pragma mark NSObject
 - (id)init {
     self = [super init];
-
     if (self) {
-        _trustHost = NO;
-        self.statuses = [[NSMutableDictionary alloc] init];
+        _userDefaults = [NSUserDefaults standardUserDefaults];
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        _jenkins = [[JMJenkins alloc] init];
     }
 
     return self;
@@ -221,7 +155,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     NSApplication *const application = [NSApplication sharedApplication];
     [application activateIgnoringOtherApps:YES];
 
-    [self.urlTextField setStringValue:[self.jenkinsXmlUrl absoluteString]];
+    [self.urlTextField setStringValue:[self.jenkinsUrl absoluteString]];
     [self.intervalTextField setIntegerValue:(NSInteger) (self.interval / 60)];
 
     [self.window makeKeyAndOrderFront:self];
@@ -230,7 +164,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 - (IBAction)setPreferencesAction:(id)sender {
     NSURL *newUrl = [[NSURL alloc] initWithString:[self.urlTextField stringValue]];
-    self.jenkinsXmlUrl = newUrl;
+    self.jenkinsUrl = newUrl;
     self.interval = [self.intervalTextField doubleValue] * 60;
 
     [self.window orderOut:self];
@@ -276,18 +210,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (void)makeRequest {
-    [_connection cancel];
-    [self showConnectingStatus];
-
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.jenkinsXmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
-    _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    if (_connection == nil) {
-        NSLog(@"connection to %@ failed!", self.jenkinsXmlUrl);
-        [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
-    }
-
-    NSLog(@"connecting to %@ ...", self.jenkinsXmlUrl);
+    [self.jenkins update];
 }
 
 - (void)setTitle:(NSString *)title image:(NSString *)imageName {
@@ -306,12 +229,12 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 - (void)setDefaultsIfNecessary {
     NSUserDefaults *const userDefaults = [NSUserDefaults standardUserDefaults];
 
-    if ([userDefaults objectForKey:DEFAULT_URL_KEY] == nil) {
-        [userDefaults setObject:DEFAULT_URL_VALUE forKey:DEFAULT_URL_KEY];
+    if ([userDefaults objectForKey:qUserDefaultsUrlKey] == nil) {
+        [userDefaults setObject:DEFAULT_URL_VALUE forKey:qUserDefaultsUrlKey];
     }
 
-    if ([userDefaults objectForKey:DEFAULT_INTERVAL_KEY] == nil) {
-        [userDefaults setObject:[NSNumber numberWithDouble:qDefaultInterval] forKey:DEFAULT_INTERVAL_KEY];
+    if ([userDefaults objectForKey:qUserDefaultsIntervalKey] == nil) {
+        [userDefaults setObject:[NSNumber numberWithDouble:qDefaultInterval] forKey:qUserDefaultsIntervalKey];
     }
 }
 
@@ -382,7 +305,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
                 (*yellowCount)++;
             }
 
-            NSString *previousColor = [self.statuses objectForKey:name];
+            NSString *previousColor;// = [self.statuses objectForKey:name];
             if (previousColor && ![color isEqualToString:previousColor]) {
 
                 BOOL building = [color hasSuffix:@"_anime"];
@@ -412,7 +335,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
                         [self showBuildNotificationOfType:@"Fixed" forBuild:name];
                 }
             }
-            [self.statuses setObject:color forKey:name];
+//            [self.statuses setObject:color forKey:name];
 
             *stop = YES;
         }
@@ -446,8 +369,8 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (BOOL)shouldTrustHost:(NSString *)host {
-    if (_trustHost)
-        return YES;
+//    if (_trustHost)
+//        return YES;
     NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey];
     return [trustedHosts containsObject:host];
 }
@@ -458,6 +381,15 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
         [trustedHosts addObject:host];
         [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
     }
+}
+
+- (NSURL *)cleanUrlIfNecessary {
+    NSString *urlString = [self.userDefaults objectForKey:qUserDefaultsUrlKey];
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\/api\\/xml\\/*?$" options:NSRegularExpressionCaseInsensitive error:NULL];
+    NSString *cleanedUrlString = [regex stringByReplacingMatchesInString:urlString options:0 range:NSMakeRange(0, [urlString length]) withTemplate:@""];
+
+    return [[NSURL alloc] initWithString:cleanedUrlString];
 }
 
 @end
