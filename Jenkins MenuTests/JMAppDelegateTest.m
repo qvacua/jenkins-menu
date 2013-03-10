@@ -18,7 +18,6 @@
 @implementation JMAppDelegateTest {
     JMAppDelegate *appDelegate;
 
-    NSStatusBar *mockSystemStatusBar;
     NSUserDefaults *userDefaults;
 
     Method originalMethod;
@@ -35,6 +34,7 @@
     appDelegate = [[JMAppDelegate alloc] init];
     appDelegate.userDefaults = userDefaults;
 }
+
 - (void)tearDown {
     method_setImplementation(originalMethod, originalImpl);
 

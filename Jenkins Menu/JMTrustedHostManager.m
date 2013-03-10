@@ -1,10 +1,17 @@
+/**
+ * Jenkins Menu
+ * https://github.com/qvacua/jenkins-menu
+ * http://qvacua.com
+ *
+ * See LICENSE
+ */
+
 #import "JMTrustedHostManager.h"
 
-static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
-
 @implementation JMTrustedHostManager {
-    NSUserDefaults *_userDefaults;
 }
+
+@synthesize userDefaults = _userDefaults;
 
 - (id)init {
     self = [super init];
@@ -16,8 +23,19 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (BOOL)shouldTrustHost:(NSString *)host {
-    NSArray *trustedHosts = [_userDefaults arrayForKey:qDefaultTrustedHostsKey];
+    NSArray *trustedHosts = [self.userDefaults arrayForKey:qDefaultTrustedHostsKey];
     return [trustedHosts containsObject:host];
+}
+
+- (void)trustHost:(NSString *)host {
+    NSMutableArray *trustedHosts = [NSMutableArray arrayWithArray:[self.userDefaults arrayForKey:qDefaultTrustedHostsKey]];
+
+    if ([trustedHosts containsObject:host]) {
+        return;
+    }
+
+    [trustedHosts addObject:host];
+    [self.userDefaults setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
 }
 
 @end

@@ -21,6 +21,7 @@
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
+		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */; };
@@ -99,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
+		1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTrustedHostManagerTest.m; sourceTree = "<group>"; };
 		1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentCaptor.m; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
 		1929B6527C50CE6E9454717A /* unknown-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "unknown-xml.xml"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */,
 				1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */,
 				1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */,
+				1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */,
 			);
 			path = "Jenkins MenuTests";
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */,
 				1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */,
 				1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */,
+				1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
