@@ -8,15 +8,23 @@
 
 #import "JMTrustedHostManager.h"
 
+@interface JMTrustedHostManager ()
+
+@property NSMutableSet *onceTrustHosts;
+
+@end
+
 @implementation JMTrustedHostManager {
 }
 
+@synthesize onceTrustHosts = _onceTrustHosts;
 @synthesize userDefaults = _userDefaults;
 
 - (id)init {
     self = [super init];
     if (self) {
         _userDefaults = [NSUserDefaults standardUserDefaults];
+        _onceTrustHosts = [[NSMutableSet alloc] init];
     }
 
     return self;
@@ -24,10 +32,19 @@
 
 - (BOOL)shouldTrustHost:(NSString *)host {
     NSArray *trustedHosts = [self.userDefaults arrayForKey:qDefaultTrustedHostsKey];
-    return [trustedHosts containsObject:host];
+    if ([trustedHosts containsObject:host]) {
+        return YES;
+    }
+
+    if ([self.onceTrustHosts containsObject:host]) {
+        [self.onceTrustHosts removeObject:host];
+        return YES;
+    }
+
+    return NO;
 }
 
-- (void)trustHost:(NSString *)host {
+- (void)permanentlyTrustHost:(NSString *)host {
     NSMutableArray *trustedHosts = [NSMutableArray arrayWithArray:[self.userDefaults arrayForKey:qDefaultTrustedHostsKey]];
 
     if ([trustedHosts containsObject:host]) {
@@ -36,6 +53,10 @@
 
     [trustedHosts addObject:host];
     [self.userDefaults setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
+}
+
+- (void)onceTrustHost:(NSString *)host {
+    [self.onceTrustHosts addObject:host];
 }
 
 @end

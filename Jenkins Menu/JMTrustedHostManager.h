@@ -15,6 +15,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 @property NSUserDefaults *userDefaults;
 
 - (BOOL)shouldTrustHost:(NSString *)host;
-- (void)trustHost:(NSString *)host;
+- (void)permanentlyTrustHost:(NSString *)host;
+- (void)onceTrustHost:(NSString *)host;
 
 @end

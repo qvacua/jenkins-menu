@@ -44,6 +44,16 @@
     assertThat(manager.userDefaults, is([NSUserDefaults standardUserDefaults]));
 }
 
+- (void)testOnceTrustHost {
+    [trustedHostManager onceTrustHost:@"http://some/host"];
+    assertThat(@([trustedHostManager shouldTrustHost:@"http://some/host"]), isYes);
+    assertThat(@([trustedHostManager shouldTrustHost:@"http://some/host"]), isNo);
+
+    [trustedHostManager onceTrustHost:@"http://some/host"];
+    assertThat(@([trustedHostManager shouldTrustHost:@"http://some/host"]), isYes);
+    assertThat(@([trustedHostManager shouldTrustHost:@"http://some/host"]), isNo);
+}
+
 - (void)testShouldTrustHost {
     [given([userDefaults arrayForKey:qDefaultTrustedHostsKey]) willReturn:@[
             @"http://some/host",
@@ -60,7 +70,7 @@
             @"http://some/other/host",
     ]];
 
-    [trustedHostManager trustHost:@"http://yet/another/host"];
+    [trustedHostManager permanentlyTrustHost:@"http://yet/another/host"];
 
     [verify(userDefaults) setObject:@[
             @"http://some/host",

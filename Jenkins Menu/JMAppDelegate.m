@@ -342,17 +342,17 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
     NSInteger response = [alert runModal];
 
-    if (response == NSAlertFirstButtonReturn && alert.suppressionButton.state == NSOnState)
-        [self trustHost:host];
-    return response == NSAlertFirstButtonReturn;
-}
+    if (response != NSAlertFirstButtonReturn) {
+        return NO;
+    }
 
-- (BOOL)shouldTrustHost:(NSString *)host {
-    return [self.trustedHostManager shouldTrustHost:host];
-}
+    if (alert.suppressionButton.state == NSOnState) {
+        [self.trustedHostManager permanentlyTrustHost:host];
+    } else {
+        [self.trustedHostManager onceTrustHost:host];
+    }
 
-- (void)trustHost:(NSString *)host {
-    [self.trustedHostManager trustHost:host];
+    return YES;
 }
 
 - (NSURL *)cleanedUrlFromUserDefaults {
