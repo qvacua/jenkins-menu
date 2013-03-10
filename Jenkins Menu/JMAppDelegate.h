@@ -1,17 +1,37 @@
+/**
+ * Jenkins Menu
+ * https://github.com/qvacua/jenkins-menu
+ * http://qvacua.com
+ *
+ * See LICENSE
+ */
+
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
+#import "JMJenkinsDelegate.h"
 
-@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSURLConnectionDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate>
+@class JMTrustedHostManager;
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSMenu *menu;
-@property (assign) IBOutlet NSMenuItem *statusMenuItem;
-@property (assign) IBOutlet NSTextField *urlTextField;
-@property (assign) IBOutlet NSTextField *intervalTextField;
+static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
+static NSString *const qUserDefaultsIntervalKey = @"interval";
 
-@property (readwrite, strong) NSURL *jenkinsXmlUrl;
-@property (readwrite, strong) NSURL *jenkinsUrl;
-@property (readwrite, assign) NSTimeInterval interval;
+@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
+
+@property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSMenu *menu;
+@property (weak) IBOutlet NSMenuItem *statusMenuItem;
+@property (weak) IBOutlet NSTextField *urlTextField;
+@property (weak) IBOutlet NSTextField *intervalTextField;
+
+@property NSStatusItem *statusItem;
+@property NSTimer *timer;
+@property NSUserDefaults *userDefaults;
+
+@property JMTrustedHostManager *trustedHostManager;
+@property JMJenkins *jenkins;
+@property NSURL *jenkinsUrl;
+@property NSURL *jenkinsXmlUrl;
+@property NSTimeInterval interval;
 
 - (IBAction)updateNowAction:(id)sender;
 - (IBAction)openJenkinsUrlAction:(id)sender;

@@ -6,6 +6,7 @@
 "MessageTrustInformation" = "The server’s credentials can’t be verified.";
 "MessageAlwaysTrust" = "Always trust this server in the future.";
 
+"StatusUpdating" = "Updating Jenkins Status...";
 "StatusSuccess" = "Successfully Updated Jenkins Status";
 "StatusError" = "Error Updating Jenkins Status";
 
@@ -30,3 +31,4 @@
 "ErrorHttpStatus" = "got HTTP error %ld";
 "ErrorEmptyXML" = "got an empty build status XML document";
 "ErrorCouldNotConnect" = "couldn’t connect";
+
