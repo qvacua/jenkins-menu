@@ -46,6 +46,7 @@
 
     assertThat(appDelegate.userDefaults, is([NSUserDefaults standardUserDefaults]));
     assertThat(appDelegate.jenkins, isNot(nilValue()));
+    assertThat(appDelegate.trustedHostManager, isNot(nilValue()));
 }
 
 - (void)testAppDidFinishLaunching {

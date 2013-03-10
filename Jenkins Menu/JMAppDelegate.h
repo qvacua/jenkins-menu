@@ -10,6 +10,8 @@
 #import <Growl/Growl.h>
 #import "JMJenkinsDelegate.h"
 
+@class JMTrustedHostManager;
+
 static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
 static NSString *const qUserDefaultsIntervalKey = @"interval";
 
@@ -25,6 +27,7 @@ static NSString *const qUserDefaultsIntervalKey = @"interval";
 @property NSTimer *timer;
 @property NSUserDefaults *userDefaults;
 
+@property JMTrustedHostManager *trustedHostManager;
 @property JMJenkins *jenkins;
 @property NSURL *jenkinsUrl;
 @property NSURL *jenkinsXmlUrl;

@@ -10,6 +10,7 @@
 #import "JMJenkins.h"
 #import "JMLog.h"
 #import "JMJenkinsJob.h"
+#import "JMTrustedHostManager.h"
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
@@ -27,6 +28,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 @synthesize userDefaults = _userDefaults;
 
+@synthesize trustedHostManager = _trustedHostManager;
 @synthesize jenkins = _jenkins;
 @synthesize jenkinsUrl = _jenkinsUrl;
 @synthesize jenkinsXmlUrl = _jenkinsXmlUrl;
@@ -58,11 +60,12 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 #pragma mark JMJenkinsDelegate
 - (void)jenkins:(JMJenkins *)jenkins serverTrustFailedwithHost:(NSString *)host {
-
+    [self askWhetherToTrustHost:host];
+    [self makeRequest];
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo {
-    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusUpdating", @"")];
+    [self showConnectingStatus];
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateFailed:(NSDictionary *)userInfo {
@@ -130,6 +133,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
         _userDefaults = [NSUserDefaults standardUserDefaults];
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         _jenkins = [[JMJenkins alloc] init];
+        _trustedHostManager = [[JMTrustedHostManager alloc] init];
     }
 
     return self;
@@ -199,6 +203,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 - (void)showConnectingStatus {
     [self setTitle:@"" image:@"disconnect.png"];
+    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusUpdating", @"")];
 }
 
 - (void)makeRequest {
@@ -342,18 +347,11 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (BOOL)shouldTrustHost:(NSString *)host {
-//    if (_trustHost)
-//        return YES;
-    NSArray *trustedHosts = [[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey];
-    return [trustedHosts containsObject:host];
+    return [self.trustedHostManager shouldTrustHost:host];
 }
 
 - (void)trustHost:(NSString *)host {
-    NSMutableArray *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey]];
-    if (![trustedHosts containsObject:host]) {
-        [trustedHosts addObject:host];
-        [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
-    }
+    [self.trustedHostManager trustHost:host];
 }
 
 - (NSURL *)cleanedUrlFromUserDefaults {
