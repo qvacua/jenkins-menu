@@ -12,13 +12,20 @@
 @class JMTrustedHostManager;
 
 typedef enum {
-    JMJenkinsStateUnknown = 0,
-    JMJenkinsStateSuccessful,
-    JMJenkinsStateConnectionFailure,
-    JMJenkinsStateHttpFailure,
-    JMJenkinsStateXmlFailure,
-    JMJenkinsStateServerTrustFailure,
+    JMJenkinsConnectionStateUnknown = 0,
+    JMJenkinsConnectionStateSuccessful,
+    JMJenkinsConnectionStateConnectionFailure,
+    JMJenkinsConnectionStateHttpFailure,
+    JMJenkinsConnectionStateXmlFailure,
+    JMJenkinsConnectionStateServerTrustFailure,
 } JMJenkinsState;
+
+typedef enum {
+    JMJenkinsTotalStateUnknown = 0,
+    JMJenkinsTotalStateGreen,
+    JMJenkinsTotalStateYellow,
+    JMJenkinsTotalStateRed,
+} JMJenkinsTotalState;
 
 static int const qHttpStatusUnknown = -1;
 static int const qHttpStatusOk = 200;
@@ -39,5 +46,6 @@ static int const qHttpStatusBadRequest = 400;
 @property JMTrustedHostManager *trustedHostManager;
 
 - (void)update;
+- (JMJenkinsTotalState)totalState;
 
 @end

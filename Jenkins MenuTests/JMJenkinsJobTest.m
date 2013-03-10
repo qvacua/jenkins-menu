@@ -28,13 +28,13 @@
 }
 
 - (void)testSetState {
-    job.state = JMJenkinsJobStateBlue;
-    assertThat(@(job.state), is(@(JMJenkinsJobStateBlue)));
+    job.state = JMJenkinsJobStateGreen;
+    assertThat(@(job.state), is(@(JMJenkinsJobStateGreen)));
     assertThat(@(job.lastState), is(@(JMJenkinsJobStateUnknown)));
 
     job.state = JMJenkinsJobStateRed;
     assertThat(@(job.state), is(@(JMJenkinsJobStateRed)));
-    assertThat(@(job.lastState), is(@(JMJenkinsJobStateBlue)));
+    assertThat(@(job.lastState), is(@(JMJenkinsJobStateGreen)));
 }
 
 @end

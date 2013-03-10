@@ -10,27 +10,31 @@
 #import "JMJenkinsJob.h"
 #import "JMJenkinsDelegate.h"
 #import "JMTrustedHostManager.h"
+#import "JMLog.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 static const NSTimeInterval qTimeoutInterval = 10;
 
 @interface JMJenkins ()
+
 @property (readwrite) NSInteger lastHttpStatusCode;
 @property (readwrite) NSInteger connectionState;
 @property (readwrite) NSURL *viewUrl;
 @property (readonly) NSMutableArray *mutableJobs;
 @property (readwrite) NSString *potentialHostToTrust;
+
 @end
 
 @implementation JMJenkins {
     NSMutableArray *_mutableJobs;
+    NSURL *_url;
     NSString *_potentialHostToTrust;
     NSURLConnection *_connection;
 }
 
 @dynamic jobs;
+@dynamic url;
 
-@synthesize url = _url;
 @synthesize xmlUrl = _xmlUrl;
 @synthesize interval = _interval;
 @synthesize connectionState = _connectionState;
@@ -51,16 +55,54 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
     _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"Connecting to %@", self.xmlUrl);
+    log4Info(@"Connecting to %@", self.xmlUrl);
 
     [self.delegate jenkins:self updateStarted:nil];
 
     if (_connection == nil) {
-        NSLog(@"Connection to %@ failed!", self.xmlUrl);
-        self.connectionState = JMJenkinsStateConnectionFailure;
+        log4Warn(@"Connection to %@ failed!", self.xmlUrl);
+        self.connectionState = JMJenkinsConnectionStateConnectionFailure;
 
         [self.delegate jenkins:self updateFinished:nil];
     }
+}
+
+- (JMJenkinsTotalState)totalState {
+    int green = 0;
+    int yellow = 0;
+
+    for (JMJenkinsJob *job in self.jobs) {
+        if (job.state == JMJenkinsJobStateRed) {
+            return JMJenkinsTotalStateRed;
+        }
+
+        if (job.state == JMJenkinsJobStateYellow) {
+            yellow++;
+        }
+
+        if (job.state == JMJenkinsJobStateGreen) {
+            green++;
+        }
+    }
+
+    if (yellow > 0) {
+        return JMJenkinsTotalStateYellow;
+    }
+
+    if (green > 0) {
+        return JMJenkinsTotalStateGreen;
+    }
+
+    return JMJenkinsTotalStateUnknown;
+}
+
+- (NSURL *)url {
+    return _url;
+}
+
+- (void)setUrl:(NSURL *)newUrl {
+    _url = newUrl;
+    _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
 }
 
 #pragma mark NSObject
@@ -68,57 +110,47 @@ static const NSTimeInterval qTimeoutInterval = 10;
     self = [super init];
     if (self) {
         _interval = qDefaultInterval;
-        _connectionState = JMJenkinsStateUnknown;
+        _connectionState = JMJenkinsConnectionStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
         _mutableJobs = [[NSMutableArray alloc] init];
-        [self addObserver:self forKeyPath:@"url" options:NSKeyValueObservingOptionNew context:NULL];
     }
 
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (![keyPath isEqualToString:@"url"]) {
-        return;
-    }
-
-    NSURL *newUrl = change[NSKeyValueChangeNewKey];
-    _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
-}
-
 #pragma mark NSURLConnectionDataDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"response");
+    log4Debug(@"response");
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
 
     NSInteger responseStatusCode = [httpResponse statusCode];
     self.lastHttpStatusCode = responseStatusCode;
 
     if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
-        NSLog(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
-        self.connectionState = JMJenkinsStateHttpFailure;
+        log4Warn(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
+        self.connectionState = JMJenkinsConnectionStateHttpFailure;
     } else {
-        self.connectionState = JMJenkinsStateSuccessful;
+        self.connectionState = JMJenkinsConnectionStateSuccessful;
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"data");
-    if (self.connectionState != JMJenkinsStateSuccessful) {
+    log4Debug(@"data");
+    if (self.connectionState != JMJenkinsConnectionStateSuccessful) {
         return;
     }
 
     NSXMLDocument *xmlDoc = [self xmlDocumentFromData:data];
     if (xmlDoc == nil) {
-        self.connectionState = JMJenkinsStateXmlFailure;
+        self.connectionState = JMJenkinsConnectionStateXmlFailure;
         return;
     }
 
     NSArray *children = [[xmlDoc rootElement] children];
     if ([children count] == 0) {
-        NSLog(@"XML of %@ is empty.", self.xmlUrl);
+        log4Warn(@"XML of %@ is empty.", self.xmlUrl);
 
-        self.connectionState = JMJenkinsStateXmlFailure;
+        self.connectionState = JMJenkinsConnectionStateXmlFailure;
         return;
     }
 
@@ -144,7 +176,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
     * - connecion:didReceiveData:
     */
 
-    NSLog(@"challenge");
+    log4Debug(@"challenge");
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         if ([self.trustedHostManager shouldTrustHost:challenge.protectionSpace.host]) {
             NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
@@ -168,8 +200,8 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if ([error code] == NSURLErrorServerCertificateUntrusted) {
-        NSLog(@"fail");
-        self.connectionState = JMJenkinsStateServerTrustFailure;
+        log4Debug(@"fail");
+        self.connectionState = JMJenkinsConnectionStateServerTrustFailure;
         [self.delegate jenkins:self serverTrustFailedwithHost:_potentialHostToTrust];
     }
 }
@@ -207,7 +239,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
     NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithData:xmlData options:0 error:&xmlError];
 
     if (xmlError) {
-        NSLog(@"XML parsing of %@ failed: %@", self.xmlUrl, xmlError);
+        log4Warn(@"XML parsing of %@ failed: %@", self.xmlUrl, xmlError);
         return nil;
     }
 
@@ -230,7 +262,7 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
 - (JMJenkinsJobState)jobStateFromColor:(NSString *)color {
     if ([color hasPrefix:@"blue"]) {
-        return JMJenkinsJobStateBlue;
+        return JMJenkinsJobStateGreen;
     }
 
     if ([color hasPrefix:@"yellow"]) {
