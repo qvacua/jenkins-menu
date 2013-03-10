@@ -132,8 +132,9 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     if (self) {
         _userDefaults = [NSUserDefaults standardUserDefaults];
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        _jenkins = [[JMJenkins alloc] init];
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
+        _jenkins = [[JMJenkins alloc] init];
+        _jenkins.trustedHostManager = _trustedHostManager;
     }
 
     return self;
