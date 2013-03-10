@@ -11,6 +11,7 @@
 #import "JMLog.h"
 #import "JMJenkinsJob.h"
 #import "JMTrustedHostManager.h"
+#import "NSMenuItem+Q.h"
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
@@ -24,6 +25,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize urlTextField = _urlTextField;
 @synthesize intervalTextField = _intervalTextField;
 @synthesize statusMenuItem = _statusMenuItem;
+@synthesize jobsMenuItem = _jobsMenuItem;
 
 @synthesize userDefaults = _userDefaults;
 
@@ -89,6 +91,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     log4Debug(@"jobs: %@", jenkins.jobs);
 
     [self setStatusWithRed:[self.jenkins countOfRedJobs] yellow:[self.jenkins countOfYellowJobs]];
+    [self updateJobsMenuItem:self.jenkins.jobs];
     [self showNotifications];
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
@@ -362,6 +365,46 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     NSString *cleanedUrlString = [regex stringByReplacingMatchesInString:urlString options:0 range:NSMakeRange(0, [urlString length]) withTemplate:@""];
 
     return [[NSURL alloc] initWithString:cleanedUrlString];
+}
+
+- (void)updateJobsMenuItem:(NSArray *)jobs {
+    [self.jobsMenuItem setSubmenu:nil];
+
+    NSMenu *submenu = [[NSMenu alloc] init];
+    for (JMJenkinsJob *job in jobs) {
+
+        NSString *menuTitle = [NSString stringWithFormat:@"%@", job.name];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
+        [menuItem setImage:[self imageForJobState:job.state]];
+        [menuItem setBlockAction:^(id sender) {
+            NSString *jobUrlComponent = [NSString stringWithFormat:@"job/%@", job.name];
+            [[NSWorkspace sharedWorkspace] openURL:[self.jenkins.url URLByAppendingPathComponent:jobUrlComponent]];
+        }];
+
+        [submenu addItem:menuItem];
+    }
+
+    [self.jobsMenuItem setSubmenu:submenu];
+}
+
+- (NSImage *)imageForJobState:(JMJenkinsJobState)state {
+    switch (state) {
+        case JMJenkinsJobStateGreen:
+            return [self imageWithFileName:@"thumb_up.png"];
+
+        case JMJenkinsJobStateYellow:
+            return [self imageWithFileName:@"weather_lightning.png"];
+
+        case JMJenkinsJobStateRed:
+            return [self imageWithFileName:@"fire.png"];
+
+        default:
+            return [self imageWithFileName:@"disconnect.png"];
+    }
+}
+
+- (NSImage *)imageWithFileName:(NSString *)fileName {
+    return [[NSBundle bundleForClass:[self class]] imageForResource:fileName];
 }
 
 @end

@@ -1648,19 +1648,32 @@
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
 					</object>
-					<object class="NSMenuItem" id="596174650">
+					<object class="NSMenuItem" id="522519760">
 						<reference key="NSMenu" ref="645719513"/>
-						<string key="NSTitle">Preferences...</string>
+						<string key="NSTitle">Jobs</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
+						<string key="NSAction">submenuAction:</string>
+						<object class="NSMenu" key="NSSubmenu" id="623165571">
+							<string key="NSTitle">Jobs</string>
+							<array class="NSMutableArray" key="NSMenuItems"/>
+						</object>
 					</object>
 					<object class="NSMenuItem" id="984218099">
 						<reference key="NSMenu" ref="645719513"/>
 						<bool key="NSIsDisabled">YES</bool>
 						<bool key="NSIsSeparator">YES</bool>
 						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="596174650">
+						<reference key="NSMenu" ref="645719513"/>
+						<string key="NSTitle">Preferences...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="35465992"/>
@@ -2454,6 +2467,14 @@
 						<reference key="destination" ref="11734993"/>
 					</object>
 					<int key="connectionID">1467</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">jobsMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="522519760"/>
+					</object>
+					<int key="connectionID">1503</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3824,11 +3845,12 @@
 							<reference ref="156112804"/>
 							<reference ref="502911172"/>
 							<reference ref="984218099"/>
-							<reference ref="596174650"/>
 							<reference ref="788901295"/>
-							<reference ref="819878534"/>
 							<reference ref="634819833"/>
 							<reference ref="11734993"/>
+							<reference ref="522519760"/>
+							<reference ref="596174650"/>
+							<reference ref="819878534"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -4093,11 +4115,6 @@
 						<reference key="parent" ref="645719513"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1457</int>
-						<reference key="object" ref="819878534"/>
-						<reference key="parent" ref="645719513"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1461</int>
 						<reference key="object" ref="634819833"/>
 						<reference key="parent" ref="645719513"/>
@@ -4170,6 +4187,25 @@
 						<reference key="object" ref="169488090"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1499</int>
+						<reference key="object" ref="522519760"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="623165571"/>
+						</array>
+						<reference key="parent" ref="645719513"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1500</int>
+						<reference key="object" ref="623165571"/>
+						<array class="NSMutableArray" key="children"/>
+						<reference key="parent" ref="522519760"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1502</int>
+						<reference key="object" ref="819878534"/>
+						<reference key="parent" ref="645719513"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -4207,7 +4243,6 @@
 				<boolean value="NO" key="1454.IBNumberFormatterLocalizesFormatMetadataKey"/>
 				<string key="1454.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1455.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="1457.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1461.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1465.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1468.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4224,7 +4259,10 @@
 				<string key="1495.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1497.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1498.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1499.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="150.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1500.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1502.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="195.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="196.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4431,7 +4469,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1498</int>
+			<int key="maxID">1503</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4464,6 +4502,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="intervalTextField">NSTextField</string>
+						<string key="jobsMenuItem">NSMenuItem</string>
 						<string key="menu">NSMenu</string>
 						<string key="statusMenuItem">NSMenuItem</string>
 						<string key="urlTextField">NSTextField</string>
@@ -4473,6 +4512,10 @@
 						<object class="IBToOneOutletInfo" key="intervalTextField">
 							<string key="name">intervalTextField</string>
 							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="jobsMenuItem">
+							<string key="name">jobsMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="menu">
 							<string key="name">menu</string>

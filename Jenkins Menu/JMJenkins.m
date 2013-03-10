@@ -13,7 +13,7 @@
 #import "JMLog.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
-static const NSTimeInterval qTimeoutInterval = 10;
+static const NSTimeInterval qTimeoutInterval = 15;
 
 @interface JMJenkins ()
 

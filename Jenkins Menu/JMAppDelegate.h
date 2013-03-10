@@ -19,6 +19,7 @@ static NSString *const qUserDefaultsIntervalKey = @"interval";
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *menu;
+@property (weak) IBOutlet NSMenuItem *jobsMenuItem;
 @property (weak) IBOutlet NSMenuItem *statusMenuItem;
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSTextField *intervalTextField;
