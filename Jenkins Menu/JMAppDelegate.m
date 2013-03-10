@@ -107,6 +107,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         self.jenkins.url = newValue;
 
         [self.userDefaults setObject:[self.jenkinsUrl absoluteString] forKey:qUserDefaultsUrlKey];
+        [self makeRequest];
 
         return;
     }
