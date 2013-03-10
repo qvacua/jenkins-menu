@@ -9,6 +9,7 @@
 #import "JMAppDelegate.h"
 #import "JMJenkins.h"
 #import "JMLog.h"
+#import "JMJenkinsJob.h"
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
@@ -162,7 +163,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 #pragma mark GrowlApplicationBridgeDelegate
-- (void) growlNotificationWasClicked:(id)clickContext {
+- (void)growlNotificationWasClicked:(id)clickContext {
     [self openJenkinsUrlAction:nil];
 }
 
@@ -194,7 +195,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 - (void)showErrorStatus:(NSString *)error {
     [self setTitle:@"" image:@"disconnect.png"];
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusError", @"")];
-    
+
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"NotifyMessageError", @""), self.jenkinsXmlUrl, error];
     [GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"NotifyTitleError", @"") description:message notificationName:@"Error" iconData:nil priority:1 isSticky:NO clickContext:nil];
 }
@@ -253,60 +254,44 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (void)showNotifications {
+    for (JMJenkinsJob *job in self.jenkins.jobs) {
 
-}
+        JMJenkinsJobState lastState = job.lastState;
+        JMJenkinsJobState currentState = job.state;
 
-- (void)filterJobFromNode:(NSXMLNode *)node redCount:(NSUInteger *)redCount yellowCount:(NSUInteger *)yellowCount {
-    __block NSString *name = nil;
-    [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
-
-        if ([[childNode name] isEqualToString:@"name"]) {
-            name = [childNode stringValue];
-        } else if ([[childNode name] isEqualToString:@"color"]) {
-            NSString *const color = [childNode stringValue];
-
-            if ([color hasPrefix:@"red"]) {
-                (*redCount)++;
-            } else if ([color hasPrefix:@"yellow"]) {
-                (*yellowCount)++;
-            }
-
-            NSString *previousColor;// = [self.statuses objectForKey:name];
-            if (previousColor && ![color isEqualToString:previousColor]) {
-
-                BOOL building = [color hasSuffix:@"_anime"];
-                BOOL isBroken = [color hasPrefix:@"red"];
-                BOOL isUnstable = [color hasPrefix:@"yellow"];
-                BOOL isGood = [color hasPrefix:@"blue"];
-                BOOL wasBroken = [previousColor hasPrefix:@"red"];
-                BOOL wasUnstable = [previousColor hasPrefix:@"yellow"];
-                BOOL wasGood = [previousColor hasPrefix:@"blue"];
-
-                if (building)
-                    [self showBuildNotificationOfType:@"Began" forBuild:name];
-                else if (isBroken) {
-                    if (wasBroken)
-                        [self showBuildNotificationOfType:@"StillBroken" forBuild:name];
-                    else
-                        [self showBuildNotificationOfType:@"Broken" forBuild:name];
-                } else if (isUnstable) {
-                    if (wasUnstable)
-                        [self showBuildNotificationOfType:@"StillUnstable" forBuild:name];
-                    else
-                        [self showBuildNotificationOfType:@"Unstable" forBuild:name];
-                } else if (isGood) {
-                    if (wasGood)
-                        [self showBuildNotificationOfType:@"Succeeded" forBuild:name];
-                    else
-                        [self showBuildNotificationOfType:@"Fixed" forBuild:name];
-                }
-            }
-//            [self.statuses setObject:color forKey:name];
-
-            *stop = YES;
+        if (lastState == currentState) {
+            continue;
         }
 
-    }];
+        NSString *name = job.name;
+
+        BOOL building = job.running;
+        BOOL isBroken = currentState == JMJenkinsJobStateRed;
+        BOOL isUnstable = currentState == JMJenkinsJobStateYellow;
+        BOOL isGood = currentState == JMJenkinsJobStateGreen;
+        BOOL wasBroken = lastState == JMJenkinsJobStateRed;
+        BOOL wasUnstable = lastState == JMJenkinsJobStateYellow;
+        BOOL wasGood = lastState == JMJenkinsJobStateGreen;
+
+        if (building)
+            [self showBuildNotificationOfType:@"Began" forBuild:name];
+        else if (isBroken) {
+            if (wasBroken)
+                [self showBuildNotificationOfType:@"StillBroken" forBuild:name];
+            else
+                [self showBuildNotificationOfType:@"Broken" forBuild:name];
+        } else if (isUnstable) {
+            if (wasUnstable)
+                [self showBuildNotificationOfType:@"StillUnstable" forBuild:name];
+            else
+                [self showBuildNotificationOfType:@"Unstable" forBuild:name];
+        } else if (isGood) {
+            if (wasGood)
+                [self showBuildNotificationOfType:@"Succeeded" forBuild:name];
+            else
+                [self showBuildNotificationOfType:@"Fixed" forBuild:name];
+        }
+    }
 }
 
 - (void)showBuildNotificationOfType:(NSString *)type forBuild:(NSString *)buildName {
@@ -326,9 +311,9 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     [alert setInformativeText:NSLocalizedString(@"MessageTrustInformation", @"")];
     [alert setShowsSuppressionButton:YES];
     [alert.suppressionButton setTitle:NSLocalizedString(@"MessageAlwaysTrust", @"")];
-    
+
     NSInteger response = [alert runModal];
-    
+
     if (response == NSAlertFirstButtonReturn && alert.suppressionButton.state == NSOnState)
         [self trustHost:host];
     return response == NSAlertFirstButtonReturn;
@@ -342,7 +327,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (void)trustHost:(NSString *)host {
-    NSMutableSet *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey]];
+    NSMutableArray *trustedHosts = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:qDefaultTrustedHostsKey]];
     if (![trustedHosts containsObject:host]) {
         [trustedHosts addObject:host];
         [[NSUserDefaults standardUserDefaults] setObject:trustedHosts forKey:qDefaultTrustedHostsKey];
