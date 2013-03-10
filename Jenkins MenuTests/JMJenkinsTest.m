@@ -46,33 +46,31 @@
     [given([protectionSpace host]) willReturn:@"http://some.host"];
 }
 
-- (NSData *)xmlDataFromFileName:(NSString *)fileName {
-    NSURL *xmlUrl = [[NSBundle bundleForClass:[self class]] URLForResource:fileName withExtension:@"xml"];
-    return [NSData dataWithContentsOfURL:xmlUrl];
-}
-
-- (void)testTotalStateRed {
+- (void)testTotalStateRedAndCount {
     [self makeResponseReturnHttpOk];
     NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateRed)));
+    assertThat(@([jenkins countOfRedJobs]), is(@2));
 }
 
-- (void)testTotalStateYellow {
+- (void)testTotalStateYellowAndCount {
     [self makeResponseReturnHttpOk];
     NSData *xmlData = [self xmlDataFromFileName:@"yellow-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateYellow)));
+    assertThat(@([jenkins countOfYellowJobs]), is(@2));
 }
 
-- (void)testTotalStateGreen {
+- (void)testTotalStateGreenAndCount {
     [self makeResponseReturnHttpOk];
     NSData *xmlData = [self xmlDataFromFileName:@"green-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateGreen)));
+    assertThat(@([jenkins countOfGreenJobs]), is(@2));
 }
 
 - (void)testTotalStateUnknown {
@@ -215,6 +213,11 @@
 - (void)makeResponseReturnHttpOk {
     [given([response statusCode]) willReturnInteger:qHttpStatusOk];
     [jenkins connection:nil didReceiveResponse:response];
+}
+
+- (NSData *)xmlDataFromFileName:(NSString *)fileName {
+    NSURL *xmlUrl = [[NSBundle bundleForClass:[self class]] URLForResource:fileName withExtension:@"xml"];
+    return [NSData dataWithContentsOfURL:xmlUrl];
 }
 
 @end

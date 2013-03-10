@@ -67,6 +67,18 @@ static const NSTimeInterval qTimeoutInterval = 10;
     }
 }
 
+- (NSUInteger)countOfRedJobs {
+    return [self countState:JMJenkinsJobStateRed];
+}
+
+- (NSUInteger)countOfYellowJobs {
+    return [self countState:JMJenkinsJobStateYellow];
+}
+
+- (NSUInteger)countOfGreenJobs {
+    return [self countState:JMJenkinsJobStateGreen];
+}
+
 - (JMJenkinsTotalState)totalState {
     int green = 0;
     int yellow = 0;
@@ -290,6 +302,16 @@ static const NSTimeInterval qTimeoutInterval = 10;
     }
 
     return NO;
+}
+
+- (NSUInteger)countState:(JMJenkinsJobState)jobState {
+    NSUInteger count = 0;
+    for (JMJenkinsJob *job in self.jobs) {
+        if (job.state == jobState) {
+            count++;
+        }
+    }
+    return count;
 }
 
 @end

@@ -48,4 +48,8 @@ static int const qHttpStatusBadRequest = 400;
 - (void)update;
 - (JMJenkinsTotalState)totalState;
 
+- (NSUInteger)countOfRedJobs;
+- (NSUInteger)countOfYellowJobs;
+- (NSUInteger)countOfGreenJobs;
+
 @end

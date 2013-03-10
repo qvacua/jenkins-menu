@@ -8,6 +8,7 @@
 
 #import "JMAppDelegate.h"
 #import "JMJenkins.h"
+#import "JMLog.h"
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
@@ -31,40 +32,6 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 @synthesize interval = _interval;
 @synthesize timer = _timer;
 
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//    if (!_successful) {
-//        return;
-//    }
-//
-//    NSXMLDocument *xmlDocument = [[NSXMLDocument alloc] initWithData:data options:0 error:NULL];
-//    NSArray *children = [[xmlDocument rootElement] children];
-//
-//    if ([children count] == 0) {
-//        NSLog(@"The XML is empty!");
-//
-//        [self showErrorStatus:NSLocalizedString(@"ErrorEmptyXML", @"")];
-//        return;
-//    }
-//
-//    __block NSUInteger redCount = 0;
-//    __block NSUInteger yellowCount = 0;
-//
-//    [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
-//        if ([[childNode name] isEqualToString:@"primaryView"]) {
-//            [self filterPrimaryViewUrlFromNode:childNode];
-//            return;
-//        }
-//
-//        if ([[childNode name] isEqualToString:@"job"]) {
-//            [self filterJobFromNode:childNode redCount:&redCount yellowCount:&yellowCount];
-//            return;
-//        }
-//    }];
-//
-//    [self setStatusWithRed:redCount yellow:yellowCount];
-//    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
-//}
-
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [GrowlApplicationBridge setGrowlDelegate:self];
@@ -76,7 +43,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     [self addObserver:self forKeyPath:@"jenkinsUrl" options:observingOptions context:NULL];
     [self addObserver:self forKeyPath:@"interval" options:observingOptions context:NULL];
 
-    NSURL *url = [self cleanUrlIfNecessary];
+    NSURL *url = [self cleanedUrlFromUserDefaults];
 
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
@@ -98,7 +65,11 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateFinished:(NSDictionary *)userInfo {
-    NSLog(@"%@", jenkins.jobs);
+    log4Debug(@"jobs: %@", jenkins.jobs);
+
+    [self setStatusWithRed:[self.jenkins countOfRedJobs] yellow:[self.jenkins countOfYellowJobs]];
+    [self showNotifications];
+    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
 
 #pragma mark NSKeyValueObserving
@@ -115,6 +86,8 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
         self.jenkins.url = newValue;
 
         [self.userDefaults setObject:[self.jenkinsUrl absoluteString] forKey:qUserDefaultsUrlKey];
+
+        return;
     }
 
     if ([keyPath isEqualToString:@"interval"]) {
@@ -126,8 +99,9 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
         [self.userDefaults setObject:[NSNumber numberWithDouble:self.interval] forKey:qUserDefaultsIntervalKey];
         [self resetTimerWithTimeInterval:self.interval];
-    }
 
+        return;
+    }
 }
 
 #pragma mark NSObject
@@ -148,7 +122,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (IBAction)openJenkinsUrlAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:self.jenkinsUrl];
+    [[NSWorkspace sharedWorkspace] openURL:self.jenkins.viewUrl];
 }
 
 - (IBAction)openPreferencesWindowAction:(id)sender {
@@ -181,14 +155,13 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     }
 
     if ([item action] == @selector(openJenkinsUrlAction:)) {
-        return (self.jenkinsUrl != nil);
+        return (self.jenkins.viewUrl != nil);
     }
 
     return NO;
 }
 
 #pragma mark GrowlApplicationBridgeDelegate
-
 - (void) growlNotificationWasClicked:(id)clickContext {
     [self openJenkinsUrlAction:nil];
 }
@@ -279,15 +252,8 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     [self.statusItem setImage:[[NSBundle bundleForClass:[self class]] imageForResource:imageName]];
 }
 
-- (void)filterPrimaryViewUrlFromNode:(NSXMLNode *)node {
-    [[node children] enumerateObjectsUsingBlock:^(id childNode, NSUInteger index, BOOL *stop) {
+- (void)showNotifications {
 
-        if ([[childNode name] isEqualToString:@"url"]) {
-            self.jenkinsUrl = [[NSURL alloc] initWithString:[childNode stringValue]];
-            *stop = YES;
-        }
-
-    }];
 }
 
 - (void)filterJobFromNode:(NSXMLNode *)node redCount:(NSUInteger *)redCount yellowCount:(NSUInteger *)yellowCount {
@@ -383,7 +349,7 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
     }
 }
 
-- (NSURL *)cleanUrlIfNecessary {
+- (NSURL *)cleanedUrlFromUserDefaults {
     NSString *urlString = [self.userDefaults objectForKey:qUserDefaultsUrlKey];
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\/api\\/xml\\/*?$" options:NSRegularExpressionCaseInsensitive error:NULL];
