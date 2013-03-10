@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
 		1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */; };
+		1929B29DDF5072FBFECB5004 /* ArgumentCaptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */; };
 		1929B380DA8ED015900843F8 /* JMJenkins.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B938F8E11602CE409F2C /* JMJenkins.h */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B3DCF2BF183E1B4AACEA /* JMTrustedHostManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BB76ECB1B9BC994408FB /* JMTrustedHostManager.h */; };
 		1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
+		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B7C80C4F15B1B9DD4971 /* JMJenkinsDelegate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BC93909566015D53BC10 /* JMJenkinsDelegate.h */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
@@ -74,6 +76,7 @@
 				4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */,
 				4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */,
 				4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */,
+				1929B29DDF5072FBFECB5004 /* ArgumentCaptor.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +99,7 @@
 
 /* Begin PBXFileReference section */
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
+		1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentCaptor.m; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
 		1929B6527C50CE6E9454717A /* unknown-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "unknown-xml.xml"; sourceTree = "<group>"; };
 		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		1929BB76ECB1B9BC994408FB /* JMTrustedHostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTrustedHostManager.h; sourceTree = "<group>"; };
 		1929BBC49202F6CF5B2519F6 /* JMJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkins.m; sourceTree = "<group>"; };
 		1929BC93909566015D53BC10 /* JMJenkinsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsDelegate.h; sourceTree = "<group>"; };
+		1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentCaptor.h; sourceTree = "<group>"; };
 		1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJobTest.m; sourceTree = "<group>"; };
 		1929BE99FF21D445B6CADD3F /* JMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLog.h; sourceTree = "<group>"; };
 		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
@@ -267,6 +272,8 @@
 				1929B02AADFA7B46ACC3C847 /* Resources */,
 				1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */,
 				1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */,
+				1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */,
+				1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */,
 			);
 			path = "Jenkins MenuTests";
 			sourceTree = "<group>";
@@ -464,6 +471,7 @@
 				1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */,
 				1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */,
 				1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */,
+				1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

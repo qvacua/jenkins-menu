@@ -61,9 +61,9 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
     if (_connection == nil) {
         log4Warn(@"Connection to %@ failed!", self.xmlUrl);
-        self.connectionState = JMJenkinsConnectionStateConnectionFailure;
 
-        [self.delegate jenkins:self updateFinished:nil];
+        self.connectionState = JMJenkinsConnectionStateConnectionFailure;
+        [self.delegate jenkins:self updateFailed:nil];
     }
 }
 
@@ -140,7 +140,11 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
     if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
         log4Warn(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
+
         self.connectionState = JMJenkinsConnectionStateHttpFailure;
+        [self.delegate jenkins:self updateFailed:@{
+                qJenkinsHttpResponseErrorKey: @(responseStatusCode)
+        }];
     } else {
         self.connectionState = JMJenkinsConnectionStateSuccessful;
     }
@@ -212,10 +216,18 @@ static const NSTimeInterval qTimeoutInterval = 10;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if ([error code] == NSURLErrorServerCertificateUntrusted) {
-        log4Debug(@"fail");
+        log4Debug(@"Certification issue");
         self.connectionState = JMJenkinsConnectionStateServerTrustFailure;
         [self.delegate jenkins:self serverTrustFailedwithHost:_potentialHostToTrust];
+
+        return;
     }
+
+    log4Warn(@"Connection to %@ failed: %@", self.xmlUrl, connection);
+    self.connectionState = JMJenkinsConnectionStateFailure;
+    [self.delegate jenkins:self updateFailed:@{
+            qJenkinsConnectionErrorKey : error
+    }];
 }
 
 #pragma mark Private

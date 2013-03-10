@@ -21,13 +21,12 @@
 */
 - (void)jenkins:(JMJenkins *)jenkins serverTrustFailedwithHost:(NSString *)host;
 
-@optional
 /**
-* Called directly after the request was created.
+* Called when the update failed.
 *
-* @param userInfo   yet always nil
+* @param userInfo   a dictionary containing info about the error occurred.
 */
-- (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo;
+- (void)jenkins:(JMJenkins *)jenkins updateFailed:(NSDictionary *)userInfo;
 
 /**
 * Only called when both the request and the parsing were successful.
@@ -35,5 +34,12 @@
 * @param userInfo   yet always nil
 */
 - (void)jenkins:(JMJenkins *)jenkins updateFinished:(NSDictionary *)userInfo;
+
+/**
+* Called directly after the request was created.
+*
+* @param userInfo   yet always nil
+*/
+- (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo;
 
 @end

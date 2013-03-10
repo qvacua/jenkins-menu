@@ -62,7 +62,25 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo {
+    [self.statusMenuItem setTitle:NSLocalizedString(@"StatusUpdating", @"")];
+}
 
+- (void)jenkins:(JMJenkins *)jenkins updateFailed:(NSDictionary *)userInfo {
+    NSInteger connectionState = self.jenkins.connectionState;
+
+    if (connectionState == JMJenkinsConnectionStateConnectionFailure) {
+        [self showErrorStatus:NSLocalizedString(@"ErrorCouldNotConnect", @"")];
+        return;
+    }
+
+    if (connectionState == JMJenkinsConnectionStateHttpFailure) {
+        [self showErrorStatus:[NSString stringWithFormat:NSLocalizedString(@"ErrorHttpStatus", @""), userInfo[qJenkinsHttpResponseErrorKey]]];
+        return;
+    }
+
+    if (connectionState == JMJenkinsConnectionStateFailure) {
+        [self showErrorStatus:[userInfo[qJenkinsConnectionErrorKey] localizedDescription]];
+    }
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateFinished:(NSDictionary *)userInfo {
@@ -260,6 +278,10 @@ static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
         JMJenkinsJobState currentState = job.state;
 
         if (lastState == currentState) {
+            continue;
+        }
+
+        if (lastState == JMJenkinsJobStateUnknown) {
             continue;
         }
 

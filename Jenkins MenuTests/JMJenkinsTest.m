@@ -11,6 +11,7 @@
 #import "JMJenkinsJob.h"
 #import "JMTrustedHostManager.h"
 #import "JMJenkinsDelegate.h"
+#import "ArgumentCaptor.h"
 
 @interface JMJenkinsTest : JMBaseTestCase
 @end
@@ -99,16 +100,32 @@
     assertThat(jenkins.xmlUrl, is([NSURL URLWithString:@"http://some/url/to/jenkins/api/xml"]));
 }
 
-- (void)testConnectionDidReceiveResponseFailure {
+- (void)testConnectionDidReceiveResponseFailure1 {
     [given([response statusCode]) willReturnInteger:404];
     [jenkins connection:nil didReceiveResponse:response];
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@404));
 
+    ArgumentCaptor *captor = argCaptor();
+    [verify(delegate) jenkins:jenkins updateFailed:captor];
+    NSDictionary *userInfo = captor.argument;
+
+    assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
+    assertThat(userInfo, hasValue(@404));
+}
+
+- (void)testConnectionDidReceiveResponseFailure2 {
     [given([response statusCode]) willReturnInteger:199];
     [jenkins connection:nil didReceiveResponse:response];
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@199));
+
+    ArgumentCaptor *captor = argCaptor();
+    [verify(delegate) jenkins:jenkins updateFailed:captor];
+    NSDictionary *userInfo = captor.argument;
+
+    assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
+    assertThat(userInfo, hasValue(@199));
 }
 
 - (void)testConnectionDidReceiveResponse {
@@ -187,7 +204,7 @@
     [verify(sender) performDefaultHandlingForAuthenticationChallenge:challenge];
 }
 
-- (void)testConnectionDidFail {
+- (void)testConnectionDidFailWithTrustIssue {
     [given([protectionSpace authenticationMethod]) willReturn:NSURLAuthenticationMethodServerTrust];
     [given([trustedHostManager shouldTrustHost:@"http://some.host"]) willReturnBool:NO];
 
@@ -200,6 +217,20 @@
     [jenkins connection:nil didFailWithError:error];
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateServerTrustFailure)));
     [verify(delegate) jenkins:jenkins serverTrustFailedwithHost:@"http://some.host"];
+
+    [verifyCount(delegate, never()) jenkins:jenkins updateFailed:nil];
+}
+
+- (void)testConnectionDidFailForUnknownReason {
+    NSError *error = mock([NSError class]);
+    [given([error code]) willReturnUnsignedInteger:NSURLErrorServerCertificateUntrusted + 1];
+
+    [jenkins connection:nil didFailWithError:error];
+
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateFailure)));
+    [verify(delegate) jenkins:jenkins updateFailed:@{
+            qJenkinsConnectionErrorKey: error
+    }];
 }
 
 #pragma mark Private
