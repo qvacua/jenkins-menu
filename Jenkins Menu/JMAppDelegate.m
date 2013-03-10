@@ -14,7 +14,6 @@
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
-static NSString *const qDefaultTrustedHostsKey = @"trustedURLs";
 
 @implementation JMAppDelegate {
 }
