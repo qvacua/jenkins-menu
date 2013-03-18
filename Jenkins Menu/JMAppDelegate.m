@@ -96,6 +96,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
 
+- (void)jenkins:(JMJenkins *)jenkins forbiden:(id)userInfo {
+
+}
+
 #pragma mark NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
@@ -169,6 +173,15 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self.interval = [self.intervalTextField doubleValue] * 60;
 
     [self.window orderOut:self];
+}
+
+- (IBAction)credentialsOkAction:(id)sender {
+}
+
+- (IBAction)credentialsCancelAction:(id)sender {
+}
+
+- (IBAction)storeInKeychainToggleAction:(id)sender {
 }
 
 #pragma mark NSUserInterfaceValidations

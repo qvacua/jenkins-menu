@@ -21,8 +21,14 @@ static NSString *const qUserDefaultsIntervalKey = @"interval";
 @property (weak) IBOutlet NSMenu *menu;
 @property (weak) IBOutlet NSMenuItem *jobsMenuItem;
 @property (weak) IBOutlet NSMenuItem *statusMenuItem;
+
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSTextField *intervalTextField;
+
+@property (unsafe_unretained) IBOutlet NSWindow *credentialsWindow;
+@property (weak) IBOutlet NSTextField *userTextField;
+@property (weak) IBOutlet NSSecureTextField *passwordTextField;
+@property (weak) IBOutlet NSButton *storeInKeychanCheckbox;
 
 @property NSStatusItem *statusItem;
 @property NSTimer *timer;
@@ -38,5 +44,9 @@ static NSString *const qUserDefaultsIntervalKey = @"interval";
 - (IBAction)openJenkinsUrlAction:(id)sender;
 - (IBAction)openPreferencesWindowAction:(id)sender;
 - (IBAction)setPreferencesAction:(id)sender;
+
+- (IBAction)credentialsOkAction:(id)sender;
+- (IBAction)credentialsCancelAction:(id)sender;
+- (IBAction)storeInKeychainToggleAction:(id)sender;
 
 @end

@@ -138,6 +138,12 @@ static const NSTimeInterval qTimeoutInterval = 15;
     NSInteger responseStatusCode = [httpResponse statusCode];
     self.lastHttpStatusCode = responseStatusCode;
 
+    if (responseStatusCode == qHttpForbidden) {
+        self.connectionState = JMJenkinsConnectionStateForbidden;
+
+        return;
+    }
+
     if (responseStatusCode < qHttpStatusOk || responseStatusCode >= qHttpStatusBadRequest) {
         log4Warn(@"Connection to %@ was not successful. The Http status code was: %ld", self.xmlUrl, responseStatusCode);
 
@@ -145,13 +151,21 @@ static const NSTimeInterval qTimeoutInterval = 15;
         [self.delegate jenkins:self updateFailed:@{
                 qJenkinsHttpResponseErrorKey: @(responseStatusCode)
         }];
-    } else {
-        self.connectionState = JMJenkinsConnectionStateSuccessful;
+
+        return;
     }
+
+    self.connectionState = JMJenkinsConnectionStateSuccessful;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     log4Debug(@"data");
+
+    if (self.connectionState == JMJenkinsConnectionStateForbidden) {
+        [self.delegate jenkins:self forbiden:nil];
+        return;
+    }
+
     if (self.connectionState != JMJenkinsConnectionStateSuccessful) {
         return;
     }
@@ -218,7 +232,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if ([error code] == NSURLErrorServerCertificateUntrusted) {
-        log4Debug(@"Certification issue");
+        log4Warn(@"Certification issue with %@", self.xmlUrl);
         self.connectionState = JMJenkinsConnectionStateServerTrustFailure;
         [self.delegate jenkins:self serverTrustFailedwithHost:_potentialHostToTrust];
 

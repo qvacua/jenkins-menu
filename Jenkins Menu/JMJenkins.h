@@ -15,6 +15,7 @@ typedef enum {
     JMJenkinsConnectionStateUnknown = 0,
     JMJenkinsConnectionStateSuccessful,
     JMJenkinsConnectionStateConnectionFailure,
+    JMJenkinsConnectionStateForbidden,
     JMJenkinsConnectionStateHttpFailure,
     JMJenkinsConnectionStateXmlFailure,
     JMJenkinsConnectionStateServerTrustFailure,
@@ -31,11 +32,12 @@ typedef enum {
 static int const qHttpStatusUnknown = -1;
 static int const qHttpStatusOk = 200;
 static int const qHttpStatusBadRequest = 400;
+static const int qHttpForbidden = 403;
 
 static NSString *const qJenkinsConnectionErrorKey = @"ConnectionFailedErrorKey";
 static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorKey";
 
-@interface JMJenkins : NSObject <NSURLConnectionDelegate>
+@interface JMJenkins : NSObject <NSURLConnectionDataDelegate>
 
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;

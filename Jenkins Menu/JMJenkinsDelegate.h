@@ -42,4 +42,11 @@
 */
 - (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo;
 
+/**
+* Called when the Jenkins instance is secured.
+*
+* @param userInfo   yet always nil
+*/
+- (void)jenkins:(JMJenkins *)jenkins forbiden:(id)userInfo;
+
 @end

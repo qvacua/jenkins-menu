@@ -100,6 +100,22 @@
     assertThat(jenkins.xmlUrl, is([NSURL URLWithString:@"http://some/url/to/jenkins/api/xml"]));
 }
 
+- (void)testConnectionDidReceiveResponseForbidden {
+    STFail(@"implement");
+
+    [given([response statusCode]) willReturnInteger:qHttpForbidden];
+    [jenkins connection:nil didReceiveResponse:response];
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@404));
+
+    ArgumentCaptor *captor = argCaptor();
+    [verify(delegate) jenkins:jenkins updateFailed:captor];
+    NSDictionary *userInfo = captor.argument;
+
+    assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
+    assertThat(userInfo, hasValue(@404));
+}
+
 - (void)testConnectionDidReceiveResponseFailure1 {
     [given([response statusCode]) willReturnInteger:404];
     [jenkins connection:nil didReceiveResponse:response];
