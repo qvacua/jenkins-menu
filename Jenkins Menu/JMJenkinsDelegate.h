@@ -47,6 +47,6 @@
 *
 * @param userInfo   yet always nil
 */
-- (void)jenkins:(JMJenkins *)jenkins forbiden:(id)userInfo;
+- (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo;
 
 @end

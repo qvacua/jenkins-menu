@@ -107,7 +107,7 @@
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpForbidden)));
 
     [jenkins connection:nil didReceiveData:nil];
-    [verify(delegate) jenkins:jenkins forbiden:nil];
+    [verify(delegate) jenkins:jenkins forbidden:nil];
 }
 
 - (void)testConnectionDidReceiveResponseFailure1 {

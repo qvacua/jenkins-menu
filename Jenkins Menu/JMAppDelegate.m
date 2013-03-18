@@ -96,7 +96,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusSuccess", @"")];
 }
 
-- (void)jenkins:(JMJenkins *)jenkins forbiden:(id)userInfo {
+- (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo {
 
 }
 

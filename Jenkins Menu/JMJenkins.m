@@ -162,7 +162,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
     log4Debug(@"data");
 
     if (self.connectionState == JMJenkinsConnectionStateForbidden) {
-        [self.delegate jenkins:self forbiden:nil];
+        [self.delegate jenkins:self forbidden:nil];
         return;
     }
 
