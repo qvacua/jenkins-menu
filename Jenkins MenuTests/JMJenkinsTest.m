@@ -101,19 +101,13 @@
 }
 
 - (void)testConnectionDidReceiveResponseForbidden {
-    STFail(@"implement");
-
     [given([response statusCode]) willReturnInteger:qHttpForbidden];
     [jenkins connection:nil didReceiveResponse:response];
-    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
-    assertThat(@(jenkins.lastHttpStatusCode), is(@404));
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateForbidden)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpForbidden)));
 
-    ArgumentCaptor *captor = argCaptor();
-    [verify(delegate) jenkins:jenkins updateFailed:captor];
-    NSDictionary *userInfo = captor.argument;
-
-    assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
-    assertThat(userInfo, hasValue(@404));
+    [jenkins connection:nil didReceiveData:nil];
+    [verify(delegate) jenkins:jenkins forbiden:nil];
 }
 
 - (void)testConnectionDidReceiveResponseFailure1 {
