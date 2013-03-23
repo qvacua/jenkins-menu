@@ -50,8 +50,8 @@
             0, NULL,                          // no accountName
             path.length, path.UTF8String,     // path
             (UInt16) url.port.intValue,       // port
-            kSecProtocolTypeAny,              // protocol
-            kSecAuthenticationTypeAny,        // authType
+            kSecProtocolTypeHTTP,             // protocol
+            kSecAuthenticationTypeHTTPBasic,  // authType
             &passwordLength, &passwordBuffer, // no password
             &keychainItem                     // keychain item
     );
@@ -80,6 +80,8 @@
 }
 
 - (BOOL)storeCredential:(JMCredential *)credential forUrl:(NSURL *)url {
+    [self deleteExistingKeychainItemForUrl:url credential:credential];
+
     NSString *host = url.host;
     NSString *path = url.path;
 
@@ -102,6 +104,33 @@
     }
 
     return YES;
+}
+
+- (void)deleteExistingKeychainItemForUrl:(NSURL *)url credential:(JMCredential *)credential {
+    NSString *host = url.host;
+    NSString *path = url.path;
+    NSString *username = credential.username;
+
+    SecKeychainItemRef keychainItem = NULL;
+    OSStatus err = SecKeychainFindInternetPassword(
+            NULL,                                 // keychain, NULL == default one
+            host.length, host.UTF8String,         // serverName
+            0, NULL,                              // securityDomain
+            username.length, username.UTF8String, // no accountName
+            path.length, path.UTF8String,         // path
+            (UInt16) url.port.intValue,           // port
+            kSecProtocolTypeHTTP,                 // protocol
+            kSecAuthenticationTypeHTTPBasic,      // authType
+            NULL, NULL,                           // no password
+            &keychainItem                         // keychain item
+    );
+
+    if (keychainItem == NULL) {
+        return;
+    }
+
+    SecKeychainItemDelete(keychainItem);
+    CFRelease(keychainItem);
 }
 
 #pragma mark Private

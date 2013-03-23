@@ -111,6 +111,11 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self updateJenkinsStatus];
 }
 
+- (void)jenkins:(JMJenkins *)jenkins wrongCredential:(NSDictionary *)userInfo {
+    [self.credentialsWindow makeKeyAndOrderFront:self];
+    [self.userTextField becomeFirstResponder];
+}
+
 #pragma mark NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     id oldValue = [change objectForKey:NSKeyValueChangeOldKey];

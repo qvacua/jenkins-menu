@@ -381,7 +381,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
     }
 
     NSString *username = self.credential.username;
-    NSString *password = @"dfs"; // self.credential.password;
+    NSString *password = self.credential.password;
 
     /**
     * The following is from
