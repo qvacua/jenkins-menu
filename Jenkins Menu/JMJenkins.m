@@ -36,6 +36,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 @dynamic url;
 
 @synthesize xmlUrl = _xmlUrl;
+@synthesize secured = _secured;
 @synthesize interval = _interval;
 @synthesize connectionState = _connectionState;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
@@ -162,6 +163,8 @@ static const NSTimeInterval qTimeoutInterval = 15;
     log4Debug(@"data");
 
     if (self.connectionState == JMJenkinsConnectionStateForbidden) {
+        log4Debug(@"forbidden");
+        self.secured = YES;
         [self.delegate jenkins:self forbidden:nil];
         return;
     }

@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
 		1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */; };
-		1929B29DDF5072FBFECB5004 /* ArgumentCaptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
 		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
-		1929B855EBE595F6417A3643 /* JMKeychainManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
@@ -23,7 +21,6 @@
 		1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
-		1929BB58D89403543C61281E /* NSMenuItem+Q.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
@@ -61,6 +58,7 @@
 		4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
+		4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520C16EC91CF00FB3D4D /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
@@ -81,9 +79,6 @@
 				4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */,
 				4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */,
 				4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */,
-				1929B29DDF5072FBFECB5004 /* ArgumentCaptor.h in CopyFiles */,
-				1929BB58D89403543C61281E /* NSMenuItem+Q.h in CopyFiles */,
-				1929B855EBE595F6417A3643 /* JMKeychainManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +175,7 @@
 				4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */,
 				4B094FF4168110D900D1C02B /* OCHamcrest.framework in Frameworks */,
 				4B094FF5168110D900D1C02B /* OCMockito.framework in Frameworks */,
+				4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

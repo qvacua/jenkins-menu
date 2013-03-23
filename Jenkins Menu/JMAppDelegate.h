@@ -11,9 +11,11 @@
 #import "JMJenkinsDelegate.h"
 
 @class JMTrustedHostManager;
+@class JMKeychainManager;
 
 static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
 static NSString *const qUserDefaultsIntervalKey = @"interval";
+static NSString *const qUserDefaultsSecuredKey = @"fds";
 
 @interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 
@@ -33,6 +35,7 @@ static NSString *const qUserDefaultsIntervalKey = @"interval";
 @property NSStatusItem *statusItem;
 @property NSTimer *timer;
 @property NSUserDefaults *userDefaults;
+@property JMKeychainManager *keychainManager;
 
 @property JMTrustedHostManager *trustedHostManager;
 @property JMJenkins *jenkins;

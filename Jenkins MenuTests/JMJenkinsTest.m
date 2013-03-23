@@ -108,6 +108,7 @@
 
     [jenkins connection:nil didReceiveData:nil];
     [verify(delegate) jenkins:jenkins forbidden:nil];
+    assertThat(@(jenkins.secured), isYes);
 }
 
 - (void)testConnectionDidReceiveResponseFailure1 {

@@ -10,6 +10,7 @@
 #import "JMJenkinsJob.h"
 #import "JMAppDelegate.h"
 #import "JMJenkins.h"
+#import "JMKeychainManager.h"
 #import <objc/runtime.h>
 
 @interface JMAppDelegateTest : JMBaseTestCase
@@ -19,6 +20,7 @@
     JMAppDelegate *appDelegate;
 
     NSUserDefaults *userDefaults;
+    JMKeychainManager *keychainManager;
 
     Method originalMethod;
     IMP originalImpl;
@@ -30,9 +32,11 @@
     [self exchangeSystemStatusBarClassMethod];
 
     userDefaults = mock([NSUserDefaults class]);
+    keychainManager = mock([JMKeychainManager class]);
 
     appDelegate = [[JMAppDelegate alloc] init];
     appDelegate.userDefaults = userDefaults;
+    appDelegate.keychainManager = keychainManager;
 }
 
 - (void)tearDown {
@@ -45,6 +49,7 @@
     appDelegate = [[JMAppDelegate alloc] init];
 
     assertThat(appDelegate.userDefaults, is([NSUserDefaults standardUserDefaults]));
+    assertThat(appDelegate.keychainManager, isNot(nilValue()));
     assertThat(appDelegate.jenkins, isNot(nilValue()));
     assertThat(appDelegate.trustedHostManager, isNot(nilValue()));
     assertThat(appDelegate.jenkins.trustedHostManager, is(appDelegate.trustedHostManager));
@@ -54,12 +59,14 @@
     JMJenkins *jenkins = appDelegate.jenkins;
     [given([userDefaults objectForKey:qUserDefaultsUrlKey]) willReturn:@"http://some/host"];
     [given([userDefaults objectForKey:qUserDefaultsIntervalKey]) willReturn:@18];
+    [given([userDefaults boolForKey:qUserDefaultsSecuredKey]) willReturn:@(YES)];
 
     [appDelegate applicationDidFinishLaunching:nil];
 
     assertThat(jenkins.delegate, is(appDelegate));
     assertThat(@(jenkins.interval), is(@18));
     assertThat(jenkins.url, is([NSURL URLWithString:@"http://some/host"]));
+    assertThat(@(jenkins.secured), isYes);
 }
 
 - (void)testAppDidFinishLaunchingOldXmlUrlInDefaults {

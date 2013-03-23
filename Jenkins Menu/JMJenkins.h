@@ -41,6 +41,7 @@ static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorK
 
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
+@property (getter=isSecured) BOOL secured;
 @property NSTimeInterval interval;
 @property (readonly) NSInteger connectionState;
 @property (readonly) NSInteger lastHttpStatusCode;

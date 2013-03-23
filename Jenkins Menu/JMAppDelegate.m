@@ -29,6 +29,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize jobsMenuItem = _jobsMenuItem;
 
 @synthesize userDefaults = _userDefaults;
+@synthesize keychainManager = _keychainManager;
 
 @synthesize trustedHostManager = _trustedHostManager;
 @synthesize jenkins = _jenkins;
@@ -56,13 +57,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self.jenkins.delegate = self;
     self.jenkins.interval = self.interval;
     self.jenkins.url = url;
-
-    JMKeychainManager *manager = [[JMKeychainManager alloc] init];
-    JMCredential *credential = [manager credentialForUrl:[NSURL URLWithString:@"http://www.spiegel.de/meinspiegel/login.html"]];
-    if (credential == nil) {
-        log4Debug(@"%@", manager.lastErrorMessage);
-    }
-    log4Debug(@"%@:%@:%@", credential.url, credential.username, credential.password);
+    self.jenkins.secured = [self.userDefaults boolForKey:qUserDefaultsSecuredKey];
 }
 
 #pragma mark JMJenkinsDelegate
@@ -104,6 +99,11 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 - (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo {
 
+
+
+//    [self.credentialsWindow makeKeyAndOrderFront:self];
+//    [self.userTextField becomeFirstResponder];
+
 }
 
 #pragma mark NSKeyValueObserving
@@ -144,8 +144,11 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self = [super init];
     if (self) {
         _userDefaults = [NSUserDefaults standardUserDefaults];
-        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        _keychainManager = [[JMKeychainManager alloc] init];
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
+
+        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+
         _jenkins = [[JMJenkins alloc] init];
         _jenkins.trustedHostManager = _trustedHostManager;
     }
@@ -185,6 +188,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (IBAction)credentialsCancelAction:(id)sender {
+    [self.userTextField setStringValue:@""];
+    [self.passwordTextField setStringValue:@""];
+
+    [self.credentialsWindow orderOut:sender];
 }
 
 - (IBAction)storeInKeychainToggleAction:(id)sender {
