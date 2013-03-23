@@ -53,7 +53,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 - (void)update {
     [_connection cancel];
 
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
+    NSURLRequest *request = [self urlRequestWithUsername:nil password:nil];
     _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     log4Info(@"Connecting to %@", self.xmlUrl);
 
@@ -149,7 +149,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 
         self.connectionState = JMJenkinsConnectionStateHttpFailure;
         [self.delegate jenkins:self updateFailed:@{
-                qJenkinsHttpResponseErrorKey: @(responseStatusCode)
+                qJenkinsHttpResponseErrorKey : @(responseStatusCode)
         }];
 
         return;
@@ -340,6 +340,45 @@ static const NSTimeInterval qTimeoutInterval = 15;
         }
     }
     return count;
+}
+
+- (NSURLRequest *)urlRequestWithUsername:(NSString *)username password:(NSString *)password {
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
+
+    if (username == nil || password == nil) {
+        return urlRequest;
+    }
+
+    /**
+    * The following is from
+    * http://stackoverflow.com/questions/501231/can-i-use-nsurlcredentialstorage-for-http-basic-authentication
+    */
+
+    CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(
+            kCFAllocatorDefault,
+            CFSTR("GET"),
+            (__bridge CFURLRef) [urlRequest URL],
+            kCFHTTPVersion1_1
+    );
+
+    CFHTTPMessageAddAuthentication(
+            dummyRequest,
+            nil,
+            (__bridge CFStringRef) username,
+            (__bridge CFStringRef) password,
+            kCFHTTPAuthenticationSchemeBasic,
+            FALSE
+    );
+
+    NSString *authorizationString = (__bridge NSString *) CFHTTPMessageCopyHeaderFieldValue(
+            dummyRequest,
+            CFSTR("Authorization")
+    );
+
+    CFRelease(dummyRequest);
+
+    [urlRequest setValue:authorizationString forHTTPHeaderField:@"Authorization"];
+    return urlRequest;
 }
 
 @end
