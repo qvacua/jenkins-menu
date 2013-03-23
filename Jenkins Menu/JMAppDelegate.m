@@ -12,6 +12,7 @@
 #import "JMJenkinsJob.h"
 #import "JMTrustedHostManager.h"
 #import "NSMenuItem+Q.h"
+#import "JMKeychainManager.h"
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
@@ -57,6 +58,9 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self.jenkins.url = url;
 
     [self makeRequest];
+
+    JMKeychainManager *manager = [[JMKeychainManager alloc] init];
+    [manager doSth];
 }
 
 #pragma mark JMJenkinsDelegate

@@ -15,17 +15,21 @@
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
 		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
+		1929B855EBE595F6417A3643 /* JMKeychainManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
+		1929BA35E728368750C70F6C /* JMKeychainManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */; };
 		1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
 		1929BB58D89403543C61281E /* NSMenuItem+Q.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
+		1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
 		1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */; };
 		1929BE593A060E712249641D /* green-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B86FB3CDB8403CE5B3AD /* green-xml.xml */; };
+		1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BFBA46111F402A70C7BC /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
 		4B094FF4168110D900D1C02B /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF2168110D900D1C02B /* OCHamcrest.framework */; };
 		4B094FF5168110D900D1C02B /* OCMockito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF3168110D900D1C02B /* OCMockito.framework */; };
@@ -79,6 +83,7 @@
 				4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */,
 				1929B29DDF5072FBFECB5004 /* ArgumentCaptor.h in CopyFiles */,
 				1929BB58D89403543C61281E /* NSMenuItem+Q.h in CopyFiles */,
+				1929B855EBE595F6417A3643 /* JMKeychainManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +94,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
+				1929BA35E728368750C70F6C /* JMKeychainManager.h in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +104,7 @@
 /* Begin PBXFileReference section */
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
 		1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTrustedHostManagerTest.m; sourceTree = "<group>"; };
+		1929B154A3D771D43E614DBE /* JMKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMKeychainManager.m; sourceTree = "<group>"; };
 		1929B17F9334050E9C2C6355 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMenuItem+Q.h"; sourceTree = "<group>"; };
 		1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentCaptor.m; sourceTree = "<group>"; };
@@ -116,6 +123,7 @@
 		1929BC93909566015D53BC10 /* JMJenkinsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsDelegate.h; sourceTree = "<group>"; };
 		1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentCaptor.h; sourceTree = "<group>"; };
 		1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJobTest.m; sourceTree = "<group>"; };
+		1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKeychainManager.h; sourceTree = "<group>"; };
 		1929BE99FF21D445B6CADD3F /* JMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLog.h; sourceTree = "<group>"; };
 		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
 		4B094FF3168110D900D1C02B /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = "Jenkins MenuTests/OCMockito.framework"; sourceTree = "<group>"; };
@@ -251,6 +259,8 @@
 				1929BE99FF21D445B6CADD3F /* JMLog.h */,
 				1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */,
 				1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */,
+				1929B154A3D771D43E614DBE /* JMKeychainManager.m */,
+				1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */,
 			);
 			path = "Jenkins Menu";
 			sourceTree = "<group>";
@@ -464,6 +474,7 @@
 				1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */,
 				1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */,
 				1929BFBA46111F402A70C7BC /* NSMenuItem+Q.m in Sources */,
+				1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +493,7 @@
 				1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */,
 				1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */,
 				1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */,
+				1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
