@@ -28,58 +28,72 @@
 
 @end
 
+@interface JMKeychainManager ()
+
+@property (readwrite) NSString *lastErrorMessage;
+
+@end
+
 @implementation JMKeychainManager {
 }
 
+@synthesize lastErrorMessage = _lastErrorMessage;
+
 - (JMCredential *)credentialForUrl:(NSURL *)url {
-    void *passwordBuffer;
-    UInt32 passwordLength;
+    NSString *host = url.host;
+    NSString *path = url.path;
 
-    char const *hostStr = url.host.UTF8String;
-    char const *pathStr = url.path.UTF8String;
-
+    UInt32 passwordLength = 0;
+    void *passwordBuffer = NULL;
     SecKeychainItemRef keychainItem = NULL;
     OSStatus err = SecKeychainFindInternetPassword(
-            NULL,
-            strlen(hostStr), hostStr, // serverName
-            0, NULL, // securityDomain
-            0, NULL, // no accountName
-            strlen(pathStr), pathStr, // path
-            (UInt16) url.port.intValue, // port
-            kSecProtocolTypeAny, // protocol
-            kSecAuthenticationTypeAny, // authType
+            NULL,                             // keychain, NULL == default one
+            host.length, host.UTF8String,     // serverName
+            0, NULL,                          // securityDomain
+            0, NULL,                          // no accountName
+            path.length, path.UTF8String,     // path
+            (UInt16) url.port.intValue + 1,       // port
+            kSecProtocolTypeAny,              // protocol
+            kSecAuthenticationTypeAny,        // authType
             &passwordLength, &passwordBuffer, // no password
-            &keychainItem
+            &keychainItem                     // keychain item
     );
 
     if (err) {
-        [self printErrorWithOsStatus:err];
+        self.lastErrorMessage = [self errorMessageFromOsStatus:err];
         return nil;
     }
 
     NSString *password = [self passwordFromKeychainBuffer:passwordBuffer length:passwordLength];
     NSString *username = [self usernameFromKeychainItem:keychainItem];
 
-    if (username == nil || password == nil) {
+    SecKeychainItemFreeContent(NULL, passwordBuffer);
+    CFRelease(keychainItem);
+
+    if (username == nil) {
         return nil;
     }
 
-    SecKeychainItemFreeContent(NULL, passwordBuffer);
-    CFRelease(keychainItem);
+    if (password == nil) {
+        self.lastErrorMessage = [NSString stringWithFormat:NSLocalizedString(@"ErrorKeychainItem", @"There was an error obtaining the keychain item for %@"), url];
+        return nil;
+    }
 
     return [[JMCredential alloc] initWithUrl:url username:username password:password];
 }
 
 #pragma mark Private
-- (void)printErrorWithOsStatus:(OSStatus)err {
+- (NSString *)errorMessageFromOsStatus:(OSStatus)err {
     CFStringRef errorStr = SecCopyErrorMessageString(err, NULL);
-    log4Debug(@"%@", errorStr);
+    NSString *errorMsg = [NSString stringWithString:(__bridge NSString *) errorStr];
     CFRelease(errorStr);
+
+    return errorMsg;
 }
 
 - (NSString *)usernameFromKeychainItem:(SecKeychainItemRef)keychainItem {
-    UInt32 attributeTags[1] = { kSecAccountItemAttr };
-    UInt32 formatConstants[1] = { CSSM_DB_ATTRIBUTE_FORMAT_STRING };
+    UInt32 attributeTags[1] = {kSecAccountItemAttr};
+    UInt32 formatConstants[1] = {CSSM_DB_ATTRIBUTE_FORMAT_STRING};
 
     SecKeychainAttributeInfo attributeInfo;
     attributeInfo.count = 1;
@@ -90,7 +104,7 @@
     OSStatus err = SecKeychainItemCopyAttributesAndData(keychainItem, &attributeInfo, NULL, &attributeList, 0, NULL);
 
     if (err) {
-        [self printErrorWithOsStatus:err];
+        self.lastErrorMessage = [self errorMessageFromOsStatus:err];
         return nil;
     }
 

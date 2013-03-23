@@ -32,3 +32,4 @@
 "ErrorEmptyXML" = "got an empty build status XML document";
 "ErrorCouldNotConnect" = "couldn’t connect";
 
+"ErrorKeychainItem" = "There was an error obtaining the keychain item for %@";

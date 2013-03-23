@@ -20,6 +20,8 @@
 
 @interface JMKeychainManager : NSObject
 
+@property (readonly) NSString *lastErrorMessage;
+
 - (JMCredential *)credentialForUrl:(NSURL *)url;
 
 @end
