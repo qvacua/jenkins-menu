@@ -60,7 +60,8 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self makeRequest];
 
     JMKeychainManager *manager = [[JMKeychainManager alloc] init];
-    [manager doSth];
+    JMCredential *credential = [manager credentialForUrl:[NSURL URLWithString:@"http://www.spiegel.de/meinspiegel/login.html"]];
+    log4Debug(@"%@:%@:%@", credential.url, credential.username, credential.password);
 }
 
 #pragma mark JMJenkinsDelegate
