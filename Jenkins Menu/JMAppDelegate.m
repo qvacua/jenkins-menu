@@ -101,8 +101,9 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     JMCredential *credential = [self.keychainManager credentialForUrl:self.jenkinsXmlUrl];
 
     if (credential == nil) {
-//    [self.credentialsWindow makeKeyAndOrderFront:self];
-//    [self.userTextField becomeFirstResponder];
+        [self.credentialsWindow makeKeyAndOrderFront:self];
+        [self.userTextField becomeFirstResponder];
+
         return;
     }
 
@@ -189,13 +190,54 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (IBAction)credentialsOkAction:(id)sender {
+    BOOL usernameOk = NO;
+    BOOL passwordOk = NO;
+
+    if ([[self.userTextField stringValue] length] > 0) {
+        usernameOk = YES;
+    }
+
+    if ([[self.passwordTextField stringValue] length] > 0) {
+        passwordOk = YES;
+    }
+
+    if (!usernameOk || !passwordOk) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:NSLocalizedString(@"WarningEnterCredential", @"You have to enter User and Password.")];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert beginSheetModalForWindow:self.credentialsWindow modalDelegate:self didEndSelector:NULL contextInfo:nil];
+
+        return;
+    }
+
+    JMCredential *credential = [[JMCredential alloc] initWithUsername:self.userTextField.stringValue password:self.passwordTextField.stringValue];
+    self.jenkins.credential = credential;
+
+    if ([self.storeInKeychanCheckbox state] == NSOffState) {
+        [self clearAndOrderOutCredentialWindow:self];
+        [self updateJenkinsStatus];
+        return;
+    }
+
+    BOOL success = [self.keychainManager storeCredential:credential forUrl:self.jenkinsXmlUrl];
+    if (!success) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Storing the Credential Failed"];
+        [alert setInformativeText:self.keychainManager.lastErrorMessage];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert beginSheetModalForWindow:self.credentialsWindow modalDelegate:self didEndSelector:NULL contextInfo:nil];
+    }
+
+    [self updateJenkinsStatus];
+    [self clearAndOrderOutCredentialWindow:self];
 }
 
 - (IBAction)credentialsCancelAction:(id)sender {
-    [self.userTextField setStringValue:@""];
-    [self.passwordTextField setStringValue:@""];
+    [self clearAndOrderOutCredentialWindow:sender];
 
-    [self.credentialsWindow orderOut:sender];
+    [self showForbiddenStatus];
 }
 
 - (IBAction)storeInKeychainToggleAction:(id)sender {
@@ -224,8 +266,20 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 #pragma mark Private
+- (void)clearAndOrderOutCredentialWindow:(id)sender {
+    [self.userTextField setStringValue:@""];
+    [self.passwordTextField setStringValue:@""];
+
+    [self.credentialsWindow orderOut:sender];
+}
+
 - (void)showInitialStatus {
     [self setTitle:@"" image:@"disconnect.png"];
+}
+
+- (void)showForbiddenStatus {
+    [self setTitle:@"" image:@"disconnect.png"];
+    [self.statusMenuItem setTitle:NSLocalizedString(@"JenkinsSecuredStatus", @"The Jenkins CI server is secured")];
 }
 
 - (void)initStatusMenu {

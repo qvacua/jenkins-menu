@@ -10,11 +10,10 @@
 
 @interface JMCredential : NSObject
 
-@property NSURL *url;
 @property NSString *username;
 @property NSString *password;
 
-- (id)initWithUrl:(NSURL *)url username:(NSString *)username password:(NSString *)password;
+- (id)initWithUsername:(NSString *)username password:(NSString *)password;
 
 @end
 
@@ -23,5 +22,6 @@
 @property (readonly) NSString *lastErrorMessage;
 
 - (JMCredential *)credentialForUrl:(NSURL *)url;
+- (BOOL)storeCredential:(JMCredential *)credential forUrl:(NSURL *)url;
 
 @end

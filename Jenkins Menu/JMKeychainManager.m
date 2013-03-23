@@ -7,18 +7,15 @@
  */
 
 #import "JMKeychainManager.h"
-#import "JMLog.h"
 
 @implementation JMCredential
 
-@synthesize url = _url;
 @synthesize username = _username;
 @synthesize password = _password;
 
-- (id)initWithUrl:(NSURL *)url username:(NSString *)username password:(NSString *)password {
+- (id)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
-        self.url = url;
         self.username = username;
         self.password = password;
     }
@@ -52,7 +49,7 @@
             0, NULL,                          // securityDomain
             0, NULL,                          // no accountName
             path.length, path.UTF8String,     // path
-            (UInt16) url.port.intValue + 1,       // port
+            (UInt16) url.port.intValue,       // port
             kSecProtocolTypeAny,              // protocol
             kSecAuthenticationTypeAny,        // authType
             &passwordLength, &passwordBuffer, // no password
@@ -79,7 +76,32 @@
         return nil;
     }
 
-    return [[JMCredential alloc] initWithUrl:url username:username password:password];
+    return [[JMCredential alloc] initWithUsername:username password:password];
+}
+
+- (BOOL)storeCredential:(JMCredential *)credential forUrl:(NSURL *)url {
+    NSString *host = url.host;
+    NSString *path = url.path;
+
+    OSStatus err = SecKeychainAddInternetPassword(
+            NULL,                                                       // keychain
+            host.length, host.UTF8String,                               // serverName
+            0, NULL,                                                    // securityDomain
+            credential.username.length, credential.username.UTF8String, // accountName
+            path.length, path.UTF8String,                               // path
+            (UInt16) url.port.intValue,                                 // port
+            kSecProtocolTypeHTTP,                                       // protocol
+            kSecAuthenticationTypeHTTPBasic,                            // authenticationType
+            credential.password.length, credential.password.UTF8String, // password
+            NULL                                                        // keychain item
+    );
+
+    if (err) {
+        self.lastErrorMessage = [self errorMessageFromOsStatus:err];
+        return NO;
+    }
+
+    return YES;
 }
 
 #pragma mark Private

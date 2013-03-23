@@ -59,7 +59,7 @@
 
 - (void)testJenkinsForbiddenCredentialExistsInKeychain {
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080"];
-    JMCredential *credential = [[JMCredential alloc] initWithUrl:url username:@"user" password:@"pw"];
+    JMCredential *credential = [[JMCredential alloc] initWithUsername:@"user" password:@"pw"];
 
     appDelegate.jenkins = mockJenkins;
     appDelegate.jenkinsUrl = url;

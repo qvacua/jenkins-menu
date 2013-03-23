@@ -33,3 +33,7 @@
 "ErrorCouldNotConnect" = "couldn’t connect";
 
 "ErrorKeychainItem" = "There was an error obtaining the keychain item for %@";
+
+"JenkinsSecuredStatus" = "The Jenkins CI server is secured";
+
+"WarningEnterCredential" = "You have to enter User and Password.";
