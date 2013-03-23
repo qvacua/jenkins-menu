@@ -47,12 +47,21 @@ static const NSTimeInterval qTimeoutInterval = 15;
 @synthesize potentialHostToTrust = _potentialHostToTrust;
 @synthesize connection = _connection;
 
-#pragma mark Public
-
+#pragma mark Properties
 - (NSArray *)jobs {
     return self.mutableJobs;
 }
 
+- (NSURL *)url {
+    return _url;
+}
+
+- (void)setUrl:(NSURL *)newUrl {
+    _url = newUrl;
+    _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
+}
+
+#pragma mark Public
 - (void)update {
     [self.connection cancel];
 
@@ -116,15 +125,6 @@ static const NSTimeInterval qTimeoutInterval = 15;
     }
 
     return JMJenkinsTotalStateUnknown;
-}
-
-- (NSURL *)url {
-    return _url;
-}
-
-- (void)setUrl:(NSURL *)newUrl {
-    _url = newUrl;
-    _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
 }
 
 #pragma mark NSObject
