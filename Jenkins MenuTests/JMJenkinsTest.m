@@ -82,9 +82,15 @@
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateUnknown)));
 }
 
-- (void)testUpdate {
+- (void)testUpdateSecuredButNoCredential {
     jenkins.url = [NSURL URLWithString:@"pro://some/crazy/"];
+    jenkins.secured = YES;
+    jenkins.credential = nil;
+
     [jenkins update];
+
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateNoCredential)));
+    [verify(delegate) jenkins:jenkins updateFailed:nil];
 }
 
 - (void)testDefaultProperties {

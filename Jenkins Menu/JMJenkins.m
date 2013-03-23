@@ -11,12 +11,14 @@
 #import "JMJenkinsDelegate.h"
 #import "JMTrustedHostManager.h"
 #import "JMLog.h"
+#import "JMKeychainManager.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 static const NSTimeInterval qTimeoutInterval = 15;
 
 @interface JMJenkins ()
 
+@property NSURLConnection *connection;
 @property (readwrite) NSInteger lastHttpStatusCode;
 @property (readwrite) NSInteger connectionState;
 @property (readwrite) NSURL *viewUrl;
@@ -26,10 +28,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 @end
 
 @implementation JMJenkins {
-    NSMutableArray *_mutableJobs;
     NSURL *_url;
-    NSString *_potentialHostToTrust;
-    NSURLConnection *_connection;
 }
 
 @dynamic jobs;
@@ -37,6 +36,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 
 @synthesize xmlUrl = _xmlUrl;
 @synthesize secured = _secured;
+@synthesize credential = _credential;
 @synthesize interval = _interval;
 @synthesize connectionState = _connectionState;
 @synthesize lastHttpStatusCode = _lastHttpStatusCode;
@@ -45,22 +45,31 @@ static const NSTimeInterval qTimeoutInterval = 15;
 @synthesize delegate = _delegate;
 @synthesize trustedHostManager = _trustedHostManager;
 @synthesize potentialHostToTrust = _potentialHostToTrust;
+@synthesize connection = _connection;
 
 #pragma mark Public
+
 - (NSArray *)jobs {
     return self.mutableJobs;
 }
 
 - (void)update {
-    [_connection cancel];
+    [self.connection cancel];
 
-    NSURLRequest *request = [self urlRequestWithUsername:nil password:nil];
-    _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (self.secured && self.credential == nil) {
+        self.connectionState = JMJenkinsConnectionStateNoCredential;
+        [self.delegate jenkins:self updateFailed:nil];
+
+        return;
+    }
+
+    NSURLRequest *request = [self urlRequest];
+    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     log4Info(@"Connecting to %@", self.xmlUrl);
 
     [self.delegate jenkins:self updateStarted:nil];
 
-    if (_connection == nil) {
+    if (self.connection == nil) {
         log4Warn(@"Connection to %@ failed!", self.xmlUrl);
 
         self.connectionState = JMJenkinsConnectionStateConnectionFailure;
@@ -80,7 +89,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
     return [self countState:JMJenkinsJobStateGreen];
 }
 
-- (JMJenkinsTotalState)totalState {
+- (JMJenkinsJobsTotalState)totalState {
     int green = 0;
     int yellow = 0;
 
@@ -345,12 +354,15 @@ static const NSTimeInterval qTimeoutInterval = 15;
     return count;
 }
 
-- (NSURLRequest *)urlRequestWithUsername:(NSString *)username password:(NSString *)password {
+- (NSURLRequest *)urlRequest {
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
 
-    if (username == nil || password == nil) {
+    if (self.credential == nil) {
         return urlRequest;
     }
+
+    NSString *username = self.credential.username;
+    NSString *password = self.credential.password;
 
     /**
     * The following is from

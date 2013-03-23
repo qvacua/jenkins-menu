@@ -51,13 +51,13 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
     NSURL *url = [self cleanedUrlFromUserDefaults];
 
-    self.jenkinsUrl = url;
-    self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
-
     self.jenkins.delegate = self;
     self.jenkins.interval = self.interval;
     self.jenkins.url = url;
     self.jenkins.secured = [self.userDefaults boolForKey:qUserDefaultsSecuredKey];
+
+    self.jenkinsUrl = url;
+    self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
 }
 
 #pragma mark JMJenkinsDelegate

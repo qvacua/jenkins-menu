@@ -10,12 +10,14 @@
 
 @protocol JMJenkinsDelegate;
 @class JMTrustedHostManager;
+@class JMCredential;
 
 typedef enum {
     JMJenkinsConnectionStateUnknown = 0,
     JMJenkinsConnectionStateSuccessful,
     JMJenkinsConnectionStateConnectionFailure,
     JMJenkinsConnectionStateForbidden,
+    JMJenkinsConnectionStateNoCredential,
     JMJenkinsConnectionStateHttpFailure,
     JMJenkinsConnectionStateXmlFailure,
     JMJenkinsConnectionStateServerTrustFailure,
@@ -27,7 +29,7 @@ typedef enum {
     JMJenkinsTotalStateGreen,
     JMJenkinsTotalStateYellow,
     JMJenkinsTotalStateRed,
-} JMJenkinsTotalState;
+} JMJenkinsJobsTotalState;
 
 static int const qHttpStatusUnknown = -1;
 static int const qHttpStatusOk = 200;
@@ -42,6 +44,7 @@ static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorK
 @property NSURL *url;
 @property (readonly) NSURL *xmlUrl;
 @property (getter=isSecured) BOOL secured;
+@property JMCredential *credential;
 @property NSTimeInterval interval;
 @property (readonly) NSInteger connectionState;
 @property (readonly) NSInteger lastHttpStatusCode;
@@ -53,7 +56,7 @@ static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorK
 @property JMTrustedHostManager *trustedHostManager;
 
 - (void)update;
-- (JMJenkinsTotalState)totalState;
+- (JMJenkinsJobsTotalState)totalState;
 
 - (NSUInteger)countOfRedJobs;
 - (NSUInteger)countOfYellowJobs;
