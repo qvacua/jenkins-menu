@@ -49,4 +49,6 @@
 */
 - (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo;
 
+- (void)jenkins:(JMJenkins *)jenkins wrongCredential:(NSDictionary *)userInfo;
+
 @end

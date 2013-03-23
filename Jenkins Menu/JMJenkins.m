@@ -148,8 +148,21 @@ static const NSTimeInterval qTimeoutInterval = 15;
     NSInteger responseStatusCode = [httpResponse statusCode];
     self.lastHttpStatusCode = responseStatusCode;
 
+    /**
+    * Forbidden occurs when the Jenkins is secured. Jenkins does not send a authentication challenge,
+    * instead it responses with Forbidden and a login form. This means the -connection:didReceiveData: gets invoked.
+    */
     if (responseStatusCode == qHttpForbidden) {
         self.connectionState = JMJenkinsConnectionStateForbidden;
+
+        return;
+    }
+
+    /**
+    * Unauthorized occurs when the credential is wrong.
+    */
+    if (responseStatusCode == qHttpUnauthorized) {
+        self.connectionState = JMJenkinsConnectionStateWrongCredential;
 
         return;
     }
@@ -175,6 +188,12 @@ static const NSTimeInterval qTimeoutInterval = 15;
         log4Debug(@"forbidden");
         self.secured = YES;
         [self.delegate jenkins:self forbidden:nil];
+        return;
+    }
+
+    if (self.connectionState == JMJenkinsConnectionStateWrongCredential) {
+        log4Debug(@"wrong credential");
+        [self.delegate jenkins:self wrongCredential:nil];
         return;
     }
 
@@ -362,7 +381,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
     }
 
     NSString *username = self.credential.username;
-    NSString *password = self.credential.password;
+    NSString *password = @"dfs"; // self.credential.password;
 
     /**
     * The following is from

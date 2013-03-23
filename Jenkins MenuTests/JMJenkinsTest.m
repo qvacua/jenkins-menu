@@ -117,6 +117,16 @@
     assertThat(@(jenkins.secured), isYes);
 }
 
+- (void)testConnectionDidReceiveResponseUnauthorized {
+    [given([response statusCode]) willReturnInteger:qHttpUnauthorized];
+    [jenkins connection:nil didReceiveResponse:response];
+    assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateWrongCredential)));
+    assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpUnauthorized)));
+
+    [jenkins connection:nil didReceiveData:nil];
+    [verify(delegate) jenkins:jenkins wrongCredential:nil];
+}
+
 - (void)testConnectionDidReceiveResponseFailure1 {
     [given([response statusCode]) willReturnInteger:404];
     [jenkins connection:nil didReceiveResponse:response];
