@@ -21,6 +21,7 @@
 
     NSUserDefaults *userDefaults;
     JMKeychainManager *keychainManager;
+    JMJenkins *mockJenkins;
 
     Method originalMethod;
     IMP originalImpl;
@@ -33,6 +34,7 @@
 
     userDefaults = mock([NSUserDefaults class]);
     keychainManager = mock([JMKeychainManager class]);
+    mockJenkins = mock([JMJenkins class]);
 
     appDelegate = [[JMAppDelegate alloc] init];
     appDelegate.userDefaults = userDefaults;
@@ -53,6 +55,21 @@
     assertThat(appDelegate.jenkins, isNot(nilValue()));
     assertThat(appDelegate.trustedHostManager, isNot(nilValue()));
     assertThat(appDelegate.jenkins.trustedHostManager, is(appDelegate.trustedHostManager));
+}
+
+- (void)testJenkinsForbiddenCredentialExistsInKeychain {
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080"];
+    JMCredential *credential = [[JMCredential alloc] initWithUrl:url username:@"user" password:@"pw"];
+
+    appDelegate.jenkins = mockJenkins;
+    appDelegate.jenkinsUrl = url;
+
+    [given([mockJenkins isSecured]) willReturnBool:YES];
+    [given([keychainManager credentialForUrl:appDelegate.jenkinsXmlUrl]) willReturn:credential];
+    
+    [appDelegate jenkins:mockJenkins forbidden:nil];
+    [verify(mockJenkins) setCredential:credential];
+    [verify(mockJenkins) update];
 }
 
 - (void)testAppDidFinishLaunching {

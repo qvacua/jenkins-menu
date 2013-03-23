@@ -63,7 +63,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 #pragma mark JMJenkinsDelegate
 - (void)jenkins:(JMJenkins *)jenkins serverTrustFailedwithHost:(NSString *)host {
     [self askWhetherToTrustHost:host];
-    [self makeRequest];
+    [self updateJenkinsStatus];
 }
 
 - (void)jenkins:(JMJenkins *)jenkins updateStarted:(NSDictionary *)userInfo {
@@ -98,12 +98,16 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo {
+    JMCredential *credential = [self.keychainManager credentialForUrl:self.jenkinsXmlUrl];
 
-
-
+    if (credential == nil) {
 //    [self.credentialsWindow makeKeyAndOrderFront:self];
 //    [self.userTextField becomeFirstResponder];
+        return;
+    }
 
+    self.jenkins.credential = credential;
+    [self updateJenkinsStatus];
 }
 
 #pragma mark NSKeyValueObserving
@@ -120,7 +124,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         self.jenkins.url = newValue;
 
         [self.userDefaults setObject:[self.jenkinsUrl absoluteString] forKey:qUserDefaultsUrlKey];
-        [self makeRequest];
+        [self updateJenkinsStatus];
 
         return;
     }
@@ -158,7 +162,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 #pragma mark IBActions
 - (IBAction)updateNowAction:(id)sender {
-    [self makeRequest];
+    [self updateJenkinsStatus];
 }
 
 - (IBAction)openJenkinsUrlAction:(id)sender {
@@ -236,7 +240,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusUpdating", @"")];
 }
 
-- (void)makeRequest {
+- (void)updateJenkinsStatus {
     [self.jenkins update];
 }
 
@@ -275,7 +279,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)timerFireMethod:(NSTimer *)theTimer {
-    [self makeRequest];
+    [self updateJenkinsStatus];
 }
 
 - (void)setStatusWithRed:(NSUInteger)redCount yellow:(NSUInteger)yellowCount {
