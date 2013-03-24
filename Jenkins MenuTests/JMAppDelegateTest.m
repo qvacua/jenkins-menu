@@ -72,10 +72,6 @@
     [verify(mockJenkins) update];
 }
 
-- (void)testWrongKeychainCredential {
-
-}
-
 - (void)testAppDidFinishLaunching {
     JMJenkins *jenkins = appDelegate.jenkins;
     [given([userDefaults objectForKey:qUserDefaultsUrlKey]) willReturn:@"http://some/host"];

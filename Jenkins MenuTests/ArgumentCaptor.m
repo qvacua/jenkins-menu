@@ -1,3 +1,11 @@
+/**
+ * Jenkins Menu
+ * http://qvacua.com
+ * https://github.com/qvacua
+ *
+ * See LICENSE
+ */
+
 #import "ArgumentCaptor.h"
 
 @implementation ArgumentCaptor {
