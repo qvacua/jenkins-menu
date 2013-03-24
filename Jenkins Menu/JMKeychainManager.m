@@ -44,16 +44,16 @@
     void *passwordBuffer = NULL;
     SecKeychainItemRef keychainItem = NULL;
     OSStatus err = SecKeychainFindInternetPassword(
-            NULL,                             // keychain, NULL == default one
-            host.length, host.UTF8String,     // serverName
-            0, NULL,                          // securityDomain
-            0, NULL,                          // no accountName
-            path.length, path.UTF8String,     // path
-            (UInt16) url.port.intValue,       // port
-            kSecProtocolTypeHTTP,             // protocol
-            kSecAuthenticationTypeHTTPBasic,  // authType
-            &passwordLength, &passwordBuffer, // no password
-            &keychainItem                     // keychain item
+            NULL,                                  // keychain, NULL == default one
+            (UInt32) host.length, host.UTF8String, // serverName
+            0, NULL,                               // securityDomain
+            0, NULL,                               // no accountName
+            (UInt32) path.length, path.UTF8String, // path
+            (UInt16) url.port.intValue,            // port
+            kSecProtocolTypeHTTP,                  // protocol
+            kSecAuthenticationTypeHTTPBasic,       // authType
+            &passwordLength, &passwordBuffer,      // no password
+            &keychainItem                          // keychain item
     );
 
     if (err) {
@@ -86,16 +86,16 @@
     NSString *path = url.path;
 
     OSStatus err = SecKeychainAddInternetPassword(
-            NULL,                                                       // keychain
-            host.length, host.UTF8String,                               // serverName
-            0, NULL,                                                    // securityDomain
-            credential.username.length, credential.username.UTF8String, // accountName
-            path.length, path.UTF8String,                               // path
-            (UInt16) url.port.intValue,                                 // port
-            kSecProtocolTypeHTTP,                                       // protocol
-            kSecAuthenticationTypeHTTPBasic,                            // authenticationType
-            credential.password.length, credential.password.UTF8String, // password
-            NULL                                                        // keychain item
+            NULL,                                                                // keychain
+            (UInt32) host.length, host.UTF8String,                               // serverName
+            0, NULL,                                                             // securityDomain
+            (UInt32) credential.username.length, credential.username.UTF8String, // accountName
+            (UInt32) path.length, path.UTF8String,                               // path
+            (UInt16) url.port.intValue,                                          // port
+            kSecProtocolTypeHTTP,                                                // protocol
+            kSecAuthenticationTypeHTTPBasic,                                     // authenticationType
+            (UInt32) credential.password.length, credential.password.UTF8String, // password
+            NULL                                                                 // keychain item
     );
 
     if (err) {
@@ -112,17 +112,17 @@
     NSString *username = credential.username;
 
     SecKeychainItemRef keychainItem = NULL;
-    OSStatus err = SecKeychainFindInternetPassword(
-            NULL,                                 // keychain, NULL == default one
-            host.length, host.UTF8String,         // serverName
-            0, NULL,                              // securityDomain
-            username.length, username.UTF8String, // no accountName
-            path.length, path.UTF8String,         // path
-            (UInt16) url.port.intValue,           // port
-            kSecProtocolTypeHTTP,                 // protocol
-            kSecAuthenticationTypeHTTPBasic,      // authType
-            NULL, NULL,                           // no password
-            &keychainItem                         // keychain item
+    SecKeychainFindInternetPassword(
+            NULL,                                          // keychain, NULL == default one
+            (UInt32) host.length, host.UTF8String,         // serverName
+            0, NULL,                                       // securityDomain
+            (UInt32) username.length, username.UTF8String, // no accountName
+            (UInt32) path.length, path.UTF8String,         // path
+            (UInt16) url.port.intValue,                    // port
+            kSecProtocolTypeHTTP,                          // protocol
+            kSecAuthenticationTypeHTTPBasic,               // authType
+            NULL, NULL,                                    // no password
+            &keychainItem                                  // keychain item
     );
 
     if (keychainItem == NULL) {
