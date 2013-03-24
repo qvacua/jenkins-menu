@@ -17,7 +17,6 @@
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
-		1929BA35E728368750C70F6C /* JMKeychainManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */; };
 		1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
@@ -89,7 +88,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
-				1929BA35E728368750C70F6C /* JMKeychainManager.h in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +590,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -607,6 +606,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins Menu/Jenkins Menu-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
