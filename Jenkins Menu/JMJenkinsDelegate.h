@@ -49,6 +49,11 @@
 */
 - (void)jenkins:(JMJenkins *)jenkins forbidden:(id)userInfo;
 
+/**
+* Called when the current credential for the secured Jenkins is wrong.
+*
+* @param userInfo   yet always nil
+*/
 - (void)jenkins:(JMJenkins *)jenkins wrongCredential:(NSDictionary *)userInfo;
 
 @end
