@@ -16,8 +16,8 @@
 - (id)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
-        self.username = username;
-        self.password = password;
+        _username = username;
+        _password = password;
     }
 
     return self;
