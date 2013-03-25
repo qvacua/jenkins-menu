@@ -90,7 +90,7 @@
     [jenkins update];
 
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateNoCredential)));
-    [verify(delegate) jenkins:jenkins updateFailed:nil];
+    [verify(delegate) jenkins:jenkins wrongCredential:nil];
 }
 
 - (void)testDefaultProperties {

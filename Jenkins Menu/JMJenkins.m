@@ -12,6 +12,7 @@
 #import "JMTrustedHostManager.h"
 #import "JMLog.h"
 #import "JMKeychainManager.h"
+#import "AFHTTPClient.h"
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 static const NSTimeInterval qTimeoutInterval = 15;
@@ -19,11 +20,11 @@ static const NSTimeInterval qTimeoutInterval = 15;
 @interface JMJenkins ()
 
 @property NSURLConnection *connection;
-@property (readwrite) NSInteger lastHttpStatusCode;
-@property (readwrite) NSInteger connectionState;
-@property (readwrite) NSURL *viewUrl;
-@property (readonly) NSMutableArray *mutableJobs;
-@property (readwrite) NSString *potentialHostToTrust;
+@property(readwrite) NSInteger lastHttpStatusCode;
+@property(readwrite) NSInteger connectionState;
+@property(readwrite) NSURL *viewUrl;
+@property(readonly) NSMutableArray *mutableJobs;
+@property(readwrite) NSString *potentialHostToTrust;
 
 @end
 
@@ -67,7 +68,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 
     if (self.secured && self.credential == nil) {
         self.connectionState = JMJenkinsConnectionStateNoCredential;
-        [self.delegate jenkins:self updateFailed:nil];
+        [self.delegate jenkins:self wrongCredential:nil];
 
         return;
     }
@@ -374,7 +375,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 }
 
 - (NSURLRequest *)urlRequest {
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.xmlUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:qTimeoutInterval];
 
     if (self.credential == nil) {
         return urlRequest;
@@ -384,34 +385,18 @@ static const NSTimeInterval qTimeoutInterval = 15;
     NSString *password = self.credential.password;
 
     /**
-    * The following is from
-    * http://stackoverflow.com/questions/501231/can-i-use-nsurlcredentialstorage-for-http-basic-authentication
+    * For one https server I could try out the HTTP basic auth method did not work. Thus, we are now using the POST
+    * method to get through. We're using AFNetworking for that.
+    *
+    * It could well be that we have to modify the following code when Jenkins changes the internal login mechanism.
     */
+    AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:self.url];
+    urlRequest = [client requestWithMethod:@"POST" path:@"j_acegi_security_check" parameters:@{
+            @"from" : @"/api/xml",
+            @"j_username" : username,
+            @"j_password" : password
+    }];
 
-    CFHTTPMessageRef dummyRequest = CFHTTPMessageCreateRequest(
-            kCFAllocatorDefault,
-            CFSTR("GET"),
-            (__bridge CFURLRef) [urlRequest URL],
-            kCFHTTPVersion1_1
-    );
-
-    CFHTTPMessageAddAuthentication(
-            dummyRequest,
-            nil,
-            (__bridge CFStringRef) username,
-            (__bridge CFStringRef) password,
-            kCFHTTPAuthenticationSchemeBasic,
-            FALSE
-    );
-
-    NSString *authorizationString = (__bridge NSString *) CFHTTPMessageCopyHeaderFieldValue(
-            dummyRequest,
-            CFSTR("Authorization")
-    );
-
-    CFRelease(dummyRequest);
-
-    [urlRequest setValue:authorizationString forHTTPHeaderField:@"Authorization"];
     return urlRequest;
 }
 
