@@ -16,6 +16,7 @@
 
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 static const NSTimeInterval qTimeoutInterval = 15;
+static NSString *const qJenkinsXmlApiPath = @"/api/xml";
 
 @interface JMJenkins ()
 
@@ -59,7 +60,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
 
 - (void)setUrl:(NSURL *)newUrl {
     _url = newUrl;
-    _xmlUrl = [newUrl URLByAppendingPathComponent:@"api/xml"];
+    _xmlUrl = [newUrl URLByAppendingPathComponent:qJenkinsXmlApiPath];
 }
 
 #pragma mark Public
@@ -392,7 +393,7 @@ static const NSTimeInterval qTimeoutInterval = 15;
     */
     AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:self.url];
     urlRequest = [client requestWithMethod:@"POST" path:@"j_acegi_security_check" parameters:@{
-            @"from" : @"/api/xml",
+            @"from" : qJenkinsXmlApiPath,
             @"j_username" : username,
             @"j_password" : password
     }];
