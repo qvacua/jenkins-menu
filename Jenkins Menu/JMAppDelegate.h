@@ -32,6 +32,10 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 @property (weak) IBOutlet NSSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *storeInKeychanCheckbox;
 
+@property (weak) IBOutlet NSView *blacklistView;
+@property (weak) IBOutlet NSButton *blacklistRemoveButton;
+@property (weak) IBOutlet NSTableView *blacklistTableView;
+
 @property NSStatusItem *statusItem;
 @property NSTimer *timer;
 @property NSUserDefaults *userDefaults;
@@ -47,6 +51,10 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 - (IBAction)openJenkinsUrlAction:(id)sender;
 - (IBAction)openPreferencesWindowAction:(id)sender;
 - (IBAction)setPreferencesAction:(id)sender;
+
+- (IBAction)manageBlacklistAction:(id)sender;
+- (IBAction)blacklistItemAction:(id)sender;
+- (IBAction)blacklistOkAction:(id)sender;
 
 - (IBAction)credentialsOkAction:(id)sender;
 - (IBAction)credentialsCancelAction:(id)sender;

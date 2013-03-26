@@ -31,6 +31,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize userDefaults = _userDefaults;
 @synthesize keychainManager = _keychainManager;
 
+@synthesize blacklistView = _blacklistView;
+@synthesize blacklistRemoveButton = _blacklistRemoveButton;
+@synthesize blacklistTableView = _blacklistTableView;
+
 @synthesize trustedHostManager = _trustedHostManager;
 @synthesize jenkins = _jenkins;
 @synthesize jenkinsUrl = _jenkinsUrl;
@@ -192,6 +196,15 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self.interval = [self.intervalTextField doubleValue] * 60;
 
     [self.window orderOut:self];
+}
+
+- (IBAction)manageBlacklistAction:(id)sender {
+}
+
+- (IBAction)blacklistItemAction:(id)sender {
+}
+
+- (IBAction)blacklistOkAction:(id)sender {
 }
 
 - (IBAction)credentialsOkAction:(id)sender {
