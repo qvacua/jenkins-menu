@@ -132,6 +132,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
         self.jenkinsXmlUrl = [newValue URLByAppendingPathComponent:@"api/xml"];
         self.jenkins.url = newValue;
+        self.jenkins.credential = nil;
 
         [self.userDefaults setObject:[self.jenkinsUrl absoluteString] forKey:qUserDefaultsUrlKey];
         [self updateJenkinsStatus];
