@@ -59,5 +59,4 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 - (IBAction)credentialsCancelAction:(id)sender;
 - (IBAction)storeInKeychainToggleAction:(id)sender;
 
-- (void)blacklistChanged:(id)sender;
 @end
