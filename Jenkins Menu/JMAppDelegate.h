@@ -19,7 +19,6 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 
 @interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 
-@property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *menu;
 @property (weak) IBOutlet NSMenuItem *jobsMenuItem;
 @property (weak) IBOutlet NSMenuItem *statusMenuItem;

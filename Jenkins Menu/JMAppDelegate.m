@@ -20,7 +20,6 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @implementation JMAppDelegate {
 }
 
-@synthesize window = _window;
 @synthesize menu = _menu;
 @synthesize statusItem = _statusItem;
 @synthesize statusMenuItem = _statusMenuItem;
@@ -188,8 +187,8 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     [self.urlTextField setStringValue:[self.jenkinsUrl absoluteString]];
     [self.intervalTextField setIntegerValue:(NSInteger) (self.interval / 60)];
 
-    [self.window makeKeyAndOrderFront:self];
-    [self.window orderFront:self];
+    [self.preferencesWindow makeKeyAndOrderFront:self];
+    [self.preferencesWindow orderFront:self];
 }
 
 - (IBAction)setPreferencesAction:(id)sender {
@@ -197,7 +196,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     self.jenkinsUrl = newUrl;
     self.interval = [self.intervalTextField doubleValue] * 60;
 
-    [self.window orderOut:self];
+    [self.preferencesWindow orderOut:self];
 }
 
 - (IBAction)manageBlacklistAction:(id)sender {
