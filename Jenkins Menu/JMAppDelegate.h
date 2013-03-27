@@ -24,6 +24,7 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 @property (weak) IBOutlet NSMenuItem *jobsMenuItem;
 @property (weak) IBOutlet NSMenuItem *statusMenuItem;
 
+@property (unsafe_unretained) IBOutlet NSWindow *preferencesWindow;
 @property (weak) IBOutlet NSTextField *urlTextField;
 @property (weak) IBOutlet NSTextField *intervalTextField;
 
@@ -32,8 +33,7 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 @property (weak) IBOutlet NSSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *storeInKeychanCheckbox;
 
-@property (weak) IBOutlet NSView *blacklistView;
-@property (weak) IBOutlet NSButton *blacklistRemoveButton;
+@property (unsafe_unretained) IBOutlet NSWindow *blacklistWindow;
 @property (weak) IBOutlet NSTableView *blacklistTableView;
 
 @property NSStatusItem *statusItem;
@@ -60,4 +60,5 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 - (IBAction)credentialsCancelAction:(id)sender;
 - (IBAction)storeInKeychainToggleAction:(id)sender;
 
+- (void)blacklistChanged:(id)sender;
 @end

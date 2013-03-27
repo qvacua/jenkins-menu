@@ -1401,7 +1401,6 @@
 							<string key="NSFrame">{{467, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="189396730">
@@ -1989,10 +1988,10 @@
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="179286615">
-				<int key="NSWindowStyleMask">3</int>
+				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{131, 159}, {320, 200}}</string>
-				<int key="NSWTFlags">611845120</int>
+				<int key="NSWTFlags">1685586944</int>
 				<string key="NSWindowTitle">Blacklist</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -2149,7 +2148,6 @@
 							<string key="NSFrame">{{223, 13}, {83, 32}}</string>
 							<reference key="NSSuperview" ref="460681975"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="537353900">
@@ -3109,6 +3107,22 @@
 						<reference key="destination" ref="421693536"/>
 					</object>
 					<int key="connectionID">1883</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">blacklistWindow</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="179286615"/>
+					</object>
+					<int key="connectionID">1884</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">preferencesWindow</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">1885</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -6087,7 +6101,7 @@
 				<string key="1699.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1702.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1784.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="YES" key="1784.NSWindowTemplate.visibleAtLaunch"/>
+				<boolean value="NO" key="1784.NSWindowTemplate.visibleAtLaunch"/>
 				<array class="NSMutableArray" key="1785.IBNSViewMetadataConstraints">
 					<reference ref="311581675"/>
 					<reference ref="528251236"/>
@@ -6342,7 +6356,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1883</int>
+			<int key="maxID">1885</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6352,7 +6366,6 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="blacklistItemAction:">id</string>
 						<string key="blacklistOkAction:">id</string>
-						<string key="blacklistRemoveAction:">id</string>
 						<string key="credentialsCancelAction:">id</string>
 						<string key="credentialsOkAction:">id</string>
 						<string key="manageBlacklistAction:">id</string>
@@ -6369,10 +6382,6 @@
 						</object>
 						<object class="IBActionInfo" key="blacklistOkAction:">
 							<string key="name">blacklistOkAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="blacklistRemoveAction:">
-							<string key="name">blacklistRemoveAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="credentialsCancelAction:">
@@ -6409,14 +6418,14 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="blacklistRemoveButton">NSButton</string>
 						<string key="blacklistTableView">NSTableView</string>
-						<string key="blacklistView">NSView</string>
+						<string key="blacklistWindow">NSWindow</string>
 						<string key="credentialsWindow">NSWindow</string>
 						<string key="intervalTextField">NSTextField</string>
 						<string key="jobsMenuItem">NSMenuItem</string>
 						<string key="menu">NSMenu</string>
 						<string key="passwordTextField">NSSecureTextField</string>
+						<string key="preferencesWindow">NSWindow</string>
 						<string key="statusMenuItem">NSMenuItem</string>
 						<string key="storeInKeychanCheckbox">NSButton</string>
 						<string key="urlTextField">NSTextField</string>
@@ -6424,17 +6433,13 @@
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="blacklistRemoveButton">
-							<string key="name">blacklistRemoveButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="blacklistTableView">
 							<string key="name">blacklistTableView</string>
 							<string key="candidateClassName">NSTableView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="blacklistView">
-							<string key="name">blacklistView</string>
-							<string key="candidateClassName">NSView</string>
+						<object class="IBToOneOutletInfo" key="blacklistWindow">
+							<string key="name">blacklistWindow</string>
+							<string key="candidateClassName">NSWindow</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="credentialsWindow">
 							<string key="name">credentialsWindow</string>
@@ -6455,6 +6460,10 @@
 						<object class="IBToOneOutletInfo" key="passwordTextField">
 							<string key="name">passwordTextField</string>
 							<string key="candidateClassName">NSSecureTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="preferencesWindow">
+							<string key="name">preferencesWindow</string>
+							<string key="candidateClassName">NSWindow</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="statusMenuItem">
 							<string key="name">statusMenuItem</string>

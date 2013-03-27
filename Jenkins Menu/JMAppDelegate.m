@@ -23,16 +23,17 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize window = _window;
 @synthesize menu = _menu;
 @synthesize statusItem = _statusItem;
-@synthesize urlTextField = _urlTextField;
-@synthesize intervalTextField = _intervalTextField;
 @synthesize statusMenuItem = _statusMenuItem;
 @synthesize jobsMenuItem = _jobsMenuItem;
+
+@synthesize preferencesWindow = _preferencesWindow;
+@synthesize urlTextField = _urlTextField;
+@synthesize intervalTextField = _intervalTextField;
 
 @synthesize userDefaults = _userDefaults;
 @synthesize keychainManager = _keychainManager;
 
-@synthesize blacklistView = _blacklistView;
-@synthesize blacklistRemoveButton = _blacklistRemoveButton;
+@synthesize blacklistWindow = _blacklistWindow;
 @synthesize blacklistTableView = _blacklistTableView;
 
 @synthesize trustedHostManager = _trustedHostManager;
@@ -200,12 +201,15 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (IBAction)manageBlacklistAction:(id)sender {
+    [NSApp beginSheet:self.blacklistWindow modalForWindow:self.preferencesWindow modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:NULL];
 }
 
 - (IBAction)blacklistItemAction:(id)sender {
+
 }
 
 - (IBAction)blacklistOkAction:(id)sender {
+    [NSApp endSheet:self.blacklistWindow];
 }
 
 - (IBAction)credentialsOkAction:(id)sender {
@@ -508,6 +512,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 - (NSImage *)imageWithFileName:(NSString *)fileName {
     return [[NSBundle bundleForClass:[self class]] imageForResource:fileName];
+}
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    [sheet orderOut:self];
 }
 
 @end
