@@ -32,6 +32,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize userDefaults = _userDefaults;
 @synthesize keychainManager = _keychainManager;
 
+@synthesize blacklistItems = _blacklistItmes;
 @synthesize blacklistWindow = _blacklistWindow;
 @synthesize blacklistTableView = _blacklistTableView;
 
@@ -41,6 +42,15 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize jenkinsXmlUrl = _jenkinsXmlUrl;
 @synthesize interval = _interval;
 @synthesize timer = _timer;
+
+#pragma mark NSTableViewDataSource
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return self.blacklistItems.count;
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    return self.blacklistItems[(NSUInteger) row];
+}
 
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -62,6 +72,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
+
+    [self.blacklistItems addObject:@"first"];
+    [self.blacklistItems addObject:@"second"];
+    [self.blacklistTableView reloadData];
 }
 
 #pragma mark JMJenkinsDelegate
@@ -162,6 +176,8 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         _keychainManager = [[JMKeychainManager alloc] init];
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
 
+        _blacklistItmes = [[NSMutableArray alloc] init];
+
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 
         _jenkins = [[JMJenkins alloc] init];
@@ -204,7 +220,16 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (IBAction)blacklistItemAction:(id)sender {
+    NSInteger selectedButton = [sender selectedSegment];
+    log4Debug(@"%d", selectedButton);
 
+    if (selectedButton == 0) {
+        // add
+
+        return;
+    }
+
+    // remove
 }
 
 - (IBAction)blacklistOkAction:(id)sender {

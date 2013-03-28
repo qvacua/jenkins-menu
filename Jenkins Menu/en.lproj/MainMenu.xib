@@ -1401,6 +1401,7 @@
 							<string key="NSFrame">{{467, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="189396730">
@@ -1988,7 +1989,7 @@
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="179286615">
-				<int key="NSWindowStyleMask">1</int>
+				<int key="NSWindowStyleMask">3</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{131, 159}, {320, 200}}</string>
 				<int key="NSWTFlags">1685586944</int>
@@ -2148,6 +2149,7 @@
 							<string key="NSFrame">{{223, 13}, {83, 32}}</string>
 							<reference key="NSSuperview" ref="460681975"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="537353900">
@@ -3147,6 +3149,22 @@
 						<reference key="destination" ref="288816524"/>
 					</object>
 					<int key="connectionID">1651</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="39554715"/>
+						<reference key="destination" ref="976324537"/>
+					</object>
+					<int key="connectionID">1886</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="39554715"/>
+						<reference key="destination" ref="976324537"/>
+					</object>
+					<int key="connectionID">1887</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -6101,7 +6119,7 @@
 				<string key="1699.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1702.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1784.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="NO" key="1784.NSWindowTemplate.visibleAtLaunch"/>
+				<boolean value="YES" key="1784.NSWindowTemplate.visibleAtLaunch"/>
 				<array class="NSMutableArray" key="1785.IBNSViewMetadataConstraints">
 					<reference ref="311581675"/>
 					<reference ref="528251236"/>
@@ -6356,7 +6374,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1885</int>
+			<int key="maxID">1887</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6430,7 +6448,6 @@
 						<string key="storeInKeychanCheckbox">NSButton</string>
 						<string key="urlTextField">NSTextField</string>
 						<string key="userTextField">NSTextField</string>
-						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="blacklistTableView">
@@ -6480,10 +6497,6 @@
 						<object class="IBToOneOutletInfo" key="userTextField">
 							<string key="name">userTextField</string>
 							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="window">
-							<string key="name">window</string>
-							<string key="candidateClassName">NSWindow</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

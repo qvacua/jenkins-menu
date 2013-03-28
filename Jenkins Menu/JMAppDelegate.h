@@ -17,7 +17,7 @@ static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
 static NSString *const qUserDefaultsIntervalKey = @"interval";
 static NSString *const qUserDefaultsSecuredKey = @"fds";
 
-@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
+@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, NSTableViewDataSource, NSTableViewDelegate, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 
 @property (weak) IBOutlet NSMenu *menu;
 @property (weak) IBOutlet NSMenuItem *jobsMenuItem;
@@ -32,6 +32,7 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 @property (weak) IBOutlet NSSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *storeInKeychanCheckbox;
 
+@property NSMutableArray *blacklistItems;
 @property (unsafe_unretained) IBOutlet NSWindow *blacklistWindow;
 @property (weak) IBOutlet NSTableView *blacklistTableView;
 
