@@ -52,6 +52,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     return self.blacklistItems[(NSUInteger) row];
 }
 
+- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    [self.blacklistItems replaceObjectAtIndex:(NSUInteger) row withObject:object];
+}
+
 #pragma mark NSApplicationDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [GrowlApplicationBridge setGrowlDelegate:self];
