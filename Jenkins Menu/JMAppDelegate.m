@@ -296,11 +296,11 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)showInitialStatus {
-    [self setTitle:@"" image:@"disconnect.png"];
+    [self setTitle:@"" image:@"disconnect"];
 }
 
 - (void)showForbiddenStatus {
-    [self setTitle:@"" image:@"disconnect.png"];
+    [self setTitle:@"" image:@"disconnect"];
     [self.statusMenuItem setTitle:NSLocalizedString(@"JenkinsSecuredStatus", @"The Jenkins CI server is secured")];
 }
 
@@ -312,7 +312,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 }
 
 - (void)showConnectingStatus {
-    [self setTitle:@"" image:@"disconnect.png"];
+    [self setTitle:@"" image:@"disconnect"];
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusUpdating", @"")];
 }
 
@@ -322,11 +322,11 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 - (void)setTitle:(NSString *)title image:(NSString *)imageName {
     [self.statusItem setTitle:title];
-    [self.statusItem setImage:[[NSBundle bundleForClass:[self class]] imageForResource:imageName]];
+    [self.statusItem setImage:[NSImage imageNamed:imageName]];
 }
 
 - (void)showErrorStatus:(NSString *)error {
-    [self setTitle:@"" image:@"disconnect.png"];
+    [self setTitle:@"" image:@"disconnect"];
     [self.statusMenuItem setTitle:NSLocalizedString(@"StatusError", @"")];
 
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"NotifyMessageError", @""), self.jenkinsXmlUrl, error];
@@ -362,10 +362,10 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     NSString *templateNumber = @"<span style=\"font-family: Lucida Grande; font-size: 9pt; color: %@;\">%lu</span>";
     NSString *templateText = @"<span style=\"font-family: Lucida Grande; font-size: 9pt; color: %@;\">%@</span>";
     NSMutableString *htmlAsString = [[NSMutableString alloc] init];
-    NSString *imageName = @"thumb_up.png";
+    NSString *imageName = @"thumb_up";
 
     if (yellowCount > 0) {
-        imageName = @"weather_lightning.png";
+        imageName = @"weather_lightning";
         [htmlAsString appendFormat:templateNumber, @"orange", yellowCount];
     }
 
@@ -376,14 +376,14 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
         }
 
         [htmlAsString appendFormat:templateNumber, @"red", redCount];
-        imageName = @"fire.png";
+        imageName = @"fire";
     }
 
     NSData *htmlAsData = [[NSData alloc] initWithBytes:[htmlAsString UTF8String] length:[htmlAsString lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
     NSAttributedString *titleAttrString = [[NSAttributedString alloc] initWithHTML:htmlAsData documentAttributes:NULL];
 
     [self.statusItem setAttributedTitle:titleAttrString];
-    [self.statusItem setImage:[[NSBundle bundleForClass:[self class]] imageForResource:imageName]];
+    [self.statusItem setImage:[NSImage imageNamed:imageName]];
 }
 
 - (void)showNotifications {
@@ -496,21 +496,21 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 - (NSImage *)imageForJobState:(JMJenkinsJobState)state {
     switch (state) {
         case JMJenkinsJobStateGreen:
-            return [self imageWithFileName:@"thumb_up.png"];
+            return [self imageWithFileName:@"thumb_up"];
 
         case JMJenkinsJobStateYellow:
-            return [self imageWithFileName:@"weather_lightning.png"];
+            return [self imageWithFileName:@"weather_lightning"];
 
         case JMJenkinsJobStateRed:
-            return [self imageWithFileName:@"fire.png"];
+            return [self imageWithFileName:@"fire"];
 
         default:
-            return [self imageWithFileName:@"disconnect.png"];
+            return [self imageWithFileName:@"disconnect"];
     }
 }
 
 - (NSImage *)imageWithFileName:(NSString *)fileName {
-    return [[NSBundle bundleForClass:[self class]] imageForResource:fileName];
+    return [NSImage imageNamed:fileName];
 }
 
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
