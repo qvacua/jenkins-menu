@@ -128,6 +128,7 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
         _connectionState = JMJenkinsConnectionStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
         _mutableJobs = [[NSMutableArray alloc] init];
+        _blacklistItems = [[NSArray alloc] init];
     }
 
     return self;

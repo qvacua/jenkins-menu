@@ -66,8 +66,8 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
 
-    self.blacklistItems = ([self.userDefaults objectForKey:qUserDefaultsBlacklistItemsKey]);
-    self.tempBlacklistItems = [self.blacklistItems mutableCopy];
+    self.jenkins.blacklistItems = ([self.userDefaults objectForKey:qUserDefaultsBlacklistItemsKey]);
+    self.tempBlacklistItems = [self.jenkins.blacklistItems mutableCopy];
     [self.blacklistTableView reloadData];
 }
 
@@ -159,13 +159,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
         return;
     }
-
-    if ([keyPath isEqualToString:@"blacklistItems"]) {
-        [self.userDefaults setObject:self.blacklistItems forKey:qUserDefaultsBlacklistItemsKey];
-        [self updateJenkinsStatus];
-
-        return;
-    }
 }
 
 #pragma mark NSObject
@@ -176,7 +169,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
         _keychainManager = [[JMKeychainManager alloc] init];
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
 
-        _blacklistItems = [[NSMutableArray alloc] init];
         _tempBlacklistItems = [[NSMutableArray alloc] init];
 
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -212,13 +204,21 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     NSURL *newUrl = [[NSURL alloc] initWithString:[self.urlTextField stringValue]];
     self.jenkinsUrl = newUrl;
     self.interval = [self.intervalTextField doubleValue] * 60;
-    self.blacklistItems = [self.tempBlacklistItems mutableCopy];
+
+    [self.tempBlacklistItems sortUsingComparator:(NSComparator) ^(NSString *item1, NSString *item2) {
+        return [item1 compare:item2];
+    }];
+
+    self.jenkins.blacklistItems = [self.tempBlacklistItems mutableCopy];
+    [self.userDefaults setObject:self.jenkins.blacklistItems forKey:qUserDefaultsBlacklistItemsKey];
+    [self updateJenkinsStatus];
 
     [self.preferencesWindow orderOut:self];
 }
 
 - (IBAction)manageBlacklistAction:(id)sender {
-    self.tempBlacklistItems = [self.blacklistItems mutableCopy];
+    self.tempBlacklistItems = [self.jenkins.blacklistItems mutableCopy];
+    [self.blacklistTableView selectRowIndexes:nil byExtendingSelection:NO];
     [self.blacklistTableView reloadData];
 
     [NSApp beginSheet:self.blacklistWindow modalForWindow:self.preferencesWindow modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:NULL];
