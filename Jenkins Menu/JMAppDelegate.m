@@ -66,6 +66,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
 
+    self.blacklistItems = ([self.userDefaults objectForKey:qUserDefaultsBlacklistItemsKey]);
     self.tempBlacklistItems = [self.blacklistItems mutableCopy];
     [self.blacklistTableView reloadData];
 }
@@ -380,6 +381,10 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
     if ([userDefaults objectForKey:qUserDefaultsIntervalKey] == nil) {
         [userDefaults setObject:[NSNumber numberWithDouble:qDefaultInterval] forKey:qUserDefaultsIntervalKey];
+    }
+
+    if ([userDefaults objectForKey:qUserDefaultsBlacklistItemsKey] == nil) {
+        [userDefaults setObject:[NSMutableArray array] forKey:qUserDefaultsBlacklistItemsKey];
     }
 }
 
