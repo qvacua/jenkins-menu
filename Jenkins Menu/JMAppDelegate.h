@@ -16,6 +16,8 @@
 static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
 static NSString *const qUserDefaultsIntervalKey = @"interval";
 static NSString *const qUserDefaultsSecuredKey = @"fds";
+static const NSInteger qBlacklistItemAddSegment = 0;
+static const NSInteger qBlacklistItemRemoveSegment = 1;
 
 @interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, NSTableViewDataSource, NSTableViewDelegate, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 

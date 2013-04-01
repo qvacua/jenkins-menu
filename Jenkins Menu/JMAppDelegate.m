@@ -16,39 +16,10 @@
 
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
-
 static const NSInteger qTableViewNoSelectedRow = -1;
-
-static const int qBlacklistItemRemoveSegment = 1;
-
-static const int qBlacklistItemAddSegment = 0;
 
 @implementation JMAppDelegate {
 }
-
-@synthesize menu = _menu;
-@synthesize statusItem = _statusItem;
-@synthesize statusMenuItem = _statusMenuItem;
-@synthesize jobsMenuItem = _jobsMenuItem;
-
-@synthesize preferencesWindow = _preferencesWindow;
-@synthesize urlTextField = _urlTextField;
-@synthesize intervalTextField = _intervalTextField;
-
-@synthesize userDefaults = _userDefaults;
-@synthesize keychainManager = _keychainManager;
-
-@synthesize blacklistItems = _blacklistItmes;
-@synthesize blacklistWindow = _blacklistWindow;
-@synthesize blacklistTableView = _blacklistTableView;
-@synthesize blacklistItemSegmentedControl = _blacklistItemSegmentedControl;
-
-@synthesize trustedHostManager = _trustedHostManager;
-@synthesize jenkins = _jenkins;
-@synthesize jenkinsUrl = _jenkinsUrl;
-@synthesize jenkinsXmlUrl = _jenkinsXmlUrl;
-@synthesize interval = _interval;
-@synthesize timer = _timer;
 
 #pragma mark NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -197,7 +168,7 @@ static const int qBlacklistItemAddSegment = 0;
         _keychainManager = [[JMKeychainManager alloc] init];
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
 
-        _blacklistItmes = [[NSMutableArray alloc] init];
+        _blacklistItems = [[NSMutableArray alloc] init];
 
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 

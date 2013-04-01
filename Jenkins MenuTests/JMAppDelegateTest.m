@@ -25,6 +25,8 @@
 
     Method originalMethod;
     IMP originalImpl;
+
+    NSTableView *tableView;
 }
 
 - (void)setUp {
@@ -36,9 +38,13 @@
     keychainManager = mock([JMKeychainManager class]);
     mockJenkins = mock([JMJenkins class]);
 
+    tableView = mock([NSTableView class]);
+
     appDelegate = [[JMAppDelegate alloc] init];
     appDelegate.userDefaults = userDefaults;
     appDelegate.keychainManager = keychainManager;
+
+    appDelegate.blacklistTableView = tableView;
 }
 
 - (void)tearDown {
@@ -70,6 +76,31 @@
     [appDelegate jenkins:mockJenkins forbidden:nil];
     [verify(mockJenkins) setCredential:credential];
     [verify(mockJenkins) update];
+}
+
+- (void)testBlacklistItemAddAction {
+    NSUInteger oldCount = appDelegate.blacklistItems.count;
+
+    NSSegmentedControl *segControl = mock([NSSegmentedControl class]);
+    [given([segControl selectedSegment]) willReturnInteger:qBlacklistItemAddSegment];
+    [appDelegate blacklistItemAction:segControl];
+
+    assertThat(appDelegate.blacklistItems, hasSize(oldCount + 1));
+    assertThat(appDelegate.blacklistItems.lastObject, is(@""));
+    [verify(tableView) reloadData];
+    [verify(tableView) editColumn:0 row:oldCount withEvent:nil select:YES];
+}
+
+- (void)testBlacklistItemRemoveAction {
+    [appDelegate.blacklistItems addObject:@"oldItem"];
+    NSUInteger oldCount = appDelegate.blacklistItems.count;
+
+    NSSegmentedControl *segControl = mock([NSSegmentedControl class]);
+    [given([segControl selectedSegment]) willReturnInteger:qBlacklistItemRemoveSegment];
+    [appDelegate blacklistItemAction:segControl];
+
+    assertThat(appDelegate.blacklistItems, hasSize(oldCount - 1));
+    [verify(tableView) reloadData];
 }
 
 - (void)testAppDidFinishLaunching {
