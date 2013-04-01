@@ -213,7 +213,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
 - (IBAction)blacklistItemAction:(id)sender {
     NSInteger selectedButton = [sender selectedSegment];
-    log4Debug(@"%d", selectedButton);
 
     if (selectedButton == qBlacklistItemRemoveSegment) {
         [self.blacklistItems removeObjectAtIndex:(NSUInteger) [self.blacklistTableView selectedRow]];
@@ -222,11 +221,19 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     }
 
     [self.blacklistItems addObject:@""];
+    NSUInteger indexOfNewItem = self.blacklistItems.count - 1;
+
     [self.blacklistTableView reloadData];
-    [self.blacklistTableView editColumn:0 row:([self.blacklistItems count] - 1) withEvent:nil select:YES];
+    // manually selecting the newly created row since the YES flag in -editColumn:row:withEvent:select: does not seem to work
+    [self.blacklistTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:indexOfNewItem] byExtendingSelection:NO];
+    [self.blacklistTableView editColumn:0 row:indexOfNewItem withEvent:nil select:YES];
 }
 
 - (IBAction)blacklistOkAction:(id)sender {
+    [NSApp endSheet:self.blacklistWindow];
+}
+
+- (IBAction)blacklistCancelAction:(id)sender {
     [NSApp endSheet:self.blacklistWindow];
 }
 

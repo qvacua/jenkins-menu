@@ -88,6 +88,7 @@
     assertThat(appDelegate.blacklistItems, hasSize(oldCount + 1));
     assertThat(appDelegate.blacklistItems.lastObject, is(@""));
     [verify(tableView) reloadData];
+    [verify(tableView) selectRowIndexes:[NSIndexSet indexSetWithIndex:oldCount] byExtendingSelection:NO];
     [verify(tableView) editColumn:0 row:oldCount withEvent:nil select:YES];
 }
 
