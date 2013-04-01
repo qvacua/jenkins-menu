@@ -35,6 +35,7 @@ static NSString *const qUserDefaultsSecuredKey = @"fds";
 @property NSMutableArray *blacklistItems;
 @property (unsafe_unretained) IBOutlet NSWindow *blacklistWindow;
 @property (weak) IBOutlet NSTableView *blacklistTableView;
+@property (weak) IBOutlet NSSegmentedControl *blacklistItemSegmentedControl;
 
 @property NSStatusItem *statusItem;
 @property NSTimer *timer;

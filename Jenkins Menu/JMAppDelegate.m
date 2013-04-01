@@ -17,6 +17,12 @@
 static NSString *const DEFAULT_URL_VALUE = @"http://ci.jruby.org/api/xml";
 static NSTimeInterval const qDefaultInterval = 5 * 60;
 
+static const NSInteger qTableViewNoSelectedRow = -1;
+
+static const int qBlacklistItemRemoveSegment = 1;
+
+static const int qBlacklistItemAddSegment = 0;
+
 @implementation JMAppDelegate {
 }
 
@@ -35,6 +41,7 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 @synthesize blacklistItems = _blacklistItmes;
 @synthesize blacklistWindow = _blacklistWindow;
 @synthesize blacklistTableView = _blacklistTableView;
+@synthesize blacklistItemSegmentedControl = _blacklistItemSegmentedControl;
 
 @synthesize trustedHostManager = _trustedHostManager;
 @synthesize jenkins = _jenkins;
@@ -54,6 +61,16 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     [self.blacklistItems replaceObjectAtIndex:(NSUInteger) row withObject:object];
+}
+
+#pragma mark NSTableViewDelegate
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    if ([self.blacklistTableView selectedRow] == qTableViewNoSelectedRow) {
+        [self.blacklistItemSegmentedControl setEnabled:NO forSegment:qBlacklistItemRemoveSegment];
+        return;
+    }
+
+    [self.blacklistItemSegmentedControl setEnabled:YES forSegment:qBlacklistItemRemoveSegment];
 }
 
 #pragma mark NSApplicationDelegate
@@ -227,13 +244,15 @@ static NSTimeInterval const qDefaultInterval = 5 * 60;
     NSInteger selectedButton = [sender selectedSegment];
     log4Debug(@"%d", selectedButton);
 
-    if (selectedButton == 0) {
-        // add
-
+    if (selectedButton == qBlacklistItemRemoveSegment) {
+        [self.blacklistItems removeObjectAtIndex:(NSUInteger) [self.blacklistTableView selectedRow]];
+        [self.blacklistTableView reloadData];
         return;
     }
 
-    // remove
+    [self.blacklistItems addObject:@""];
+    [self.blacklistTableView reloadData];
+    [self.blacklistTableView editColumn:0 row:([self.blacklistItems count] - 1) withEvent:nil select:YES];
 }
 
 - (IBAction)blacklistOkAction:(id)sender {

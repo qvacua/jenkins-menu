@@ -3128,6 +3128,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">blacklistItemSegmentedControl</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="665714762"/>
+					</object>
+					<int key="connectionID">1888</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">nextKeyView</string>
 						<reference key="source" ref="288816524"/>
 						<reference key="destination" ref="728724260"/>
@@ -6374,7 +6382,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1887</int>
+			<int key="maxID">1888</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6436,6 +6444,7 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="blacklistItemSegmentedControl">NSSegmentedControl</string>
 						<string key="blacklistTableView">NSTableView</string>
 						<string key="blacklistWindow">NSWindow</string>
 						<string key="credentialsWindow">NSWindow</string>
@@ -6450,6 +6459,10 @@
 						<string key="userTextField">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="blacklistItemSegmentedControl">
+							<string key="name">blacklistItemSegmentedControl</string>
+							<string key="candidateClassName">NSSegmentedControl</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="blacklistTableView">
 							<string key="name">blacklistTableView</string>
 							<string key="candidateClassName">NSTableView</string>
