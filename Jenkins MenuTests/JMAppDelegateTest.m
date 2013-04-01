@@ -166,19 +166,6 @@
     [verify(userDefaults) setObject:@37 forKey:qUserDefaultsIntervalKey];
 }
 
-- (void)testSetBlacklist {
-    STFail(@"fds");
-    [given([userDefaults objectForKey:qUserDefaultsUrlKey]) willReturn:@"http://some/host/"];
-    [given([userDefaults objectForKey:qUserDefaultsIntervalKey]) willReturn:@18];
-    [appDelegate applicationDidFinishLaunching:nil];
-
-    appDelegate.interval = 37;
-
-    assertThat(@(appDelegate.interval), is(@37));
-    assertThat(@(appDelegate.jenkins.interval), is(@37));
-    [verify(userDefaults) setObject:@37 forKey:qUserDefaultsIntervalKey];
-}
-
 #pragma mark Private
 - (void)exchangeSystemStatusBarClassMethod {
     Method testMethod = class_getInstanceMethod([self class], @selector(mockSystemStatusBar));

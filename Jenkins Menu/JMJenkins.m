@@ -88,32 +88,15 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
 }
 
 - (JMJenkinsJobsTotalState)totalState {
-    int green = 0;
-    int yellow = 0;
-
-    for (JMJenkinsJob *job in self.jobs) {
-        if ([self.blacklistItems containsObject:job.name]) {
-            continue;
-        }
-
-        if (job.state == JMJenkinsJobStateRed) {
-            return JMJenkinsTotalStateRed;
-        }
-
-        if (job.state == JMJenkinsJobStateYellow) {
-            yellow++;
-        }
-
-        if (job.state == JMJenkinsJobStateGreen) {
-            green++;
-        }
+    if ([self countOfRedJobs] > 0) {
+        return JMJenkinsTotalStateRed;
     }
 
-    if (yellow > 0) {
+    if ([self countOfYellowJobs] > 0) {
         return JMJenkinsTotalStateYellow;
     }
 
-    if (green > 0) {
+    if ([self countOfGreenJobs] > 0) {
         return JMJenkinsTotalStateGreen;
     }
 
@@ -360,10 +343,15 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
 - (NSUInteger)countState:(JMJenkinsJobState)jobState {
     NSUInteger count = 0;
     for (JMJenkinsJob *job in self.jobs) {
+        if ([self.blacklistItems containsObject:job.name]) {
+            continue;
+        }
+
         if (job.state == jobState) {
             count++;
         }
     }
+
     return count;
 }
 

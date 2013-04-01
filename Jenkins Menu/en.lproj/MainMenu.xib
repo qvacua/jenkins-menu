@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">3084</string>
@@ -1401,7 +1401,6 @@
 							<string key="NSFrame">{{467, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="189396730">
@@ -1679,7 +1678,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="361852909"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{500, 241}</string>
 				<string key="NSMaxSize">{1280, 241}</string>
 				<string key="NSFrameAutosaveName">PreferencesWindow</string>
@@ -1788,7 +1787,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="498506195">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="288816524">
@@ -1796,7 +1795,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{88, 59}, {131, 18}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="875222177"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1828,7 +1826,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{90, 124}, {127, 22}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="43157160"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1850,7 +1847,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{90, 92}, {127, 22}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="264137479"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1875,7 +1871,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{48, 126}, {37, 17}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="728724260"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1896,7 +1891,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 94}, {68, 17}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="569195717"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1917,7 +1911,6 @@
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{20, 81}, {197, 5}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="288816524"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSOffsets">{0, 0}</string>
@@ -1942,8 +1935,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{141, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1049829767">
@@ -1967,7 +1958,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{59, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="498506195"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="769498151"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1989,18 +1979,16 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{237, 166}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="714252902"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">CredentialsWindow</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="179286615">
-				<int key="NSWindowStyleMask">3</int>
+				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{131, 159}, {320, 200}}</string>
 				<int key="NSWTFlags">1685586944</int>
@@ -2160,7 +2148,6 @@
 							<string key="NSFrame">{{223, 13}, {83, 32}}</string>
 							<reference key="NSSuperview" ref="460681975"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="537353900">
@@ -2275,7 +2262,7 @@
 					<reference key="NSNextKeyView" ref="23242784"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -6227,7 +6214,7 @@
 				<string key="1699.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1702.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1784.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="YES" key="1784.NSWindowTemplate.visibleAtLaunch"/>
+				<boolean value="NO" key="1784.NSWindowTemplate.visibleAtLaunch"/>
 				<array class="NSMutableArray" key="1785.IBNSViewMetadataConstraints">
 					<reference ref="311581675"/>
 					<reference ref="528251236"/>
@@ -6627,47 +6614,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/JMAppDelegate.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSDocument</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="printDocument:">id</string>
-						<string key="revertDocumentToSaved:">id</string>
-						<string key="runPageLayout:">id</string>
-						<string key="saveDocument:">id</string>
-						<string key="saveDocumentAs:">id</string>
-						<string key="saveDocumentTo:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="printDocument:">
-							<string key="name">printDocument:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="revertDocumentToSaved:">
-							<string key="name">revertDocumentToSaved:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="runPageLayout:">
-							<string key="name">runPageLayout:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="saveDocument:">
-							<string key="name">saveDocument:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="saveDocumentAs:">
-							<string key="name">saveDocumentAs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="saveDocumentTo:">
-							<string key="name">saveDocumentTo:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSDocument.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

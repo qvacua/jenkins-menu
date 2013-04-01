@@ -202,6 +202,21 @@
     [verify(delegate) jenkins:jenkins updateFinished:nil];
 }
 
+- (void)testBlacklistItemsOnlyGreenExcluded {
+    jenkins.blacklistItems = @[
+            @"activerecord-jdbc-master",
+            @"jruby-test-all-master"
+    ];
+
+    [self makeResponseReturnHttpOk];
+    NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
+
+    [jenkins connection:nil didReceiveData:xmlData];
+    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateRed)));
+    assertThat(@(jenkins.countOfGreenJobs), is(@0));
+}
+
 - (void)testBlacklistItemsOnlyRedExcluded {
     jenkins.blacklistItems = @[
             @"jruby-spec-ci-master",
@@ -214,9 +229,10 @@
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(jenkins.jobs, hasSize(8));
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateYellow)));
+    assertThat(@(jenkins.countOfRedJobs), is(@0));
 }
 
-- (void)testBlacklistItemsAllExcluded {
+- (void)testBlacklistItemsYellowRedExcluded {
     jenkins.blacklistItems = @[
             @"jruby-solaris",
             @"jruby-rack-dist",
@@ -230,6 +246,8 @@
     [jenkins connection:nil didReceiveData:xmlData];
     assertThat(jenkins.jobs, hasSize(8));
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateGreen)));
+    assertThat(@(jenkins.countOfYellowJobs), is(@0));
+    assertThat(@(jenkins.countOfRedJobs), is(@0));
 }
 
 /**
