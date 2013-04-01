@@ -92,6 +92,10 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
     int yellow = 0;
 
     for (JMJenkinsJob *job in self.jobs) {
+        if ([self.blacklistItems containsObject:job.name]) {
+            continue;
+        }
+
         if (job.state == JMJenkinsJobStateRed) {
             return JMJenkinsTotalStateRed;
         }

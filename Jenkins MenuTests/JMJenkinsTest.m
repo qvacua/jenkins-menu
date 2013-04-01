@@ -202,6 +202,36 @@
     [verify(delegate) jenkins:jenkins updateFinished:nil];
 }
 
+- (void)testBlacklistItemsOnlyRedExcluded {
+    jenkins.blacklistItems = @[
+            @"jruby-spec-ci-master",
+            @"jruby-ossl"
+    ];
+
+    [self makeResponseReturnHttpOk];
+    NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
+
+    [jenkins connection:nil didReceiveData:xmlData];
+    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateYellow)));
+}
+
+- (void)testBlacklistItemsAllExcluded {
+    jenkins.blacklistItems = @[
+            @"jruby-solaris",
+            @"jruby-rack-dist",
+            @"jruby-spec-ci-master",
+            @"jruby-ossl"
+    ];
+
+    [self makeResponseReturnHttpOk];
+    NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
+
+    [jenkins connection:nil didReceiveData:xmlData];
+    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateGreen)));
+}
+
 /**
 * @bug
 */
