@@ -36,19 +36,6 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
 @dynamic jobs;
 @dynamic url;
 
-@synthesize xmlUrl = _xmlUrl;
-@synthesize secured = _secured;
-@synthesize credential = _credential;
-@synthesize interval = _interval;
-@synthesize connectionState = _connectionState;
-@synthesize lastHttpStatusCode = _lastHttpStatusCode;
-@synthesize viewUrl = _viewUrl;
-@synthesize mutableJobs = _mutableJobs;
-@synthesize delegate = _delegate;
-@synthesize trustedHostManager = _trustedHostManager;
-@synthesize potentialHostToTrust = _potentialHostToTrust;
-@synthesize connection = _connection;
-
 #pragma mark Properties
 - (NSArray *)jobs {
     return self.mutableJobs;

@@ -14,11 +14,6 @@
 
 @dynamic state;
 
-@synthesize name = _name;
-@synthesize url = _url;
-@synthesize lastState = _lastState;
-@synthesize running = _running;
-
 - (JMJenkinsJobState)state {
     return _state;
 }

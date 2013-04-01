@@ -79,28 +79,28 @@
 }
 
 - (void)testBlacklistItemAddAction {
-    NSUInteger oldCount = appDelegate.blacklistItems.count;
+    NSUInteger oldCount = appDelegate.tempBlacklistItems.count;
 
     NSSegmentedControl *segControl = mock([NSSegmentedControl class]);
     [given([segControl selectedSegment]) willReturnInteger:qBlacklistItemAddSegment];
     [appDelegate blacklistItemAction:segControl];
 
-    assertThat(appDelegate.blacklistItems, hasSize(oldCount + 1));
-    assertThat(appDelegate.blacklistItems.lastObject, is(@""));
+    assertThat(appDelegate.tempBlacklistItems, hasSize(oldCount + 1));
+    assertThat(appDelegate.tempBlacklistItems.lastObject, is(@""));
     [verify(tableView) reloadData];
     [verify(tableView) selectRowIndexes:[NSIndexSet indexSetWithIndex:oldCount] byExtendingSelection:NO];
     [verify(tableView) editColumn:0 row:oldCount withEvent:nil select:YES];
 }
 
 - (void)testBlacklistItemRemoveAction {
-    [appDelegate.blacklistItems addObject:@"oldItem"];
-    NSUInteger oldCount = appDelegate.blacklistItems.count;
+    [appDelegate.tempBlacklistItems addObject:@"oldItem"];
+    NSUInteger oldCount = appDelegate.tempBlacklistItems.count;
 
     NSSegmentedControl *segControl = mock([NSSegmentedControl class]);
     [given([segControl selectedSegment]) willReturnInteger:qBlacklistItemRemoveSegment];
     [appDelegate blacklistItemAction:segControl];
 
-    assertThat(appDelegate.blacklistItems, hasSize(oldCount - 1));
+    assertThat(appDelegate.tempBlacklistItems, hasSize(oldCount - 1));
     [verify(tableView) reloadData];
 }
 
@@ -155,6 +155,19 @@
 }
 
 - (void)testSetInterval {
+    [given([userDefaults objectForKey:qUserDefaultsUrlKey]) willReturn:@"http://some/host/"];
+    [given([userDefaults objectForKey:qUserDefaultsIntervalKey]) willReturn:@18];
+    [appDelegate applicationDidFinishLaunching:nil];
+
+    appDelegate.interval = 37;
+
+    assertThat(@(appDelegate.interval), is(@37));
+    assertThat(@(appDelegate.jenkins.interval), is(@37));
+    [verify(userDefaults) setObject:@37 forKey:qUserDefaultsIntervalKey];
+}
+
+- (void)testSetBlacklist {
+    STFail(@"fds");
     [given([userDefaults objectForKey:qUserDefaultsUrlKey]) willReturn:@"http://some/host/"];
     [given([userDefaults objectForKey:qUserDefaultsIntervalKey]) willReturn:@18];
     [appDelegate applicationDidFinishLaunching:nil];

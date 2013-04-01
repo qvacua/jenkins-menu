@@ -36,6 +36,7 @@ static const NSInteger qBlacklistItemRemoveSegment = 1;
 @property (weak) IBOutlet NSButton *storeInKeychanCheckbox;
 
 @property NSMutableArray *blacklistItems;
+@property NSMutableArray *tempBlacklistItems;
 @property (unsafe_unretained) IBOutlet NSWindow *blacklistWindow;
 @property (weak) IBOutlet NSTableView *blacklistTableView;
 @property (weak) IBOutlet NSSegmentedControl *blacklistItemSegmentedControl;

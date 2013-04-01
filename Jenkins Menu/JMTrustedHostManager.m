@@ -17,9 +17,6 @@
 @implementation JMTrustedHostManager {
 }
 
-@synthesize onceTrustHosts = _onceTrustHosts;
-@synthesize userDefaults = _userDefaults;
-
 - (id)init {
     self = [super init];
     if (self) {

@@ -23,15 +23,15 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
 #pragma mark NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.blacklistItems.count;
+    return self.tempBlacklistItems.count;
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    return self.blacklistItems[(NSUInteger) row];
+    return self.tempBlacklistItems[(NSUInteger) row];
 }
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    [self.blacklistItems replaceObjectAtIndex:(NSUInteger) row withObject:object];
+    [self.tempBlacklistItems replaceObjectAtIndex:(NSUInteger) row withObject:object];
 }
 
 #pragma mark NSTableViewDelegate
@@ -54,6 +54,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     NSKeyValueObservingOptions observingOptions = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self addObserver:self forKeyPath:@"jenkinsUrl" options:observingOptions context:NULL];
     [self addObserver:self forKeyPath:@"interval" options:observingOptions context:NULL];
+    [self addObserver:self forKeyPath:@"blacklistItems" options:observingOptions context:NULL];
 
     NSURL *url = [self cleanedUrlFromUserDefaults];
 
@@ -65,8 +66,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
 
-    [self.blacklistItems addObject:@"first"];
-    [self.blacklistItems addObject:@"second"];
+    self.tempBlacklistItems = [self.blacklistItems mutableCopy];
     [self.blacklistTableView reloadData];
 }
 
@@ -158,6 +158,13 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
         return;
     }
+
+    if ([keyPath isEqualToString:@"blacklistItems"]) {
+        [self.userDefaults setObject:self.blacklistItems forKey:qUserDefaultsBlacklistItemsKey];
+        [self updateJenkinsStatus];
+
+        return;
+    }
 }
 
 #pragma mark NSObject
@@ -169,6 +176,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
         _trustedHostManager = [[JMTrustedHostManager alloc] init];
 
         _blacklistItems = [[NSMutableArray alloc] init];
+        _tempBlacklistItems = [[NSMutableArray alloc] init];
 
         _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 
@@ -203,11 +211,15 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     NSURL *newUrl = [[NSURL alloc] initWithString:[self.urlTextField stringValue]];
     self.jenkinsUrl = newUrl;
     self.interval = [self.intervalTextField doubleValue] * 60;
+    self.blacklistItems = [self.tempBlacklistItems mutableCopy];
 
     [self.preferencesWindow orderOut:self];
 }
 
 - (IBAction)manageBlacklistAction:(id)sender {
+    self.tempBlacklistItems = [self.blacklistItems mutableCopy];
+    [self.blacklistTableView reloadData];
+
     [NSApp beginSheet:self.blacklistWindow modalForWindow:self.preferencesWindow modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:NULL];
 }
 
@@ -215,13 +227,13 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     NSInteger selectedButton = [sender selectedSegment];
 
     if (selectedButton == qBlacklistItemRemoveSegment) {
-        [self.blacklistItems removeObjectAtIndex:(NSUInteger) [self.blacklistTableView selectedRow]];
+        [self.tempBlacklistItems removeObjectAtIndex:(NSUInteger) [self.blacklistTableView selectedRow]];
         [self.blacklistTableView reloadData];
         return;
     }
 
-    [self.blacklistItems addObject:@""];
-    NSUInteger indexOfNewItem = self.blacklistItems.count - 1;
+    [self.tempBlacklistItems addObject:@""];
+    NSUInteger indexOfNewItem = self.tempBlacklistItems.count - 1;
 
     [self.blacklistTableView reloadData];
     // manually selecting the newly created row since the YES flag in -editColumn:row:withEvent:select: does not seem to work
