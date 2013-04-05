@@ -35,7 +35,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
     <key>SUPublicDSAKeyFile</key>
-    <string>jenkins-menu-dsa-public.pem</string>
+    <string>sparkle-pub.pem</string>
     <key>SUFeedURL</key>
     <string>http://qvacua.com/jenkinsmenu/appcast.xml</string>
 </dict>

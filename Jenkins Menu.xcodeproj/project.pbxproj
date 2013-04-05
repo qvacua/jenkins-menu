@@ -41,6 +41,7 @@
 		1929BAD4E4742090900DD0EE /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
+		1929BBED8002399172469533 /* sparkle-pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1929B76F5F4A09ADB741C046 /* sparkle-pub.pem */; };
 		1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BC2811C806C74170CB48 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B662620DE806ED525322 /* AFJSONRequestOperation.m */; };
 		1929BC57372C9660FED25925 /* AFImageRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */; };
@@ -88,7 +89,6 @@
 		4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		4B2C7501170F2E4100F8B0FF /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
 		4B2C7502170F2E6200F8B0FF /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
-		4B2C7504170F308F00F8B0FF /* jenkins-menu-dsa-public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4B2C7503170F308F00F8B0FF /* jenkins-menu-dsa-public.pem */; };
 		4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520C16EC91CF00FB3D4D /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
@@ -158,6 +158,7 @@
 		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
 		1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMAppDelegateTest.m; sourceTree = "<group>"; };
 		1929B769BB583F78EBA405EE /* example-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-xml.xml"; sourceTree = "<group>"; };
+		1929B76F5F4A09ADB741C046 /* sparkle-pub.pem */ = {isa = PBXFileReference; lastKnownFileType = file.pem; path = "sparkle-pub.pem"; sourceTree = "<group>"; };
 		1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -206,7 +207,6 @@
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
 		4B2C7500170F2E4100F8B0FF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
-		4B2C7503170F308F00F8B0FF /* jenkins-menu-dsa-public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "jenkins-menu-dsa-public.pem"; path = "Resources/jenkins-menu-dsa-public.pem"; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -379,10 +379,10 @@
 		4B0CE8E8158DC6D1001BA10F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4B2C7503170F308F00F8B0FF /* jenkins-menu-dsa-public.pem */,
 				4B0CE8E8158DC6D1001BA110 /* 16 */,
 				4B0CE8E8158DC6D1001BA11F /* 32 */,
 				BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */,
+				1929B76F5F4A09ADB741C046 /* sparkle-pub.pem */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -495,7 +495,7 @@
 				BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */,
 				BD63670816681E68009278DB /* Localizable.strings in Resources */,
 				BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */,
-				4B2C7504170F308F00F8B0FF /* jenkins-menu-dsa-public.pem in Resources */,
+				1929BBED8002399172469533 /* sparkle-pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
