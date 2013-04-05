@@ -7,6 +7,9 @@
         <language>en</language>
         <item>
             <title>Version 0.1.0 • 1 New Feature</title>
+            <description>
+                Added automatic update via Sparkle.
+            </description>
             <sparkle:releaseNotesLink>
                 https://github.com/qvacua/jenkins-menu/wiki
             </sparkle:releaseNotesLink>
