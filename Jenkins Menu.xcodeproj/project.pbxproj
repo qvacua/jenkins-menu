@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1929B020A31972A8039368DA /* AFXMLRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */; };
-		1929B0C4742C913D1BA1A1BA /* AFJSONRequestOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B655EC8E5095E93A4044 /* AFJSONRequestOperation.h */; };
 		1929B0E889ED0859A5F7AACD /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B260D330040A0FA50638 /* AFPropertyListRequestOperation.m */; };
 		1929B115DF4F28B3E0C6440D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */; };
 		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
@@ -17,22 +16,18 @@
 		1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */; };
 		1929B2BEB7A0B032CFC2C3B7 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */; };
 		1929B37D386248C80C347501 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */; };
-		1929B39D98EC47B90E3E6E11 /* AFHTTPClient.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B401099A75609975A56D /* AFHTTPClient.h */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
-		1929B3D6D931C72951E3DE1D /* AFURLConnectionOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B42CCC598B400869FE1C /* AFURLConnectionOperation.h */; };
 		1929B4499ABB36EE08D7E945 /* AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */; };
 		1929B4FC6C91893816F62284 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */; };
 		1929B51C58A5A88089966352 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B2FEF74E0B10FB291662 /* AFXMLRequestOperation.m */; };
 		1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
 		1929B58EF32279EAC96C0599 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */; };
-		1929B5C47B96938B9CE5D305 /* UIImageView+AFNetworking.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */; };
 		1929B6270F52632DD1CD35A6 /* AFHTTPRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B28FCD599CB8A4219D8D /* AFHTTPRequestOperation.h */; };
 		1929B691906D532C2EFB356D /* AFNetworkActivityIndicatorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B95252749CC353F2C78C /* AFNetworkActivityIndicatorManager.h */; };
 		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B73A196F5CC1C5C02CCC /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B662620DE806ED525322 /* AFJSONRequestOperation.m */; };
-		1929B7E7A11AF6089E864C61 /* AFXMLRequestOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */; };
 		1929B7E7CECFF66A001D4977 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B99FF40C7255AA4A8EEC /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */; };
@@ -45,21 +40,16 @@
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BAD4E4742090900DD0EE /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
-		1929BB604C96E86D5DA77804 /* AFImageRequestOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */; };
-		1929BBBF15354D18169E8ABB /* AFNetworkActivityIndicatorManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B95252749CC353F2C78C /* AFNetworkActivityIndicatorManager.h */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BC2811C806C74170CB48 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B662620DE806ED525322 /* AFJSONRequestOperation.m */; };
 		1929BC57372C9660FED25925 /* AFImageRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */; };
 		1929BC602DF3E368DE64B29E /* AFURLConnectionOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B42CCC598B400869FE1C /* AFURLConnectionOperation.h */; };
-		1929BC62326F59396193D309 /* AFNetworking.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */; };
 		1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
 		1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */; };
 		1929BD04C3DCD3BF85BD7205 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */; };
 		1929BD5BADE07ED9FAC97619 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */; };
-		1929BD782EC7FB8BD6FDA13C /* AFHTTPRequestOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B28FCD599CB8A4219D8D /* AFHTTPRequestOperation.h */; };
 		1929BDC6D91C0E1822A2B896 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */; };
-		1929BDE63BFC119E614AB482 /* AFPropertyListRequestOperation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1929B9B6123BB0F9F17877A1 /* AFPropertyListRequestOperation.h */; };
 		1929BDE908473CB7A1CE70D4 /* UIImageView+AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */; };
 		1929BE593A060E712249641D /* green-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B86FB3CDB8403CE5B3AD /* green-xml.xml */; };
 		1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
@@ -96,6 +86,8 @@
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
+		4B2C7501170F2E4100F8B0FF /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
+		4B2C7502170F2E6200F8B0FF /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
 		4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520C16EC91CF00FB3D4D /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
@@ -136,16 +128,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
-				1929B39D98EC47B90E3E6E11 /* AFHTTPClient.h in Copy Files */,
-				1929BC62326F59396193D309 /* AFNetworking.h in Copy Files */,
-				1929B7E7A11AF6089E864C61 /* AFXMLRequestOperation.h in Copy Files */,
-				1929BD782EC7FB8BD6FDA13C /* AFHTTPRequestOperation.h in Copy Files */,
-				1929B0C4742C913D1BA1A1BA /* AFJSONRequestOperation.h in Copy Files */,
-				1929BB604C96E86D5DA77804 /* AFImageRequestOperation.h in Copy Files */,
-				1929B3D6D931C72951E3DE1D /* AFURLConnectionOperation.h in Copy Files */,
-				1929B5C47B96938B9CE5D305 /* UIImageView+AFNetworking.h in Copy Files */,
-				1929BDE63BFC119E614AB482 /* AFPropertyListRequestOperation.h in Copy Files */,
-				1929BBBF15354D18169E8ABB /* AFNetworkActivityIndicatorManager.h in Copy Files */,
+				4B2C7502170F2E6200F8B0FF /* Sparkle.framework in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,9 +182,6 @@
 		4B094FF3168110D900D1C02B /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = "Jenkins MenuTests/OCMockito.framework"; sourceTree = "<group>"; };
 		4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jenkins Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		4B0CE8B8158DC6D0001BA10E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		4B0CE8B9158DC6D0001BA10E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4B0CE8BA158DC6D0001BA10E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins Menu-Info.plist"; sourceTree = "<group>"; };
 		4B0CE8BF158DC6D0001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B0CE8C1158DC6D0001BA10E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,10 +204,11 @@
 		4B0CE8E8158DC6D1001BA14D /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disconnect.png; path = Resources/disconnect.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
+		4B2C7500170F2E4100F8B0FF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
-		BD63670D166888E1009278DB /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
+		BD63670D166888E1009278DB /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +219,7 @@
 				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
 				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
 				1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */,
+				4B2C7501170F2E4100F8B0FF /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,25 +299,15 @@
 		4B0CE8B4158DC6D0001BA10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B2C7500170F2E4100F8B0FF /* Sparkle.framework */,
 				4B094FF2168110D900D1C02B /* OCHamcrest.framework */,
 				4B094FF3168110D900D1C02B /* OCMockito.framework */,
 				BD63670D166888E1009278DB /* Growl.framework */,
 				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
 				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
-				4B0CE8B7158DC6D0001BA10E /* Other Frameworks */,
 				1929B17F9334050E9C2C6355 /* Security.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4B0CE8B7158DC6D0001BA10E /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4B0CE8B8158DC6D0001BA10E /* AppKit.framework */,
-				4B0CE8B9158DC6D0001BA10E /* CoreData.framework */,
-				4B0CE8BA158DC6D0001BA10E /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		4B0CE8BB158DC6D0001BA10E /* Jenkins Menu */ = {
@@ -709,6 +681,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
@@ -726,6 +699,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
