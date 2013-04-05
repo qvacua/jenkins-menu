@@ -37,6 +37,6 @@
     <key>SUPublicDSAKeyFile</key>
     <string>jenkins-menu-dsa-public.pem</string>
     <key>SUFeedURL</key>
-    <string>http://qvacua.com/appcast.xml</string>
+    <string>http://qvacua.com/jenkinsmenu/appcast.xml</string>
 </dict>
 </plist>

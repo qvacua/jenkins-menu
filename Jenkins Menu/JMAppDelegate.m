@@ -54,7 +54,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     NSKeyValueObservingOptions observingOptions = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self addObserver:self forKeyPath:@"jenkinsUrl" options:observingOptions context:NULL];
     [self addObserver:self forKeyPath:@"interval" options:observingOptions context:NULL];
-    [self addObserver:self forKeyPath:@"blacklistItems" options:observingOptions context:NULL];
 
     NSURL *url = [self cleanedUrlFromUserDefaults];
 
