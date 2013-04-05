@@ -156,6 +156,7 @@
 		1929B655EC8E5095E93A4044 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
 		1929B662620DE806ED525322 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
 		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
+		1929B74795D7636D09280341 /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
 		1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMAppDelegateTest.m; sourceTree = "<group>"; };
 		1929B769BB583F78EBA405EE /* example-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-xml.xml"; sourceTree = "<group>"; };
 		1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
@@ -175,11 +176,12 @@
 		1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
-		1929BD5C222197ACA8C7C8C3 /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
 		1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentCaptor.h; sourceTree = "<group>"; };
+		1929BE4A084C3238E7D06682 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJobTest.m; sourceTree = "<group>"; };
 		1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKeychainManager.h; sourceTree = "<group>"; };
 		1929BE99FF21D445B6CADD3F /* JMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLog.h; sourceTree = "<group>"; };
+		1929BFD9C24612768359506B /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
 		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
 		4B094FF3168110D900D1C02B /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = "Jenkins MenuTests/OCMockito.framework"; sourceTree = "<group>"; };
 		4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jenkins Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +255,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1929B1552EF96DF31283A8D9 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				1929BE4A084C3238E7D06682 /* style.css */,
+				1929BFD9C24612768359506B /* release-notes.html */,
+				1929B74795D7636D09280341 /* appcast.xml */,
+			);
+			path = Meta;
+			sourceTree = "<group>";
+		};
 		1929BE658F0A899FEF18EA96 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,7 +299,7 @@
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
 				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
 				4B0CE8B2158DC6D0001BA10E /* Products */,
-				1929BD5C222197ACA8C7C8C3 /* appcast.xml */,
+				1929B1552EF96DF31283A8D9 /* Meta */,
 			);
 			sourceTree = "<group>";
 		};
