@@ -25,6 +25,7 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
 @property(readwrite) NSInteger connectionState;
 @property(readwrite) NSURL *viewUrl;
 @property(readonly) NSMutableArray *mutableJobs;
+@property(readonly) NSMutableArray *filteredJobs;
 @property(readwrite) NSString *potentialHostToTrust;
 
 @end
@@ -33,12 +34,17 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
     NSURL *_url;
 }
 
+@dynamic allJobs;
 @dynamic jobs;
 @dynamic url;
 
 #pragma mark Properties
-- (NSArray *)jobs {
+- (NSArray *)allJobs {
     return self.mutableJobs;
+}
+
+- (NSArray *)jobs {
+    return self.filteredJobs;
 }
 
 - (NSURL *)url {
@@ -111,6 +117,7 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
         _connectionState = JMJenkinsConnectionStateUnknown;
         _lastHttpStatusCode = qHttpStatusUnknown;
         _mutableJobs = [[NSMutableArray alloc] init];
+        _filteredJobs = [[NSMutableArray alloc] init];
         _blacklistItems = [[NSArray alloc] init];
     }
 
@@ -193,6 +200,7 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
     }
 
     [self.mutableJobs removeAllObjects];
+    [self.filteredJobs removeAllObjects];
 
     [children enumerateObjectsUsingBlock:^(NSXMLNode *childNode, NSUInteger index, BOOL *stop) {
         if ([[childNode name] isEqualToString:@"primaryView"]) {
@@ -201,7 +209,11 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
         }
 
         if ([[childNode name] isEqualToString:@"job"]) {
-            [self.mutableJobs addObject:[self jobsFromXmlNode:childNode]];
+            JMJenkinsJob *job = [self jobsFromXmlNode:childNode];
+            [self.mutableJobs addObject:job];
+            if (![self.blacklistItems containsObject:job.name]) {
+                [self.filteredJobs addObject:job];
+            }
             return;
         }
     }];

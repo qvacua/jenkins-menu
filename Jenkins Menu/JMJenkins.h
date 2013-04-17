@@ -51,6 +51,7 @@ static NSString *const qJenkinsHttpResponseErrorKey = @"HttpResponseFailedErrorK
 @property (readonly) NSInteger connectionState;
 @property (readonly) NSInteger lastHttpStatusCode;
 @property (readonly) NSURL *viewUrl;
+@property (readonly) NSArray *allJobs;
 @property (readonly) NSArray *jobs;
 @property (readonly) NSString *potentialHostToTrust;
 @property NSArray *blacklistItems;

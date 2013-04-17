@@ -36,13 +36,13 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
 #pragma mark NSComboBoxCellDataSource
 - (NSInteger)numberOfItemsInComboBoxCell:(NSComboBoxCell *)comboBoxCell {
-    NSInteger maxCount = MAX(0, self.jenkins.jobs.count - self.tempBlacklistItems.count);
+    NSInteger maxCount = MAX(0, self.jenkins.allJobs.count - self.tempBlacklistItems.count);
     return maxCount;
 }
 
 - (id)comboBoxCell:(NSComboBoxCell *)aComboBoxCell objectValueForItemAtIndex:(NSInteger)index {
     NSInteger i = -1;
-    for (JMJenkinsJob *job in self.jenkins.jobs) {
+    for (JMJenkinsJob *job in self.jenkins.allJobs) {
         if (![self.tempBlacklistItems containsObject:job.name]) {
             i++;
             if (i == index) {
@@ -55,7 +55,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 }
 
 - (NSString *)comboBoxCell:(NSComboBoxCell *)aComboBoxCell completedString:(NSString *)uncompletedString {
-    for (JMJenkinsJob *job in self.jenkins.jobs) {
+    for (JMJenkinsJob *job in self.jenkins.allJobs) {
         if (![self.tempBlacklistItems containsObject:job.name]) {
             if ([job.name hasPrefix:uncompletedString]) {
                 return job.name;
@@ -68,7 +68,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
 - (NSUInteger)comboBoxCell:(NSComboBoxCell *)aComboBoxCell indexOfItemWithStringValue:(NSString *)string {
     NSInteger i = -1;
-    for (JMJenkinsJob *job in self.jenkins.jobs) {
+    for (JMJenkinsJob *job in self.jenkins.allJobs) {
         if (![self.tempBlacklistItems containsObject:job.name]) {
             i++;
             if ([job.name isEqualToString:string]) {
