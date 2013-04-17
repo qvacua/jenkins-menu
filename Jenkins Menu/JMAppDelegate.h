@@ -20,7 +20,7 @@ static NSString *const qUserDefaultsBlacklistItemsKey = @"blacklistItems";
 static const NSInteger qBlacklistItemAddSegment = 0;
 static const NSInteger qBlacklistItemRemoveSegment = 1;
 
-@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, NSTableViewDataSource, NSTableViewDelegate, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
+@interface JMAppDelegate : NSObject <NSApplicationDelegate, NSUserInterfaceValidations, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxCellDataSource, GrowlApplicationBridgeDelegate, JMJenkinsDelegate>
 
 @property (weak) IBOutlet NSMenu *menu;
 @property (weak) IBOutlet NSMenuItem *jobsMenuItem;
