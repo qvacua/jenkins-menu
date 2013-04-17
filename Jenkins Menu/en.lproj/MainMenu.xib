@@ -1604,7 +1604,7 @@
 						<object class="NSTextField" id="1036841739">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{132, 107}, {68, 17}}</string>
+							<string key="NSFrame">{{120, 107}, {80, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="211208013"/>
@@ -1613,7 +1613,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="150005065">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Black List:</string>
+								<string key="NSContents">Ignore jobs:</string>
 								<reference key="NSSupport" ref="1065581483"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="1036841739"/>
@@ -2082,7 +2082,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{131, 159}, {320, 200}}</string>
 				<int key="NSWTFlags">1685586944</int>
-				<string key="NSWindowTitle">Blacklist</string>
+				<string key="NSWindowTitle">Ignore Jobs</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
