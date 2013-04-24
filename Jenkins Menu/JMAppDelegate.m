@@ -110,6 +110,8 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
     self.jenkinsUrl = url;
     self.interval = [[self.userDefaults objectForKey:qUserDefaultsIntervalKey] doubleValue];
+    
+    self.showDisabledJobs = [self.userDefaults boolForKey:qUserDefaultsShowDisabledJobs];
 
     self.jenkins.blacklistItems = ([self.userDefaults objectForKey:qUserDefaultsBlacklistItemsKey]);
     self.tempBlacklistItems = [self.jenkins.blacklistItems mutableCopy];
@@ -256,6 +258,7 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
     self.jenkins.blacklistItems = [self.tempBlacklistItems mutableCopy];
     [self.userDefaults setObject:self.jenkins.blacklistItems forKey:qUserDefaultsBlacklistItemsKey];
+    [self.userDefaults setBool:self.showDisabledJobs forKey:qUserDefaultsShowDisabledJobs];
     [self updateJenkinsStatus];
 
     [self.preferencesWindow orderOut:self];
@@ -566,6 +569,9 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 
     NSMenu *submenu = [[NSMenu alloc] init];
     for (JMJenkinsJob *job in jobs) {
+        if (!self.showDisabledJobs && job.state == JMJenkinsJobStateDisabled) {
+            continue;
+        }
 
         NSString *menuTitle = [NSString stringWithFormat:@"%@", job.name];
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];

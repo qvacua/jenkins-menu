@@ -17,6 +17,7 @@ static NSString *const qUserDefaultsUrlKey = @"jenkinsUrl";
 static NSString *const qUserDefaultsIntervalKey = @"interval";
 static NSString *const qUserDefaultsSecuredKey = @"fds";    // ups...
 static NSString *const qUserDefaultsBlacklistItemsKey = @"blacklistItems";
+static NSString *const qUserDefaultsShowDisabledJobs = @"showDisabledJobs";
 static const NSInteger qBlacklistItemAddSegment = 0;
 static const NSInteger qBlacklistItemRemoveSegment = 1;
 
@@ -39,6 +40,8 @@ static const NSInteger qBlacklistItemRemoveSegment = 1;
 @property (unsafe_unretained) IBOutlet NSWindow *blacklistWindow;
 @property (weak) IBOutlet NSTableView *blacklistTableView;
 @property (weak) IBOutlet NSSegmentedControl *blacklistItemSegmentedControl;
+
+@property BOOL showDisabledJobs;
 
 @property NSStatusItem *statusItem;
 @property NSTimer *timer;
