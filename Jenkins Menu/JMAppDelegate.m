@@ -243,6 +243,10 @@ static const NSInteger qTableViewNoSelectedRow = -1;
     [self.urlTextField setStringValue:[self.jenkinsUrl absoluteString]];
     [self.intervalTextField setIntegerValue:(NSInteger) (self.interval / 60)];
 
+    self.tempBlacklistItems = [self.jenkins.blacklistItems mutableCopy];
+    [self.blacklistTableView selectRowIndexes:nil byExtendingSelection:NO];
+    [self.blacklistTableView reloadData];
+    
     [self.preferencesWindow makeKeyAndOrderFront:self];
     [self.preferencesWindow orderFront:self];
 }
@@ -265,10 +269,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 }
 
 - (IBAction)manageBlacklistAction:(id)sender {
-    self.tempBlacklistItems = [self.jenkins.blacklistItems mutableCopy];
-    [self.blacklistTableView selectRowIndexes:nil byExtendingSelection:NO];
-    [self.blacklistTableView reloadData];
-
     [NSApp beginSheet:self.blacklistWindow modalForWindow:self.preferencesWindow modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:NULL];
 }
 
@@ -291,10 +291,6 @@ static const NSInteger qTableViewNoSelectedRow = -1;
 }
 
 - (IBAction)blacklistOkAction:(id)sender {
-    [NSApp endSheet:self.blacklistWindow];
-}
-
-- (IBAction)blacklistCancelAction:(id)sender {
     [NSApp endSheet:self.blacklistWindow];
 }
 

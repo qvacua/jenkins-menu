@@ -62,7 +62,6 @@ static const NSInteger qBlacklistItemRemoveSegment = 1;
 - (IBAction)manageBlacklistAction:(id)sender;
 - (IBAction)blacklistItemAction:(id)sender;
 - (IBAction)blacklistOkAction:(id)sender;
-- (IBAction)blacklistCancelAction:(id)sender;
 
 - (IBAction)credentialsOkAction:(id)sender;
 - (IBAction)credentialsCancelAction:(id)sender;
