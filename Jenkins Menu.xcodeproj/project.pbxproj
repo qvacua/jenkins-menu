@@ -7,59 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1929B020A31972A8039368DA /* AFXMLRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */; };
-		1929B0E889ED0859A5F7AACD /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B260D330040A0FA50638 /* AFPropertyListRequestOperation.m */; };
-		1929B115DF4F28B3E0C6440D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */; };
 		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
-		1929B1642122ED9AA073E9C3 /* AFPropertyListRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B9B6123BB0F9F17877A1 /* AFPropertyListRequestOperation.h */; };
-		1929B16CBEC1B9DF626CC5A0 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */; };
 		1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */; };
-		1929B2BEB7A0B032CFC2C3B7 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */; };
-		1929B37D386248C80C347501 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
-		1929B4499ABB36EE08D7E945 /* AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */; };
-		1929B4FC6C91893816F62284 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */; };
-		1929B51C58A5A88089966352 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B2FEF74E0B10FB291662 /* AFXMLRequestOperation.m */; };
 		1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
-		1929B58EF32279EAC96C0599 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */; };
-		1929B6270F52632DD1CD35A6 /* AFHTTPRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B28FCD599CB8A4219D8D /* AFHTTPRequestOperation.h */; };
-		1929B691906D532C2EFB356D /* AFNetworkActivityIndicatorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B95252749CC353F2C78C /* AFNetworkActivityIndicatorManager.h */; };
 		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
-		1929B73A196F5CC1C5C02CCC /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B662620DE806ED525322 /* AFJSONRequestOperation.m */; };
-		1929B7E7CECFF66A001D4977 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
-		1929B99FF40C7255AA4A8EEC /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */; };
-		1929B9D5382C07A5E919FB82 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B260D330040A0FA50638 /* AFPropertyListRequestOperation.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
-		1929BA473C09E849F436BAE1 /* AFJSONRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B655EC8E5095E93A4044 /* AFJSONRequestOperation.h */; };
-		1929BA5A9163D133AA22442C /* AFHTTPClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B401099A75609975A56D /* AFHTTPClient.h */; };
 		1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
-		1929BAD4E4742090900DD0EE /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BBED8002399172469533 /* sparkle-pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1929B76F5F4A09ADB741C046 /* sparkle-pub.pem */; };
 		1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
-		1929BC2811C806C74170CB48 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B662620DE806ED525322 /* AFJSONRequestOperation.m */; };
-		1929BC57372C9660FED25925 /* AFImageRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */; };
-		1929BC602DF3E368DE64B29E /* AFURLConnectionOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929B42CCC598B400869FE1C /* AFURLConnectionOperation.h */; };
 		1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
 		1929BCD0136DAF088779E9A9 /* JMJenkinsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */; };
-		1929BD04C3DCD3BF85BD7205 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */; };
-		1929BD5BADE07ED9FAC97619 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */; };
-		1929BDC6D91C0E1822A2B896 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */; };
-		1929BDE908473CB7A1CE70D4 /* UIImageView+AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */; };
 		1929BE593A060E712249641D /* green-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B86FB3CDB8403CE5B3AD /* green-xml.xml */; };
 		1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
-		1929BF56E0DA4A7F5799C943 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B2FEF74E0B10FB291662 /* AFXMLRequestOperation.m */; };
 		1929BFBA46111F402A70C7BC /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
-		4B094FF4168110D900D1C02B /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF2168110D900D1C02B /* OCHamcrest.framework */; };
-		4B094FF5168110D900D1C02B /* OCMockito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B094FF3168110D900D1C02B /* OCMockito.framework */; };
-		4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B094FF2168110D900D1C02B /* OCHamcrest.framework */; };
-		4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B094FF3168110D900D1C02B /* OCMockito.framework */; };
+		32A0007EC1CF4A89832AFE40 /* libPods-Jenkins MenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */; };
 		4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
 		4B0CE8C0158DC6D0001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */; };
 		4B0CE8C2158DC6D0001BA10E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C1158DC6D0001BA10E /* main.m */; };
@@ -87,11 +56,10 @@
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
-		4B2C7501170F2E4100F8B0FF /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
-		4B2C7502170F2E6200F8B0FF /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4B2C7500170F2E4100F8B0FF /* Sparkle.framework */; };
 		4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520C16EC91CF00FB3D4D /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
+		51C7665E12434C60AD4BC5BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4553544CD93748F3A8E41A44 /* libPods.a */; };
 		BD6367041667FF74009278DB /* Jenkins Menu.iconset in Resources */ = {isa = PBXBuildFile; fileRef = BD6367031667FF74009278DB /* Jenkins Menu.iconset */; };
 		BD63670816681E68009278DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD63670616681E68009278DB /* Localizable.strings */; };
 		BD63670A16686E42009278DB /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */; };
@@ -107,18 +75,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */,
-				4B094FF8168110EA00D1C02B /* OCHamcrest.framework in CopyFiles */,
-				4B094FF9168110EA00D1C02B /* OCMockito.framework in CopyFiles */,
-				1929BA5A9163D133AA22442C /* AFHTTPClient.h in CopyFiles */,
-				1929B4499ABB36EE08D7E945 /* AFNetworking.h in CopyFiles */,
-				1929B020A31972A8039368DA /* AFXMLRequestOperation.h in CopyFiles */,
-				1929B6270F52632DD1CD35A6 /* AFHTTPRequestOperation.h in CopyFiles */,
-				1929BA473C09E849F436BAE1 /* AFJSONRequestOperation.h in CopyFiles */,
-				1929BC57372C9660FED25925 /* AFImageRequestOperation.h in CopyFiles */,
-				1929BC602DF3E368DE64B29E /* AFURLConnectionOperation.h in CopyFiles */,
-				1929BDE908473CB7A1CE70D4 /* UIImageView+AFNetworking.h in CopyFiles */,
-				1929B1642122ED9AA073E9C3 /* AFPropertyListRequestOperation.h in CopyFiles */,
-				1929B691906D532C2EFB356D /* AFNetworkActivityIndicatorManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +85,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BD63670F1668899B009278DB /* Growl.framework in Copy Files */,
-				4B2C7502170F2E6200F8B0FF /* Sparkle.framework in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,51 +92,31 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
 		1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTrustedHostManagerTest.m; sourceTree = "<group>"; };
 		1929B154A3D771D43E614DBE /* JMKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMKeychainManager.m; sourceTree = "<group>"; };
 		1929B17F9334050E9C2C6355 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMenuItem+Q.h"; sourceTree = "<group>"; };
-		1929B260D330040A0FA50638 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
-		1929B28FCD599CB8A4219D8D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		1929B2FEF74E0B10FB291662 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentCaptor.m; sourceTree = "<group>"; };
-		1929B401099A75609975A56D /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
-		1929B42CCC598B400869FE1C /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
 		1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMenuItem+Q.m"; sourceTree = "<group>"; };
-		1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
 		1929B6527C50CE6E9454717A /* unknown-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "unknown-xml.xml"; sourceTree = "<group>"; };
-		1929B655EC8E5095E93A4044 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
-		1929B662620DE806ED525322 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
 		1929B698C2B01DDB583BD61E /* JMJenkinsJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsJob.h; sourceTree = "<group>"; };
 		1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMAppDelegateTest.m; sourceTree = "<group>"; };
 		1929B769BB583F78EBA405EE /* example-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-xml.xml"; sourceTree = "<group>"; };
 		1929B76F5F4A09ADB741C046 /* sparkle-pub.pem */ = {isa = PBXFileReference; lastKnownFileType = file.pem; path = "sparkle-pub.pem"; sourceTree = "<group>"; };
-		1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
-		1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
 		1929B86FB3CDB8403CE5B3AD /* green-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "green-xml.xml"; sourceTree = "<group>"; };
 		1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTrustedHostManager.m; sourceTree = "<group>"; };
 		1929B938F8E11602CE409F2C /* JMJenkins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkins.h; sourceTree = "<group>"; };
-		1929B95252749CC353F2C78C /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
-		1929B9B6123BB0F9F17877A1 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
 		1929BA26622444D986D8974E /* yellow-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "yellow-xml.xml"; sourceTree = "<group>"; };
 		1929BB76ECB1B9BC994408FB /* JMTrustedHostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTrustedHostManager.h; sourceTree = "<group>"; };
 		1929BBC49202F6CF5B2519F6 /* JMJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkins.m; sourceTree = "<group>"; };
-		1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
-		1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
 		1929BC93909566015D53BC10 /* JMJenkinsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsDelegate.h; sourceTree = "<group>"; };
-		1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
-		1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
 		1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentCaptor.h; sourceTree = "<group>"; };
 		1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJobTest.m; sourceTree = "<group>"; };
 		1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKeychainManager.h; sourceTree = "<group>"; };
 		1929BE99FF21D445B6CADD3F /* JMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLog.h; sourceTree = "<group>"; };
-		4B094FF2168110D900D1C02B /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCHamcrest.framework; path = "Jenkins MenuTests/OCHamcrest.framework"; sourceTree = "<group>"; };
-		4B094FF3168110D900D1C02B /* OCMockito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMockito.framework; path = "Jenkins MenuTests/OCMockito.framework"; sourceTree = "<group>"; };
+		4553544CD93748F3A8E41A44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jenkins Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins Menu-Info.plist"; sourceTree = "<group>"; };
@@ -206,7 +141,9 @@
 		4B0CE8E8158DC6D1001BA14D /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disconnect.png; path = Resources/disconnect.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
-		4B2C7500170F2E4100F8B0FF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jenkins MenuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jenkins MenuTests.xcconfig"; path = "Pods/Pods-Jenkins MenuTests.xcconfig"; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -221,7 +158,7 @@
 				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
 				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
 				1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */,
-				4B2C7501170F2E4100F8B0FF /* Sparkle.framework in Frameworks */,
+				51C7665E12434C60AD4BC5BE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,9 +169,8 @@
 				4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */,
 				4B0CE8D4158DC6D1001BA10E /* SenTestingKit.framework in Frameworks */,
 				4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */,
-				4B094FF4168110D900D1C02B /* OCHamcrest.framework in Frameworks */,
-				4B094FF5168110D900D1C02B /* OCMockito.framework in Frameworks */,
 				4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */,
+				32A0007EC1CF4A89832AFE40 /* libPods-Jenkins MenuTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,32 +188,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		1929BE658F0A899FEF18EA96 /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				1929B401099A75609975A56D /* AFHTTPClient.h */,
-				1929B0601D3C09F86AD2D1B0 /* AFHTTPClient.m */,
-				1929B7E9E562BB1C1A2793A8 /* AFNetworking.h */,
-				1929BD081F5B71B287285993 /* AFXMLRequestOperation.h */,
-				1929B2FEF74E0B10FB291662 /* AFXMLRequestOperation.m */,
-				1929B28FCD599CB8A4219D8D /* AFHTTPRequestOperation.h */,
-				1929BCFC7FE6D3E516D1ABD6 /* AFHTTPRequestOperation.m */,
-				1929B655EC8E5095E93A4044 /* AFJSONRequestOperation.h */,
-				1929B662620DE806ED525322 /* AFJSONRequestOperation.m */,
-				1929BC6A27B7607D0E172EC7 /* AFImageRequestOperation.h */,
-				1929BC3DEE6A7E94801FF204 /* AFImageRequestOperation.m */,
-				1929B42CCC598B400869FE1C /* AFURLConnectionOperation.h */,
-				1929B5D90A903E913EF42D62 /* AFURLConnectionOperation.m */,
-				1929BCF127C4BCEC4FF77B45 /* UIImageView+AFNetworking.h */,
-				1929B7BBDE335D658EB3A771 /* UIImageView+AFNetworking.m */,
-				1929B9B6123BB0F9F17877A1 /* AFPropertyListRequestOperation.h */,
-				1929B260D330040A0FA50638 /* AFPropertyListRequestOperation.m */,
-				1929B95252749CC353F2C78C /* AFNetworkActivityIndicatorManager.h */,
-				1929B79F5AED782A38BBF0A4 /* AFNetworkActivityIndicatorManager.m */,
-			);
-			path = AFNetworking;
-			sourceTree = "<group>";
-		};
 		4B0CE8A6158DC6D0001BA10E = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +196,8 @@
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
 				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
 				4B0CE8B2158DC6D0001BA10E /* Products */,
+				7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */,
+				A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,13 +213,12 @@
 		4B0CE8B4158DC6D0001BA10E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4B2C7500170F2E4100F8B0FF /* Sparkle.framework */,
-				4B094FF2168110D900D1C02B /* OCHamcrest.framework */,
-				4B094FF3168110D900D1C02B /* OCMockito.framework */,
 				BD63670D166888E1009278DB /* Growl.framework */,
 				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
 				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
 				1929B17F9334050E9C2C6355 /* Security.framework */,
+				4553544CD93748F3A8E41A44 /* libPods.a */,
+				58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,7 +243,6 @@
 				1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */,
 				1929B154A3D771D43E614DBE /* JMKeychainManager.m */,
 				1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */,
-				1929BE658F0A899FEF18EA96 /* AFNetworking */,
 			);
 			path = "Jenkins Menu";
 			sourceTree = "<group>";
@@ -416,10 +326,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B0CE8E3158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins Menu" */;
 			buildPhases = (
+				EC0D1CE5DE054E8F8BC51067 /* Check Pods Manifest.lock */,
 				4B0CE8AD158DC6D0001BA10E /* Sources */,
 				4B0CE8AE158DC6D0001BA10E /* Frameworks */,
 				4B0CE8AF158DC6D0001BA10E /* Resources */,
 				4B42D57A15EAAA7E00F10668 /* Copy Files */,
+				7CA98D35D9C04EC48A2F56DC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,11 +346,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B0CE8E6158DC6D1001BA10E /* Build configuration list for PBXNativeTarget "Jenkins MenuTests" */;
 			buildPhases = (
+				2E7DC6CDC1EB488B8CEAD46C /* Check Pods Manifest.lock */,
 				4B0CE8CD158DC6D1001BA10E /* Sources */,
 				4B0CE8CE158DC6D1001BA10E /* Frameworks */,
 				4B0CE8CF158DC6D1001BA10E /* Resources */,
 				4B094FF7168110E200D1C02B /* CopyFiles */,
 				4B0CE8D0158DC6D1001BA10E /* ShellScript */,
+				40CD4E4AD2DC4CDEBC2E720E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -447,7 +361,7 @@
 			name = "Jenkins MenuTests";
 			productName = "Jenkins MenuTests";
 			productReference = 4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -468,6 +382,8 @@
 			mainGroup = 4B0CE8A6158DC6D0001BA10E;
 			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
@@ -522,6 +438,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2E7DC6CDC1EB488B8CEAD46C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		40CD4E4AD2DC4CDEBC2E720E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Jenkins MenuTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4B0CE8D0158DC6D1001BA10E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,6 +480,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7CA98D35D9C04EC48A2F56DC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC0D1CE5DE054E8F8BC51067 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -549,15 +525,6 @@
 				1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */,
 				1929BFBA46111F402A70C7BC /* NSMenuItem+Q.m in Sources */,
 				1929BBFBBCA394478160A6FA /* JMKeychainManager.m in Sources */,
-				1929B37D386248C80C347501 /* AFHTTPClient.m in Sources */,
-				1929B51C58A5A88089966352 /* AFXMLRequestOperation.m in Sources */,
-				1929B16CBEC1B9DF626CC5A0 /* AFHTTPRequestOperation.m in Sources */,
-				1929BC2811C806C74170CB48 /* AFJSONRequestOperation.m in Sources */,
-				1929B58EF32279EAC96C0599 /* AFImageRequestOperation.m in Sources */,
-				1929B4FC6C91893816F62284 /* AFURLConnectionOperation.m in Sources */,
-				1929BDC6D91C0E1822A2B896 /* UIImageView+AFNetworking.m in Sources */,
-				1929B9D5382C07A5E919FB82 /* AFPropertyListRequestOperation.m in Sources */,
-				1929BAD4E4742090900DD0EE /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,15 +544,6 @@
 				1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */,
 				1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */,
 				1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */,
-				1929B7E7CECFF66A001D4977 /* AFHTTPClient.m in Sources */,
-				1929BF56E0DA4A7F5799C943 /* AFXMLRequestOperation.m in Sources */,
-				1929B99FF40C7255AA4A8EEC /* AFHTTPRequestOperation.m in Sources */,
-				1929B73A196F5CC1C5C02CCC /* AFJSONRequestOperation.m in Sources */,
-				1929B2BEB7A0B032CFC2C3B7 /* AFImageRequestOperation.m in Sources */,
-				1929BD5BADE07ED9FAC97619 /* AFURLConnectionOperation.m in Sources */,
-				1929B115DF4F28B3E0C6440D /* UIImageView+AFNetworking.m in Sources */,
-				1929B0E889ED0859A5F7AACD /* AFPropertyListRequestOperation.m in Sources */,
-				1929BD04C3DCD3BF85BD7205 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +638,7 @@
 		};
 		4B0CE8E4158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -698,6 +657,7 @@
 		};
 		4B0CE8E5158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -716,11 +676,13 @@
 		};
 		4B0CE8E7158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Jenkins MenuTests\"",
+					"$(SRCROOT)/Frameworks",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -733,11 +695,13 @@
 		};
 		4B0CE8E8158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Jenkins MenuTests\"",
+					"$(SRCROOT)/Frameworks",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
