@@ -165,6 +165,25 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
     self.connectionState = JMJenkinsConnectionStateSuccessful;
 }
 
+- (BOOL)isJobBlacklisted:(JMJenkinsJob *)job
+{
+    for (NSString *blacklistedName in self.blacklistItems) {
+        if ([blacklistedName isEqualTo:job.name]) {
+            return YES;
+        }
+        NSError *regexerr = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:blacklistedName options:NSRegularExpressionCaseInsensitive error:&regexerr];
+        if (!regex) {
+            continue;
+        }
+        NSArray *matches = [regex matchesInString:job.name options:0 range:NSMakeRange(0, [job.name length])];
+        if ([matches count] > 0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     log4Debug(@"data");
 
@@ -211,7 +230,7 @@ static NSString *const qJenkinsXmlApiPath = @"/api/xml";
         if ([[childNode name] isEqualToString:@"job"]) {
             JMJenkinsJob *job = [self jobsFromXmlNode:childNode];
             [self.mutableJobs addObject:job];
-            if (![self.blacklistItems containsObject:job.name]) {
+            if (![self isJobBlacklisted:job]) {
                 [self.filteredJobs addObject:job];
             }
             return;
