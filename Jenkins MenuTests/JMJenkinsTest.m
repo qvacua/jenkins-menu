@@ -1,17 +1,17 @@
 /**
- * Jenkins Menu
- * https://github.com/qvacua/jenkins-menu
- * http://qvacua.com
- *
- * See LICENSE
- */
+* Jenkins Menu
+* https://github.com/qvacua/jenkins-menu
+* http://qvacua.com
+*
+* See LICENSE
+*/
 
 #import "JMBaseTestCase.h"
 #import "JMJenkins.h"
 #import "JMJenkinsJob.h"
 #import "JMTrustedHostManager.h"
 #import "JMJenkinsDelegate.h"
-#import "ArgumentCaptor.h"
+
 
 @interface JMJenkinsTest : JMBaseTestCase
 @end
@@ -133,9 +133,9 @@
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@404));
 
-    ArgumentCaptor *captor = argCaptor();
-    [verify(delegate) jenkins:jenkins updateFailed:captor];
-    NSDictionary *userInfo = captor.argument;
+    MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+    [verify(delegate) jenkins:jenkins updateFailed:captor.capture];
+    NSDictionary *userInfo = captor.value;
 
     assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
     assertThat(userInfo, hasValue(@404));
@@ -147,9 +147,9 @@
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateHttpFailure)));
     assertThat(@(jenkins.lastHttpStatusCode), is(@199));
 
-    ArgumentCaptor *captor = argCaptor();
-    [verify(delegate) jenkins:jenkins updateFailed:captor];
-    NSDictionary *userInfo = captor.argument;
+    MKTArgumentCaptor *captor = [[MKTArgumentCaptor alloc] init];
+    [verify(delegate) jenkins:jenkins updateFailed:captor.capture];
+    NSDictionary *userInfo = captor.value;
 
     assertThat(userInfo, hasKey(qJenkinsHttpResponseErrorKey));
     assertThat(userInfo, hasValue(@199));
@@ -167,7 +167,7 @@
     NSData *malformedXmlData = [@"<no xml<<<" dataUsingEncoding:NSUTF8StringEncoding];
 
     [jenkins connection:nil didReceiveData:malformedXmlData];
-    assertThat(jenkins.jobs, is(empty()));
+    assertThat(jenkins.jobs, isEmpty());
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateXmlFailure)));
 }
@@ -177,7 +177,7 @@
     NSData *emptyXmlData = [@"<hudson></hudson>" dataUsingEncoding:NSUTF8StringEncoding];
 
     [jenkins connection:nil didReceiveData:emptyXmlData];
-    assertThat(jenkins.jobs, is(empty()));
+    assertThat(jenkins.jobs, isEmpty());
     assertThat(@(jenkins.lastHttpStatusCode), is(@(qHttpStatusOk)));
     assertThat(@(jenkins.connectionState), is(@(JMJenkinsConnectionStateXmlFailure)));
 }
@@ -212,7 +212,7 @@
     NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
-    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(jenkins.jobs, hasSize(6));
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateRed)));
     assertThat(@(jenkins.countOfGreenJobs), is(@0));
 }
@@ -227,7 +227,7 @@
     NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
-    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(jenkins.jobs, hasSize(6));
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateYellow)));
     assertThat(@(jenkins.countOfRedJobs), is(@0));
 }
@@ -244,7 +244,7 @@
     NSData *xmlData = [self xmlDataFromFileName:@"example-xml"];
 
     [jenkins connection:nil didReceiveData:xmlData];
-    assertThat(jenkins.jobs, hasSize(8));
+    assertThat(jenkins.jobs, hasSize(4));
     assertThat(@(jenkins.totalState), is(@(JMJenkinsTotalStateGreen)));
     assertThat(@(jenkins.countOfYellowJobs), is(@0));
     assertThat(@(jenkins.countOfRedJobs), is(@0));

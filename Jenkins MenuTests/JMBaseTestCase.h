@@ -6,7 +6,7 @@
  * See LICENSE
  */
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
@@ -18,6 +18,6 @@
 #define isYes is(@(YES))
 #define isNo is(@(NO))
 
-@interface JMBaseTestCase : SenTestCase
+@interface JMBaseTestCase : XCTestCase
 
 @end

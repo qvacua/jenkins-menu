@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		1929B162C346B1EC8D11486E /* example-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B769BB583F78EBA405EE /* example-xml.xml */; };
 		1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */; };
+		1929B1A7A5307BBE42E43F0D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BD30DEB6A31906760A14 /* Security.framework */; };
 		1929B3D6AA7395A228EAC448 /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929B58AD1878F0093B2FAEC /* yellow-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929BA26622444D986D8974E /* yellow-xml.xml */; };
-		1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */; };
+		1929B6C6CE9DE16FC495BB90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BD30DEB6A31906760A14 /* Security.framework */; };
 		1929B72850A4122611A12E1F /* JMJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BBC49202F6CF5B2519F6 /* JMJenkins.m */; };
 		1929B8CB3705DDB947F6978F /* JMTrustedHostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B886E5A3AA26C1CED2D5 /* JMTrustedHostManager.m */; };
 		1929BA0828CBCA6F5AA6998F /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
 		1929BA1F0BE62C3759FAADEA /* unknown-xml.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1929B6527C50CE6E9454717A /* unknown-xml.xml */; };
-		1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */; };
 		1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */; };
 		1929BBC82B955C7A15C0FDF1 /* JMJenkinsJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */; };
@@ -29,14 +29,11 @@
 		1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B154A3D771D43E614DBE /* JMKeychainManager.m */; };
 		1929BFBA46111F402A70C7BC /* NSMenuItem+Q.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */; };
 		32A0007EC1CF4A89832AFE40 /* libPods-Jenkins MenuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */; };
-		4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
 		4B0CE8C0158DC6D0001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8BE158DC6D0001BA10E /* InfoPlist.strings */; };
 		4B0CE8C2158DC6D0001BA10E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C1158DC6D0001BA10E /* main.m */; };
 		4B0CE8C6158DC6D0001BA10E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C4158DC6D0001BA10E /* Credits.rtf */; };
 		4B0CE8C9158DC6D0001BA10E /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
 		4B0CE8CC158DC6D1001BA10E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8CA158DC6D1001BA10E /* MainMenu.xib */; };
-		4B0CE8D4158DC6D1001BA10E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */; };
-		4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */; };
 		4B0CE8DD158DC6D1001BA10E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DB158DC6D1001BA10E /* InfoPlist.strings */; };
 		4B0CE8E0158DC6D1001BA10E /* JMBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8DF158DC6D1001BA10E /* JMBaseTestCase.m */; };
 		4B0CE8E8158DC6D1001BA127 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA126 /* fire.png */; };
@@ -55,7 +52,6 @@
 		4B0CE8E8158DC6D1001BA153 /* weather_lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */; };
 		4B0CE8E8158DC6D1001BA155 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
 		4B0CE8E8158DC6D1001BA156 /* weather_lightning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */; };
-		4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929B17F9334050E9C2C6355 /* Security.framework */; };
 		4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520B16EC918200FB3D4D /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD63670D166888E1009278DB /* Growl.framework */; };
 		4B69520C16EC91CF00FB3D4D /* JMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */; };
@@ -95,9 +91,7 @@
 		1929B0D063F16726BCC6F088 /* JMJenkinsJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJob.m; sourceTree = "<group>"; };
 		1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTrustedHostManagerTest.m; sourceTree = "<group>"; };
 		1929B154A3D771D43E614DBE /* JMKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMKeychainManager.m; sourceTree = "<group>"; };
-		1929B17F9334050E9C2C6355 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1929B246CD7154A48C45A12D /* NSMenuItem+Q.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMenuItem+Q.h"; sourceTree = "<group>"; };
-		1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentCaptor.m; sourceTree = "<group>"; };
 		1929B59E4AB1B4B011CDCBE4 /* NSMenuItem+Q.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMenuItem+Q.m"; sourceTree = "<group>"; };
 		1929B61D8EA4DE6C65CDF82D /* JMJenkinsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsTest.m; sourceTree = "<group>"; };
 		1929B6527C50CE6E9454717A /* unknown-xml.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "unknown-xml.xml"; sourceTree = "<group>"; };
@@ -112,13 +106,12 @@
 		1929BB76ECB1B9BC994408FB /* JMTrustedHostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTrustedHostManager.h; sourceTree = "<group>"; };
 		1929BBC49202F6CF5B2519F6 /* JMJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkins.m; sourceTree = "<group>"; };
 		1929BC93909566015D53BC10 /* JMJenkinsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMJenkinsDelegate.h; sourceTree = "<group>"; };
-		1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentCaptor.h; sourceTree = "<group>"; };
+		1929BD30DEB6A31906760A14 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMJenkinsJobTest.m; sourceTree = "<group>"; };
 		1929BE8C3290107F7DAC5621 /* JMKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMKeychainManager.h; sourceTree = "<group>"; };
 		1929BE99FF21D445B6CADD3F /* JMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLog.h; sourceTree = "<group>"; };
 		4553544CD93748F3A8E41A44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jenkins Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B0CE8BD158DC6D0001BA10E /* Jenkins Menu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins Menu-Info.plist"; sourceTree = "<group>"; };
 		4B0CE8BF158DC6D0001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B0CE8C1158DC6D0001BA10E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,8 +120,7 @@
 		4B0CE8C7158DC6D0001BA10E /* JMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMAppDelegate.h; sourceTree = "<group>"; };
 		4B0CE8C8158DC6D0001BA10E /* JMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMAppDelegate.m; sourceTree = "<group>"; };
 		4B0CE8CB158DC6D1001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jenkins MenuTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Jenkins MenuTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0CE8DA158DC6D1001BA10E /* Jenkins MenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Jenkins MenuTests-Info.plist"; sourceTree = "<group>"; };
 		4B0CE8DC158DC6D1001BA10E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B0CE8DE158DC6D1001BA10E /* JMBaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMBaseTestCase.h; sourceTree = "<group>"; };
@@ -156,9 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD63670E166888E1009278DB /* Growl.framework in Frameworks */,
-				4B0CE8B6158DC6D0001BA10E /* Cocoa.framework in Frameworks */,
-				1929BA75582CCE8616ED87F2 /* Security.framework in Frameworks */,
 				51C7665E12434C60AD4BC5BE /* libPods.a in Frameworks */,
+				1929B1A7A5307BBE42E43F0D /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,10 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B69520A16EC917900FB3D4D /* Growl.framework in Frameworks */,
-				4B0CE8D4158DC6D1001BA10E /* SenTestingKit.framework in Frameworks */,
-				4B0CE8D5158DC6D1001BA10E /* Cocoa.framework in Frameworks */,
-				4B0F07D416FDFB1D00E67C05 /* Security.framework in Frameworks */,
 				32A0007EC1CF4A89832AFE40 /* libPods-Jenkins MenuTests.a in Frameworks */,
+				1929B6C6CE9DE16FC495BB90 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				4B0CE8B1158DC6D0001BA10E /* Jenkins Menu.app */,
-				4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */,
+				4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,11 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				BD63670D166888E1009278DB /* Growl.framework */,
-				4B0CE8B5158DC6D0001BA10E /* Cocoa.framework */,
-				4B0CE8D3158DC6D1001BA10E /* SenTestingKit.framework */,
-				1929B17F9334050E9C2C6355 /* Security.framework */,
 				4553544CD93748F3A8E41A44 /* libPods.a */,
 				58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */,
+				1929BD30DEB6A31906760A14 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -270,8 +257,6 @@
 				1929B02AADFA7B46ACC3C847 /* Resources */,
 				1929BE6C01A781425D219178 /* JMJenkinsJobTest.m */,
 				1929B754F60A01DB7BB083E4 /* JMAppDelegateTest.m */,
-				1929B3A5FA705D57B173F8C5 /* ArgumentCaptor.m */,
-				1929BDCAEE67C8B37F8A3AA1 /* ArgumentCaptor.h */,
 				1929B114A3163CA62849DE77 /* JMTrustedHostManagerTest.m */,
 			);
 			path = "Jenkins MenuTests";
@@ -360,8 +345,8 @@
 			);
 			name = "Jenkins MenuTests";
 			productName = "Jenkins MenuTests";
-			productReference = 4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = 4B0CE8D2158DC6D1001BA10E /* Jenkins MenuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -382,8 +367,6 @@
 			mainGroup = 4B0CE8A6158DC6D0001BA10E;
 			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
@@ -540,7 +523,6 @@
 				1929BB3CE27675F11FFC02DD /* JMJenkinsJobTest.m in Sources */,
 				1929B56F4A7AAB5147839891 /* JMTrustedHostManager.m in Sources */,
 				1929B19377F594714AEEA045 /* JMAppDelegateTest.m in Sources */,
-				1929B6C870C2EDB070440DF6 /* ArgumentCaptor.m in Sources */,
 				1929BA917B9191800A1E33F1 /* JMTrustedHostManagerTest.m in Sources */,
 				1929BCA3CC8687CF213E5C75 /* NSMenuItem+Q.m in Sources */,
 				1929BEDF2F02B8F93260C7FD /* JMKeychainManager.m in Sources */,
@@ -678,18 +660,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Jenkins MenuTests\"",
 					"$(SRCROOT)/Frameworks",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins MenuTests/Jenkins MenuTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -697,18 +679,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"\"$(SRCROOT)/Jenkins MenuTests\"",
 					"$(SRCROOT)/Frameworks",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Jenkins Menu/Jenkins Menu-Prefix.pch";
 				INFOPLIST_FILE = "Jenkins MenuTests/Jenkins MenuTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
