@@ -1,7 +1,31 @@
+# Xcode
 .DS_Store
-build/*
-.idea
-Externals/*
-*.swp
+*/build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 xcuserdata
-project.xcworkspace
+profile
+*.moved-aside
+DerivedData
+.idea/
+*.hmap
+*.xccheckout
+
+# CocoaPods
+Pods
+
+# Vim
+*.swp
+
+# Custom
+build/*
+
+# Netbeans
+nbproject/*
+

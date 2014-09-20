@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B0CE8D1158DC6D1001BA10E"
-               BuildableName = "Jenkins MenuTests.octest"
+               BuildableName = "Jenkins MenuTests.xctest"
                BlueprintName = "Jenkins MenuTests"
                ReferencedContainer = "container:Jenkins Menu.xcodeproj">
             </BuildableReference>
