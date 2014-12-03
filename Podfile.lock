@@ -8,7 +8,7 @@ PODS:
   - TPWeakProxy (1.0.1)
 
 DEPENDENCIES:
-  - AFNetworking (~> 1.3.3)
+  - AFNetworking
   - OCHamcrest
   - OCMockito
   - Sparkle
@@ -20,4 +20,4 @@ SPEC CHECKSUMS:
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
   TPWeakProxy: da4177b6ae5eff685642c1cd9698f71ef7060ea5
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0
