@@ -1,7 +1,8 @@
-platform :osx, "10.8"
+platform :osx, '10.9'
+workspace 'Jenkins Menu'
 
-pod "AFNetworking",  '~> 1.3.3'
-pod "Sparkle"
+pod 'AFNetworking'
+pod 'Sparkle'
 
 target :"Jenkins MenuTests" do
   pod "OCHamcrest"
