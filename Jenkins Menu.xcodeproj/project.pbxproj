@@ -134,12 +134,14 @@
 		4B0CE8E8158DC6D1001BA151 /* weather_lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weather_lightning.png; path = Resources/weather_lightning.png; sourceTree = "<group>"; };
 		4B0CE8E8158DC6D1001BA154 /* weather_lightning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weather_lightning@2x.png"; path = "Resources/weather_lightning@2x.png"; sourceTree = "<group>"; };
 		58699C557F7B4D09B7766DB5 /* libPods-Jenkins MenuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jenkins MenuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jenkins MenuTests.xcconfig"; path = "Pods/Pods-Jenkins MenuTests.xcconfig"; sourceTree = "<group>"; };
+		64163C8CAAA80DD15993E146 /* Pods-Jenkins MenuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jenkins MenuTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jenkins MenuTests/Pods-Jenkins MenuTests.release.xcconfig"; sourceTree = "<group>"; };
 		BD6367031667FF74009278DB /* Jenkins Menu.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "Jenkins Menu.iconset"; sourceTree = "<group>"; };
 		BD63670716681E68009278DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD63670916686E42009278DB /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		BD63670D166888E1009278DB /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
+		BFDC7C39DCAFC8CD79AA09E3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D96E549065F0EFB0CE11B8CD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E0645FA3B87EF6DE107EBA57 /* Pods-Jenkins MenuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jenkins MenuTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jenkins MenuTests/Pods-Jenkins MenuTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +187,7 @@
 				4B0CE8D8158DC6D1001BA10E /* Jenkins MenuTests */,
 				4B0CE8B4158DC6D0001BA10E /* Frameworks */,
 				4B0CE8B2158DC6D0001BA10E /* Products */,
-				7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */,
-				A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */,
+				B6C96F52B237ED594EE9068C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +305,17 @@
 			name = 32;
 			sourceTree = "<group>";
 		};
+		B6C96F52B237ED594EE9068C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D96E549065F0EFB0CE11B8CD /* Pods.debug.xcconfig */,
+				BFDC7C39DCAFC8CD79AA09E3 /* Pods.release.xcconfig */,
+				E0645FA3B87EF6DE107EBA57 /* Pods-Jenkins MenuTests.debug.xcconfig */,
+				64163C8CAAA80DD15993E146 /* Pods-Jenkins MenuTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -367,6 +379,8 @@
 			mainGroup = 4B0CE8A6158DC6D0001BA10E;
 			productRefGroup = 4B0CE8B2158DC6D0001BA10E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				4B0CE8B0158DC6D0001BA10E /* Jenkins Menu */,
@@ -448,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Jenkins MenuTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jenkins MenuTests/Pods-Jenkins MenuTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B0CE8D0158DC6D1001BA10E /* ShellScript */ = {
@@ -476,7 +490,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC0D1CE5DE054E8F8BC51067 /* Check Pods Manifest.lock */ = {
@@ -620,7 +634,7 @@
 		};
 		4B0CE8E4158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */;
+			baseConfigurationReference = D96E549065F0EFB0CE11B8CD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -639,7 +653,7 @@
 		};
 		4B0CE8E5158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E23C82FE8BA48D5879824C6 /* Pods.xcconfig */;
+			baseConfigurationReference = BFDC7C39DCAFC8CD79AA09E3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -658,7 +672,7 @@
 		};
 		4B0CE8E7158DC6D1001BA10E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
+			baseConfigurationReference = E0645FA3B87EF6DE107EBA57 /* Pods-Jenkins MenuTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -677,7 +691,7 @@
 		};
 		4B0CE8E8158DC6D1001BA10E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A44D119E554D468399E8AC02 /* Pods-Jenkins MenuTests.xcconfig */;
+			baseConfigurationReference = 64163C8CAAA80DD15993E146 /* Pods-Jenkins MenuTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
